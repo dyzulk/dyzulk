@@ -28,4 +28,4 @@ Interested in working with me? Need help on your project? Or just wanna say hi? 
 
 [![HitCount](https://hits.dwyl.com/dyzulk/dyzulkgithubio.svg?style=flat-square&show=unique)](http://hits.dwyl.com/dyzulk/dyzulkgithubio)
 
-![Github-sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)
+[![Github-sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://sociabuzz.com/dyzulkdeveloper/donate)
