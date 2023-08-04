@@ -26,5 +26,8 @@ Interested in working with me? Need help on your project? Or just wanna say hi? 
 - Dribbble:	[dyzulk](http://dribbble.com/dyzulk)
 - Behance: [dyzulk](https://www.behance.net/dyzulk)
 
-[![HitCount](https://hits.dwyl.com/dyzulk/dyzulkgithubio.svg?style=flat-square&show=unique)](http://hits.dwyl.com/dyzulk/dyzulkgithubio)^
-[![Github-sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://sociabuzz.com/dyzulkdeveloper/donate)^
+[![HitCount](https://hits.dwyl.com/dyzulk/dyzulkgithubio.svg?style=flat-square&show=unique)](http://hits.dwyl.com/dyzulk/dyzulkgithubio)
+[![Github-sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA)](https://sociabuzz.com/dyzulkdeveloper/donate)
+<a href="https://sociabuzz.com/dyzulkdeveloper/donate" target="_blank">
+  <img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#EA4AAA" alt="Github-sponsors">
+</a>
