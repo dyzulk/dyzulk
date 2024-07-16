@@ -4,7 +4,7 @@
 A junior developer, designer, and producer, from Indonesia.
 [**My Website**](https://dyzulk.com)
 
-![dyzulk's Stats](https://github-readme-stats.vercel.app/api?username=dyzulk&theme=outrun&show_icons=true&hide_border=true&count_private=false)
+![dyzulk's Stats](https://github-readme-stats.vercel.app/api?username=dyzulk&theme=outrun&show_icons=true&hide_border=true&count_private=true)
 
 ![dyzulk's Streak](https://github-readme-streak-stats.herokuapp.com/?user=dyzulk&theme=outrun&hide_border=true)
 
