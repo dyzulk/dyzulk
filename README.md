@@ -2,7 +2,7 @@
 
 # 👋 Hi! Welcome, I'm Herdy Iskandar
 A junior developer, designer, and producer, from Indonesia.
-![**My Website**](https://dyzulk.com)
+[**My Website**](https://dyzulk.com)
 
 ![dyzulk's Stats](https://github-readme-stats.vercel.app/api?username=dyzulk&theme=outrun&show_icons=true&hide_border=true&count_private=false)
 
