@@ -70,7 +70,7 @@ export function Footer() {
             </p>
 
             {/* Operational Status Pill with Shadcn Badge */}
-            <Badge variant="outline" className="gap-2 px-3 py-1.5 rounded-full text-emerald-600 border-emerald-500/30 bg-emerald-500/10 font-medium">
+            <Badge variant="success" className="gap-2 font-medium">
               <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>All Systems Operational</span>
             </Badge>

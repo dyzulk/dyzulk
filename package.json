@@ -10,7 +10,9 @@
     "start": "turbo start",
     "lint": "turbo lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "devcontainer:up": "devcontainer up --workspace-folder .",
+    "devcontainer:restart": "docker compose -f .devcontainer/docker-compose.yml restart"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",

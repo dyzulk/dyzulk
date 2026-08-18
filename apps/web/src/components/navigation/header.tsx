@@ -55,7 +55,7 @@ export function Header() {
             href="#login"
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
-              "rounded-full text-xs font-medium"
+              "font-medium"
             )}
           >
             Sign In
@@ -65,7 +65,7 @@ export function Header() {
             href="/docs"
             className={cn(
               buttonVariants({ size: "sm" }),
-              "rounded-full px-4 text-xs font-semibold shadow-sm"
+              "font-semibold shadow-sm"
             )}
           >
             Deploy Free <ArrowRight className="ml-1.5 size-3.5" />
@@ -104,7 +104,7 @@ export function Header() {
                     href="#login"
                     className={cn(
                       buttonVariants({ variant: "outline" }),
-                      "w-full rounded-xl justify-center text-sm font-medium"
+                      "w-full justify-center text-sm font-medium"
                     )}
                   >
                     Sign In
@@ -113,7 +113,7 @@ export function Header() {
                     href="/docs"
                     className={cn(
                       buttonVariants({ variant: "default" }),
-                      "w-full rounded-xl justify-center text-sm font-semibold shadow-md"
+                      "w-full justify-center text-sm font-semibold shadow-md"
                     )}
                   >
                     Start Deploying Free <ArrowRight className="ml-2 size-4" />
