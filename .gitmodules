@@ -1,0 +1,3 @@
+[submodule "submodule/fumadocs"]
+	path = submodule/fumadocs
+	url = https://github.com/fuma-nama/fumadocs.git
