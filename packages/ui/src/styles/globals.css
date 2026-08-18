@@ -48,6 +48,46 @@
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
     --font-sans: var(--font-sans);
+    --animate-marquee: marquee var(--duration, 30s) infinite linear;
+    --animate-marquee-vertical: marquee-vertical var(--duration, 30s) linear infinite;
+    --animate-stroke: stroke 5s linear infinite;
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(calc(-100% - var(--gap, 1rem)));
+      }
+    }
+
+    @keyframes marquee-vertical {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(calc(-100% - var(--gap, 1rem)));
+      }
+    }
+
+    @keyframes stroke {
+      from {
+        stroke-dasharray: 1000;
+      }
+      to {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 2000;
+      }
+    }
+}
+
+@utility bg-grid-pattern {
+  background-image: radial-gradient(rgba(120, 120, 120, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@utility glow-effect {
+  box-shadow: 0 0 50px -10px var(--color-primary);
 }
 
 :root {
