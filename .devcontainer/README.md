@@ -15,8 +15,8 @@ Containerized development environment for the **Dyzulk** monorepo. Provides a co
 
 | App | Container Port | Host Port |
 |-----|:-:|:-:|
-| Web (Next.js) | `3000` | `30000` |
-| Docs (Fumadocs) | `3001` | `30001` |
+| Web (Next.js) | `3000` | `31000` |
+| Docs (Fumadocs) | `3001` | `31001` |
 
 ## Quick Start
 
