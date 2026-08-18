@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Layers, Menu, ArrowRight } from "lucide-react";
+import { Menu, ArrowRight } from "lucide-react";
 import { Button, buttonVariants } from "@workspace/ui/components/button";
 import {
   Sheet,
@@ -10,6 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@workspace/ui/components/sheet";
+import { Logo } from "@workspace/ui/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@workspace/ui/lib/utils";
 
@@ -27,9 +28,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:px-8">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-lg">
-          <div className="size-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shadow-md">
-            <Layers className="size-4" />
-          </div>
+          <Logo className="size-8" />
           <span>
             Dyzulk <span className="text-primary font-normal">Cloud</span>
           </span>
@@ -87,7 +86,7 @@ export function Header() {
             <SheetContent side="top" className="p-6">
               <SheetHeader className="p-0 mb-4">
                 <SheetTitle className="flex items-center gap-2 text-base font-bold">
-                  <Layers className="size-4 text-primary" /> Dyzulk Cloud Navigation
+                  <Logo className="size-5" /> Dyzulk Cloud Navigation
                 </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-3 font-medium text-sm">

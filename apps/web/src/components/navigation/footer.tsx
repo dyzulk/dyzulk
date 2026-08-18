@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { Layers } from "lucide-react";
 import { SiGithub, SiX, SiDiscord } from "@icons-pack/react-simple-icons";
 import { Badge } from "@workspace/ui/components/badge";
 import { Separator } from "@workspace/ui/components/separator";
+import { Logo } from "@workspace/ui/components/logo";
 
 const footerSections = [
   {
@@ -59,9 +59,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1 space-y-4">
             <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-lg">
-              <div className="size-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center shadow-md">
-                <Layers className="size-4" />
-              </div>
+              <Logo className="size-8" />
               <span>
                 Dyzulk <span className="text-primary font-normal">Cloud</span>
               </span>
