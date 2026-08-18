@@ -46,6 +46,7 @@ next-env.d.ts
 
 # submodule
 submodule/
+!submodule/README.md
 
 # other
 .kilo
