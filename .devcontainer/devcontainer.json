@@ -7,12 +7,14 @@
   "forwardPorts": [3000, 3001],
   "portsAttributes": {
     "3000": {
-      "label": "Web App (Next.js) → host:30000",
-      "onAutoForward": "notify"
+      "label": "Web App (Next.js)",
+      "onAutoForward": "notify",
+      "hostPort": 30000
     },
     "3001": {
-      "label": "Docs (Fumadocs) → host:30001",
-      "onAutoForward": "notify"
+      "label": "Docs (Fumadocs)",
+      "onAutoForward": "notify",
+      "hostPort": 30001
     }
   },
   "customizations": {
