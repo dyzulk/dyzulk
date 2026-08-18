@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { buttonVariants } from "@workspace/ui/components/button";
+import { Button, buttonVariants } from "@workspace/ui/components/button";
+import { Badge } from "@workspace/ui/components/badge";
 import { cn } from "@workspace/ui/lib/utils";
 import { ArrowRight, Sparkles, Terminal as TerminalIcon, ShieldCheck } from "lucide-react";
 
@@ -10,10 +11,10 @@ export function HeroSection() {
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-primary/15 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Pill Badge */}
-      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium rounded-full border border-primary/30 bg-primary/10 text-primary mb-8 animate-pulse">
+      <Badge variant="outline" className="gap-2 px-3.5 py-1.5 rounded-full border-primary/30 bg-primary/10 text-primary mb-8 animate-pulse text-xs font-medium">
         <Sparkles className="size-3.5" />
         <span>Monorepo-Native Cloud Platform</span>
-      </div>
+      </Badge>
 
       {/* Main Title */}
       <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight max-w-5xl text-center leading-[1.1] px-4">

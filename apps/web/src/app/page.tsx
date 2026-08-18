@@ -2,7 +2,7 @@ import { HeroSection } from "@/components/home/hero";
 import { TerminalPreview } from "@/components/home/terminal-preview";
 import { BentoFeatures } from "@/components/home/bento-features";
 import { MarqueeShowcase } from "@/components/home/marquee-showcase";
-import { CtaFooter } from "@/components/home/cta-footer";
+import { CtaSection } from "@/components/home/cta-footer";
 
 export default function Page() {
   return (
@@ -11,7 +11,7 @@ export default function Page() {
       <MarqueeShowcase />
       <TerminalPreview />
       <BentoFeatures />
-      <CtaFooter />
+      <CtaSection />
     </main>
   );
 }

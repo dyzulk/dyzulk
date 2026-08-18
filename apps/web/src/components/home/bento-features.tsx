@@ -1,4 +1,6 @@
-import { Globe, Cpu, GitBranch, ShieldCheck, Zap, Server, BarChart3, Database } from "lucide-react";
+import { Globe, Cpu, GitBranch, ShieldCheck, Zap, BarChart3, Database } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@workspace/ui/components/card";
+import { Badge } from "@workspace/ui/components/badge";
 
 const features = [
   {
@@ -61,33 +63,33 @@ export function BentoFeatures() {
         {features.map((feature, i) => {
           const Icon = feature.icon;
           return (
-            <div
+            <Card
               key={i}
-              className={`group relative p-8 border rounded-3xl bg-card text-card-foreground hover:border-primary/50 transition-all duration-300 shadow-md flex flex-col justify-between ${feature.className}`}
+              className={`group relative p-4 hover:border-primary/50 transition-all duration-300 shadow-md flex flex-col justify-between ${feature.className}`}
             >
-              <div>
-                <div className="flex items-center justify-between mb-6">
+              <CardHeader className="space-y-4">
+                <div className="flex items-center justify-between">
                   <div className="size-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                     <Icon className="size-6" />
                   </div>
-                  <span className="text-[11px] font-semibold px-2.5 py-1 rounded-full border border-border bg-secondary text-secondary-foreground">
+                  <Badge variant="secondary" className="font-semibold text-[11px] px-2.5 py-0.5">
                     {feature.badge}
-                  </span>
+                  </Badge>
                 </div>
 
-                <h3 className="text-xl font-bold tracking-tight mb-3 group-hover:text-primary transition-colors">
+                <CardTitle className="text-xl font-bold tracking-tight group-hover:text-primary transition-colors">
                   {feature.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
                   {feature.description}
-                </p>
-              </div>
+                </CardDescription>
+              </CardHeader>
 
-              <div className="mt-8 pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-primary opacity-80 group-hover:opacity-100 transition-opacity">
+              <CardContent className="pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-primary opacity-80 group-hover:opacity-100 transition-opacity">
                 <span>Learn more</span>
                 <Zap className="size-3" />
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
