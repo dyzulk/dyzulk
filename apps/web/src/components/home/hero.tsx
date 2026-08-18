@@ -3,6 +3,7 @@ import { Button, buttonVariants } from "@workspace/ui/components/button";
 import { Badge } from "@workspace/ui/components/badge";
 import { cn } from "@workspace/ui/lib/utils";
 import { ArrowRight, Sparkles, Terminal as TerminalIcon, ShieldCheck } from "lucide-react";
+import { SiGithub } from "@icons-pack/react-simple-icons";
 
 export function HeroSection() {
   return (
@@ -47,10 +48,10 @@ export function HeroSection() {
           rel="noreferrer"
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
-            "rounded-full px-6 font-medium text-sm"
+            "rounded-full px-6 font-medium text-sm gap-2"
           )}
         >
-          <TerminalIcon className="mr-2 size-4" /> Explore CLI
+          <SiGithub className="size-4" /> View GitHub
         </a>
       </div>
 
