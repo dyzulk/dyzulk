@@ -4,19 +4,6 @@
   "service": "app",
   "workspaceFolder": "/workspaces/dyzulk",
   "remoteUser": "node",
-  "forwardPorts": [3000, 3001],
-  "portsAttributes": {
-    "3000": {
-      "label": "Web App (Next.js)",
-      "onAutoForward": "notify",
-      "hostPort": 30000
-    },
-    "3001": {
-      "label": "Docs (Fumadocs)",
-      "onAutoForward": "notify",
-      "hostPort": 30001
-    }
-  },
   "customizations": {
     "vscode": {
       "extensions": [
