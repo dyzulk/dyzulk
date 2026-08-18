@@ -1,0 +1,19 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    container_name: dyzulk-devcontainer
+    user: node
+    working_dir: /workspaces/dyzulk
+    volumes:
+      - ..:/workspaces/dyzulk
+      - dyzulk-pnpm-store:/home/node/.local/share/pnpm/store
+    ports:
+      - "30000:3000"
+      - "30001:3001"
+    command: bash -c "bash ./.devcontainer/post-create.sh && pnpm build && pnpm start"
+    restart: unless-stopped
+
+volumes:
+  dyzulk-pnpm-store:
