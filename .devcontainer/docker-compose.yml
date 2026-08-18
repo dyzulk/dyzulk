@@ -8,6 +8,13 @@ services:
     working_dir: /workspaces/dyzulk
     volumes:
       - ..:/workspaces/dyzulk
+      # Isolate node_modules between host and container
+      - /workspaces/dyzulk/node_modules
+      - /workspaces/dyzulk/apps/web/node_modules
+      - /workspaces/dyzulk/apps/docs/node_modules
+      - /workspaces/dyzulk/packages/ui/node_modules
+      - /workspaces/dyzulk/packages/eslint-config/node_modules
+      - /workspaces/dyzulk/packages/typescript-config/node_modules
       - dyzulk-pnpm-store:/home/node/.local/share/pnpm/store
     ports:
       - "30000:3000"
