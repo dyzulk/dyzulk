@@ -4,6 +4,8 @@ import { Badge } from "@workspace/ui/components/badge";
 import { cn } from "@workspace/ui/lib/utils";
 import { ArrowRight, Sparkles, Terminal as TerminalIcon, ShieldCheck } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
+import { PATHS } from "@/constants/navigation";
+import { SITE_CONFIG } from "@/constants/site";
 
 export function HeroSection() {
   return (
@@ -34,7 +36,7 @@ export function HeroSection() {
       {/* CTA Buttons */}
       <div className="flex flex-wrap items-center justify-center gap-4 mt-8 px-4">
         <Link
-          href="/docs"
+          href={PATHS.docs}
           className={cn(
             buttonVariants({ size: "lg" }),
             "font-semibold shadow-md"
@@ -43,7 +45,7 @@ export function HeroSection() {
           Start Deploying Free <ArrowRight className="ml-2 size-4" />
         </Link>
         <a
-          href="https://github.com"
+          href={SITE_CONFIG.links.github}
           target="_blank"
           rel="noreferrer"
           className={cn(

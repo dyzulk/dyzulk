@@ -3,52 +3,8 @@ import { SiGithub, SiX, SiDiscord } from "@icons-pack/react-simple-icons";
 import { Badge } from "@workspace/ui/components/badge";
 import { Separator } from "@workspace/ui/components/separator";
 import { Logo } from "@workspace/ui/components/logo";
-
-const footerSections = [
-  {
-    title: "Platform",
-    links: [
-      { label: "Edge Compute Workers", href: "#" },
-      { label: "Serverless Containers", href: "#" },
-      { label: "Global Anycast CDN", href: "#" },
-      { label: "Managed Postgres", href: "#" },
-      { label: "KV Storage & Cache", href: "#" },
-      { label: "WAF & DDoS Shield", href: "#" },
-    ],
-  },
-  {
-    title: "Solutions",
-    links: [
-      { label: "Next.js Monorepos", href: "#" },
-      { label: "AI Applications", href: "#" },
-      { label: "Micro-frontends", href: "#" },
-      { label: "Enterprise Infra", href: "#" },
-      { label: "E-Commerce Engines", href: "#" },
-    ],
-  },
-  {
-    title: "Developer DX",
-    links: [
-      { label: "Documentation", href: "/docs" },
-      { label: "API Reference", href: "#" },
-      { label: "Dyzulk CLI", href: "#" },
-      { label: "GitHub Repository", href: "https://github.com" },
-      { label: "Release Notes", href: "#" },
-      { label: "Community Forum", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About Us", href: "#" },
-      { label: "Careers", href: "#", badge: "Hiring" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
-      { label: "Security & SOC2", href: "#" },
-      { label: "System Status", href: "#" },
-    ],
-  },
-];
+import { SITE_CONFIG } from "@/constants/site";
+import { PATHS, FOOTER_SECTIONS } from "@/constants/navigation";
 
 export function Footer() {
   return (
@@ -58,7 +14,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12 pb-12">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-lg">
+            <Link href={PATHS.home} className="flex items-center gap-2.5 font-bold tracking-tight text-lg">
               <Logo className="size-8" />
               <span>
                 Dyzulk <span className="text-primary font-normal">Cloud</span>
@@ -66,7 +22,7 @@ export function Footer() {
             </Link>
 
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Monorepo-native cloud compute & edge infrastructure for modern web applications.
+              {SITE_CONFIG.description}
             </p>
 
             {/* Operational Status Pill with Shadcn Badge */}
@@ -77,7 +33,7 @@ export function Footer() {
           </div>
 
           {/* Section Columns */}
-          {footerSections.map((section, idx) => (
+          {FOOTER_SECTIONS.map((section, idx) => (
             <div key={idx} className="space-y-3">
               <p className="text-xs font-semibold uppercase tracking-wider text-foreground">
                 {section.title}
@@ -111,7 +67,7 @@ export function Footer() {
 
           <div className="flex items-center gap-6">
             <a
-              href="https://github.com"
+              href={SITE_CONFIG.links.github}
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -120,7 +76,7 @@ export function Footer() {
               <SiGithub className="size-4" />
             </a>
             <a
-              href="https://x.com"
+              href={SITE_CONFIG.links.twitter}
               target="_blank"
               rel="noreferrer"
               aria-label="X (Twitter)"
@@ -129,7 +85,7 @@ export function Footer() {
               <SiX className="size-4" />
             </a>
             <a
-              href="https://discord.com"
+              href={SITE_CONFIG.links.discord}
               target="_blank"
               rel="noreferrer"
               aria-label="Discord"

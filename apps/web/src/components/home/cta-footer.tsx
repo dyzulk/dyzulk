@@ -3,6 +3,7 @@ import { buttonVariants } from "@workspace/ui/components/button";
 import { Card } from "@workspace/ui/components/card";
 import { cn } from "@workspace/ui/lib/utils";
 import { ArrowRight } from "lucide-react";
+import { PATHS } from "@/constants/navigation";
 
 export function CtaSection() {
   return (
@@ -20,7 +21,7 @@ export function CtaSection() {
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           <Link
-            href="/docs"
+            href={PATHS.docs}
             className={cn(
               buttonVariants({ size: "lg" }),
               "font-semibold shadow-lg"

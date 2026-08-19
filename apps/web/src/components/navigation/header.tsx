@@ -13,21 +13,14 @@ import {
 import { Logo } from "@workspace/ui/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@workspace/ui/lib/utils";
-
-const navLinks = [
-  { name: "Products", href: "#products" },
-  { name: "Solutions", href: "#solutions" },
-  { name: "Pricing", href: "#pricing" },
-  { name: "Docs", href: "/docs" },
-  { name: "Changelog", href: "#changelog" },
-];
+import { PATHS, HEADER_NAV_LINKS } from "@/constants/navigation";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur-md transition-all">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 sm:px-8">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight text-lg">
+        <Link href={PATHS.home} className="flex items-center gap-2.5 font-bold tracking-tight text-lg">
           <Logo className="size-8" />
           <span>
             Dyzulk <span className="text-primary font-normal">Cloud</span>
@@ -36,7 +29,7 @@ export function Header() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
-          {navLinks.map((link) => (
+          {HEADER_NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               href={link.href}
@@ -52,7 +45,7 @@ export function Header() {
           <ThemeToggle />
 
           <Link
-            href="#login"
+            href={PATHS.login}
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
               "font-medium"
@@ -62,7 +55,7 @@ export function Header() {
           </Link>
 
           <Link
-            href="/docs"
+            href={PATHS.docs}
             className={cn(
               buttonVariants({ size: "sm" }),
               "font-semibold shadow-sm"
@@ -90,7 +83,7 @@ export function Header() {
                 </SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-3 font-medium text-sm">
-                {navLinks.map((link) => (
+                {HEADER_NAV_LINKS.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
@@ -101,7 +94,7 @@ export function Header() {
                 ))}
                 <div className="pt-4 border-t border-border/60 flex flex-col gap-2">
                   <Link
-                    href="#login"
+                    href={PATHS.login}
                     className={cn(
                       buttonVariants({ variant: "outline" }),
                       "w-full justify-center text-sm font-medium"
@@ -110,7 +103,7 @@ export function Header() {
                     Sign In
                   </Link>
                   <Link
-                    href="/docs"
+                    href={PATHS.docs}
                     className={cn(
                       buttonVariants({ variant: "default" }),
                       "w-full justify-center text-sm font-semibold shadow-md"
