@@ -1,15 +1,14 @@
-import { defineConfig, globalIgnores } from 'eslint/config';
-import nextVitals from 'eslint-config-next/core-web-vitals';
+import { nextJsConfig } from "@workspace/eslint-config/next-js"
 
-const eslintConfig = defineConfig([
-  ...nextVitals,
-  globalIgnores([
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-    '.source/**',
-  ]),
-]);
-
-export default eslintConfig;
+/** @type {import("eslint").Linter.Config[]} */
+export default [
+  ...nextJsConfig,
+  {
+    ignores: [
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+      ".source/**",
+    ],
+  },
+]

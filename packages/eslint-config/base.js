@@ -27,6 +27,12 @@ export const config = [
     },
   },
   {
-    ignores: ["dist/**", ".next/**", "**/.turbo/**", "**/coverage/**"],
+    ignores: [
+      "**/dist/**",
+      "**/.next/**",
+      "**/.turbo/**",
+      "**/coverage/**",
+      "**/node_modules/**",
+    ],
   },
 ]
