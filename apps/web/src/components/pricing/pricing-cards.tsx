@@ -80,7 +80,7 @@ export function PricingCards({ billingCycle }: PricingCardsProps) {
         <Card
           key={plan.name}
           className={cn(
-            "relative flex flex-col justify-between border/60 transition-all duration-300 hover:shadow-lg rounded-2xl overflow-hidden",
+            "relative flex flex-col justify-between border/60 transition-all duration-300 hover:shadow-lg overflow-hidden",
             plan.popular
               ? "border-primary shadow-md bg-accent/20"
               : "bg-card border-border/50"
@@ -95,7 +95,7 @@ export function PricingCards({ billingCycle }: PricingCardsProps) {
           <CardHeader className={cn("pt-8", plan.popular && "pt-10")}>
             <div className="flex items-center justify-between">
               <CardTitle className="text-2xl font-bold">{plan.name}</CardTitle>
-              <Badge variant={plan.popular ? "default" : "outline"} className="rounded-md">
+              <Badge variant={plan.popular ? "default" : "outline"}>
                 {plan.badge}
               </Badge>
             </div>
@@ -129,7 +129,7 @@ export function PricingCards({ billingCycle }: PricingCardsProps) {
               href={plan.href}
               className={cn(
                 buttonVariants({ variant: plan.variant, size: "lg" }),
-                "w-full font-semibold shadow-sm justify-center rounded-xl"
+                "w-full font-semibold shadow-sm justify-center"
               )}
             >
               {plan.cta}

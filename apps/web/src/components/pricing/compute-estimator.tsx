@@ -46,7 +46,7 @@ export function ComputeEstimator() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         {/* Left Options Configurer */}
         <div className="lg:col-span-2 space-y-6">
-          <Card className="bg-card border-border/50 rounded-2xl p-6">
+          <Card className="bg-card border-border/50 p-6">
             <h3 className="text-base font-semibold mb-4 flex items-center gap-2">
               <Server className="size-4 text-primary" />
               1. Choose Instance Size
@@ -57,7 +57,7 @@ export function ComputeEstimator() {
                   key={plan.id}
                   onClick={() => setSelectedPlanId(plan.id)}
                   className={cn(
-                    "flex flex-col items-center justify-center p-3.5 border rounded-xl transition text-center gap-1 group",
+                    "flex flex-col items-center justify-center p-3.5 border transition text-center gap-1 group",
                     selectedPlanId === plan.id
                       ? "border-primary bg-primary/5 text-primary"
                       : "border-border/50 bg-background hover:bg-accent/40"
@@ -74,7 +74,7 @@ export function ComputeEstimator() {
             </div>
           </Card>
 
-          <Card className="bg-card border-border/50 rounded-2xl p-6 space-y-6">
+          <Card className="bg-card border-border/50 p-6 space-y-6">
             {/* Instance Count */}
             <div>
               <div className="flex justify-between items-center mb-3">
@@ -138,7 +138,7 @@ export function ComputeEstimator() {
         </div>
 
         {/* Right Dynamic Invoice Summary */}
-        <Card className="border-border/60 bg-accent/10 rounded-2xl p-6 sticky top-24 self-start">
+        <Card className="border-border/60 bg-accent/10 p-6 sticky top-24 self-start">
           <CardHeader className="p-0 pb-4 border-b border-border/60">
             <CardTitle className="text-lg font-bold flex items-center gap-2">
               <Database className="size-4 text-primary" />
@@ -175,7 +175,7 @@ export function ComputeEstimator() {
               </div>
             </div>
 
-            <div className="bg-muted/50 border border-border/50 rounded-xl p-3.5 text-xs text-muted-foreground leading-relaxed mt-2">
+            <div className="bg-muted/50 border border-border/50 p-3.5 text-xs text-muted-foreground leading-relaxed mt-2">
               <strong>Billing Note:</strong> Active compute is prorated to the nearest second. If you shut down the service after 15 minutes, you will pay only 15 minutes of compute.
             </div>
           </CardContent>

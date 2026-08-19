@@ -44,7 +44,7 @@ export function PricingFaq() {
           <AccordionItem
             key={index}
             value={`faq-${index}`}
-            className="border border-border/50 rounded-xl px-4 bg-card hover:bg-accent/5 transition-colors"
+            className="border border-border/50 px-4 bg-card hover:bg-accent/5 transition-colors"
           >
             <AccordionTrigger className="text-sm font-semibold text-foreground py-4 hover:no-underline">
               {faq.q}

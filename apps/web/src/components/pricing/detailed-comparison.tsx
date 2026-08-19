@@ -90,7 +90,7 @@ export function DetailedComparison() {
         </p>
       </div>
 
-      <div className="border border-border/50 rounded-2xl overflow-hidden bg-card shadow-sm">
+      <div className="border border-border/50 overflow-hidden bg-card shadow-sm">
         <Table>
           <TableHeader>
             <TableRow className="hover:bg-transparent border-b border-border/60">

@@ -13,7 +13,7 @@ export function PricingHero({ billingCycle, setBillingCycle }: PricingHeroProps)
   return (
     <section className="relative flex flex-col items-center justify-center py-12 md:py-16 text-center">
       {/* Background Ambient Glow */}
-      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-primary/10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-primary/10 blur-[100px] pointer-events-none" />
 
       {/* Pill Badge */}
       <Badge variant="outline" className="gap-2 mb-6">
@@ -45,7 +45,7 @@ export function PricingHero({ billingCycle, setBillingCycle }: PricingHeroProps)
             <TabsTrigger value="monthly">Monthly</TabsTrigger>
             <TabsTrigger value="annual" className="relative">
               Annually
-              <span className="absolute -top-3 -right-3 px-1.5 py-0.5 text-[10px] font-semibold bg-primary text-primary-foreground rounded-full leading-none shadow-sm animate-pulse">
+              <span className="absolute -top-3 -right-3 px-1.5 py-0.5 text-[10px] font-semibold bg-primary text-primary-foreground leading-none shadow-sm animate-pulse">
                 -20%
               </span>
             </TabsTrigger>
