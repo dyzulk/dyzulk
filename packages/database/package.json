@@ -1,0 +1,22 @@
+{
+  "name": "@workspace/database",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/db.js",
+  "types": "./dist/db.d.ts",
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10",
+    "@workspace/typescript-config": "workspace:*",
+    "drizzle-kit": "^0.31.10",
+    "typescript": "^5"
+  }
+}
