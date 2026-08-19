@@ -57,3 +57,15 @@ export const staffProfiles = pgTable("staff_profiles", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
+// Verification Tokens (for Passwordless Email OTP / Magic Link)
+export const verificationTokens = pgTable("verification_tokens", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  identifier: text("identifier").notNull(), // Email address receiving the code/link
+  token: text("token").notNull(), // OTP code or secure hash token
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex("verification_token_idx").on(table.identifier, table.token)
+]);
+
