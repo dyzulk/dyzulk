@@ -11,12 +11,102 @@ export const PATHS = {
 } as const;
 
 export const HEADER_NAV_LINKS = [
-  { name: "Products", href: PATHS.products },
-  { name: "Solutions", href: PATHS.solutions },
-  { name: "Pricing", href: PATHS.pricing },
-  { name: "Docs", href: PATHS.docs },
-  { name: "Changelog", href: PATHS.changelog },
+  { name: "Product", href: PATHS.products, hasMegaMenu: true },
+  { name: "Developers", href: PATHS.docs, hasMegaMenu: true },
+  { name: "Solutions", href: PATHS.solutions, hasMegaMenu: true },
+  { name: "Pricing", href: PATHS.pricing, hasMegaMenu: false },
+  { name: "Company", href: "#", hasMegaMenu: true },
 ] as const;
+
+export const PRODUCT_MEGA_MENU = {
+  platformOverview: {
+    title: "Platform Overview",
+    href: "/products",
+    features: [
+      { name: "Autoscaling", href: "#" },
+      { name: "Private Networking", href: "#" },
+      { name: "Persistent Disks", href: "#" },
+      { name: "Infrastructure as Code", href: "#" },
+      { name: "Preview Environments", href: "#" },
+      { name: "Zero Downtime Deploys", href: "#" },
+      { name: "Render API", href: "#" },
+    ],
+  },
+  workflows: {
+    title: "Workflows",
+    href: "#",
+    services: [
+      { name: "Static Sites", href: "#" },
+      { name: "Web Services", href: "#" },
+      { name: "Private Services", href: "#" },
+      { name: "Background Workers", href: "#" },
+      { name: "Cron Jobs", href: "#" },
+      { name: "Render Postgres", href: "#" },
+      { name: "Render Key Value", href: "#" },
+    ],
+  },
+};
+
+export const DEVELOPERS_MEGA_MENU = {
+  docs: {
+    title: "Docs",
+    description: "Learn how to build and deploy on Render",
+    href: PATHS.docs,
+  },
+  agents: {
+    title: "Agents",
+    description: "Deploy to Render with your coding agent",
+    href: "#",
+  },
+  getStarted: {
+    title: "GET STARTED",
+    links: [
+      { name: "Framework Quickstarts", href: "#" },
+      { name: "Templates", href: "#" },
+    ],
+  },
+  updates: {
+    title: "UPDATES & ANNOUNCEMENTS",
+    links: [
+      { name: "Blog", href: "#" },
+      { name: "Changelog", href: PATHS.changelog },
+    ],
+  },
+};
+
+export const SOLUTIONS_MEGA_MENU = {
+  customers: {
+    title: "Customers",
+    description: "How the best teams scale faster",
+    href: "#",
+  },
+  migrationCredits: {
+    title: "Migration Credits",
+    description: "Apply for credits to cover switching costs",
+    href: "#",
+  },
+  build: {
+    title: "BUILD",
+    links: [
+      { name: "Render for Startups", href: "#" },
+      { name: "HIPAA on Render", href: "#" },
+    ],
+  },
+  migrate: {
+    title: "MIGRATE",
+    links: [
+      { name: "Heroku Migration Guide", href: "#" },
+      { name: "Railway Migration Guide", href: "#" },
+    ],
+  },
+};
+
+export const COMPANY_MEGA_MENU = [
+  { name: "About Us", href: "#" },
+  { name: "Security", href: "#" },
+  { name: "Careers", href: "#" },
+  { name: "Newsroom", href: "#" },
+];
 
 export interface FooterLink {
   label: string;
