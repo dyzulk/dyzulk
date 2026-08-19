@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import { chromium } from 'playwright';
 
 interface SeoData {
   title: string | null;
@@ -37,18 +38,20 @@ async function scrapeSeo(url: string): Promise<SeoData> {
     targetUrl = 'https://' + targetUrl;
   }
 
-  // Fetch HTML with User-Agent to avoid generic blocks
-  const response = await fetch(targetUrl, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch page: ${response.status} ${response.statusText}`);
+  const browser = await chromium.launch({ headless: true });
+  let html = '';
+  
+  try {
+    const context = await browser.newContext({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    });
+    const page = await context.newPage();
+    await page.goto(targetUrl, { waitUntil: 'networkidle', timeout: 30000 });
+    html = await page.content();
+  } finally {
+    await browser.close();
   }
 
-  const html = await response.text();
   const $ = cheerio.load(html);
 
   // Helper to extract meta content

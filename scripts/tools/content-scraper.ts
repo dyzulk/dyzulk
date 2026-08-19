@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import { chromium } from 'playwright';
 
 interface ScrapeResult {
   title: string;
@@ -222,23 +223,50 @@ async function scrapeContent(url: string): Promise<ScrapeResult> {
     targetUrl = 'https://' + targetUrl;
   }
 
-  const response = await fetch(targetUrl, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch page: ${response.status} ${response.statusText}`);
+  const browser = await chromium.launch({ headless: true });
+  let html = '';
+  let title = 'Untitled Page';
+  
+  try {
+    const context = await browser.newContext({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    });
+    const page = await context.newPage();
+    
+    // Set viewport size
+    await page.setViewportSize({ width: 1280, height: 800 });
+    
+    await page.goto(targetUrl, { waitUntil: 'networkidle', timeout: 30000 });
+    
+    // Scroll to the bottom to trigger lazy-loaded images/content
+    await page.evaluate(async () => {
+      await new Promise<void>((resolve) => {
+        let totalHeight = 0;
+        const distance = 100;
+        const timer = setInterval(() => {
+          const scrollHeight = document.body.scrollHeight;
+          window.scrollBy(0, distance);
+          totalHeight += distance;
+          if (totalHeight >= scrollHeight) {
+            clearInterval(timer);
+            resolve();
+          }
+        }, 100);
+      });
+    });
+    
+    html = await page.content();
+    title = await page.title();
+  } finally {
+    await browser.close();
   }
 
-  const html = await response.text();
   const $ = cheerio.load(html);
 
   // Clean the document a bit first
   $('script, style, noscript, iframe, svg, header, footer, nav').remove();
 
-  const title = $('title').text().trim() || 'Untitled Page';
+  title = title || $('title').text().trim() || 'Untitled Page';
   
   // Try to target main content areas first, fallback to body
   const mainSelectors = ['article', 'main', '[role="main"]', '#content', '.content', 'body'];

@@ -20,6 +20,7 @@
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "cheerio": "^1.2.0",
+    "playwright": "^1.62.1",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "turbo": "^2.9.18",
