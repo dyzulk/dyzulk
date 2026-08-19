@@ -30,7 +30,7 @@ export function PricingCards({ billingCycle }: PricingCardsProps) {
         "Global edge network caching",
       ],
       cta: "Deploy Free",
-      href: PATHS.docs,
+      href: PATHS.login,
       variant: "outline" as const,
       popular: false,
     },

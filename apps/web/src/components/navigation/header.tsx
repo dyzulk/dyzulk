@@ -264,7 +264,7 @@ export function Header() {
           </Link>
 
           <Link
-            href={PATHS.docs}
+            href={PATHS.login}
             className={cn(
               buttonVariants({ size: "sm" }),
               "font-semibold shadow-sm rounded-none"
@@ -449,7 +449,7 @@ export function Header() {
                     Sign In
                   </Link>
                   <Link
-                    href={PATHS.docs}
+                    href={PATHS.login}
                     className={cn(
                       buttonVariants({ variant: "default" }),
                       "w-full justify-center text-xs font-semibold shadow-md rounded-none"
