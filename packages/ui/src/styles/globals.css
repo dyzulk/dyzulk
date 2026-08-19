@@ -48,6 +48,7 @@
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
     --font-sans: var(--font-sans);
+    --font-mono: var(--font-mono);
     --animate-marquee: marquee var(--duration, 30s) infinite linear;
     --animate-marquee-vertical: marquee-vertical var(--duration, 30s) linear infinite;
     --animate-stroke: stroke 5s linear infinite;
