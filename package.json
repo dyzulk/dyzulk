@@ -13,7 +13,8 @@
     "typecheck": "turbo typecheck",
     "devcontainer:up": "devcontainer up --workspace-folder .",
     "devcontainer:restart": "docker compose -f .devcontainer/docker-compose.yml restart",
-    "seo-scrape": "node --no-warnings --experimental-strip-types scripts/tools/seo-scraper.ts"
+    "seo-scrape": "node --no-warnings --experimental-strip-types scripts/tools/seo-scraper.ts",
+    "content-scrape": "node --no-warnings --experimental-strip-types scripts/tools/content-scraper.ts"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
