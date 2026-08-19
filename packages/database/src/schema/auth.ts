@@ -1,13 +1,26 @@
-import { pgTable, text, uuid, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, uuid, timestamp, uniqueIndex } from "drizzle-orm/pg-core";
 
 // Accounts (Customers)
 export const accounts = pgTable("accounts", {
   id: uuid("id").defaultRandom().primaryKey(),
   email: text("email").notNull().unique(),
-  passwordHash: text("password_hash").notNull(),
+  passwordHash: text("password_hash"), // Nullable to allow OAuth-only signups
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
+
+// OAuth Accounts (Google, GitHub, etc.)
+export const oauthAccounts = pgTable("oauth_accounts", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  accountId: uuid("account_id")
+    .notNull()
+    .references(() => accounts.id, { onDelete: "cascade" }),
+  providerId: text("provider_id").notNull(), // "github" or "google"
+  providerUserId: text("provider_user_id").notNull(), // ID given by GitHub or Google
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex("oauth_provider_user_idx").on(table.providerId, table.providerUserId)
+]);
 
 // Accounts Profile
 export const accountsProfile = pgTable("accounts_profile", {
