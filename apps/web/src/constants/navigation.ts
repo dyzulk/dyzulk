@@ -4,7 +4,7 @@ export const PATHS = {
   home: "/",
   docs: "/docs",
   login: "#login",
-  products: "#products",
+  products: "/products",
   solutions: "#solutions",
   pricing: "/pricing",
   changelog: "#changelog",
