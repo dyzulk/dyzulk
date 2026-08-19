@@ -12,7 +12,7 @@ export function HeroSection() {
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-primary/15 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Pill Badge */}
-      <Badge variant="outline" className="gap-2 px-3.5 py-1.5 rounded-full border-primary/30 bg-primary/10 text-primary mb-8 animate-pulse text-xs font-medium">
+      <Badge variant="outline" className="gap-2 mb-8 animate-pulse">
         <Sparkles className="size-3.5" />
         <span>Monorepo-Native Cloud Platform</span>
       </Badge>
@@ -37,7 +37,7 @@ export function HeroSection() {
           href="/docs"
           className={cn(
             buttonVariants({ size: "lg" }),
-            "rounded-full px-6 font-semibold shadow-md text-sm"
+            "font-semibold shadow-md"
           )}
         >
           Start Deploying Free <ArrowRight className="ml-2 size-4" />
@@ -48,7 +48,7 @@ export function HeroSection() {
           rel="noreferrer"
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
-            "rounded-full px-6 font-medium text-sm gap-2"
+            "font-medium gap-2"
           )}
         >
           <SiGithub className="size-4" /> View GitHub
@@ -62,7 +62,7 @@ export function HeroSection() {
           <span>99.99% Guaranteed SLA</span>
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <span className="size-2 rounded-full bg-emerald-500 animate-ping" />
+          <span className="size-2 rounded-full bg-chart-2 animate-ping" />
           <span>300+ Anycast Edge Locations</span>
         </div>
         <div className="col-span-2 sm:col-span-1 flex items-center gap-2 justify-center">

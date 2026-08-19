@@ -65,18 +65,18 @@ export function TerminalPreview() {
         </p>
       </div>
 
-      <Card className="border rounded-2xl bg-zinc-950 text-zinc-100 overflow-hidden shadow-2xl max-w-4xl mx-auto p-0 border-zinc-800">
+      <Card className="border rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto p-0">
         <Tabs defaultValue="cli" onValueChange={(val) => setActiveTab(val as "cli" | "config" | "worker")}>
           {/* Header Controls */}
-          <CardHeader className="flex flex-row items-center justify-between px-4 py-3 border-b border-zinc-800 bg-zinc-900/80 space-y-0">
+          <CardHeader className="flex flex-row items-center justify-between px-4 py-3 border-b bg-muted/50 space-y-0">
             <div className="flex items-center gap-3">
               <div className="flex gap-1.5 me-2">
-                <span className="size-3 rounded-full bg-red-500/80 inline-block" />
-                <span className="size-3 rounded-full bg-yellow-500/80 inline-block" />
-                <span className="size-3 rounded-full bg-green-500/80 inline-block" />
+                <span className="size-3 rounded-full bg-destructive/80 inline-block" />
+                <span className="size-3 rounded-full bg-chart-2/80 inline-block" />
+                <span className="size-3 rounded-full bg-chart-1/80 inline-block" />
               </div>
 
-              <TabsList className="bg-zinc-800/60 p-1 border-0">
+              <TabsList className="bg-muted p-1 border-0">
                 <TabsTrigger value="cli" className="gap-1.5 text-xs font-mono">
                   <Terminal className="size-3.5" /> CLI Deploy
                 </TabsTrigger>
@@ -93,9 +93,9 @@ export function TerminalPreview() {
               variant="outline"
               size="xs"
               onClick={handleCopy}
-              className="text-xs border-zinc-700 bg-zinc-800/40 text-zinc-300 hover:bg-zinc-700 hover:text-white"
+              className="text-xs"
             >
-              {copied ? <Check className="size-3.5 text-green-400" /> : <Copy className="size-3.5" />}
+              {copied ? <Check className="size-3.5 text-chart-2" /> : <Copy className="size-3.5" />}
               <span>{copied ? "Copied!" : "Copy"}</span>
             </Button>
           </CardHeader>
@@ -103,26 +103,26 @@ export function TerminalPreview() {
           {/* Tab Contents */}
           <CardContent className="p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto min-h-[220px]">
             <TabsContent value="cli" className="m-0 border-0 p-0 shadow-none">
-              <pre className="text-zinc-300">
+              <pre className="text-muted-foreground">
                 <code>{codeSnippets.cli}</code>
               </pre>
             </TabsContent>
             <TabsContent value="config" className="m-0 border-0 p-0 shadow-none">
-              <pre className="text-zinc-300">
+              <pre className="text-muted-foreground">
                 <code>{codeSnippets.config}</code>
               </pre>
             </TabsContent>
             <TabsContent value="worker" className="m-0 border-0 p-0 shadow-none">
-              <pre className="text-zinc-300">
+              <pre className="text-muted-foreground">
                 <code>{codeSnippets.worker}</code>
               </pre>
             </TabsContent>
           </CardContent>
 
           {/* Status footer */}
-          <CardFooter className="flex items-center justify-between px-6 py-2.5 border-t border-zinc-800/80 bg-zinc-900/40 text-[11px] text-zinc-400">
+          <CardFooter className="flex items-center justify-between px-6 py-2.5 border-t text-[11px] text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Play className="size-3 text-emerald-400 fill-emerald-400" />
+              <Play className="size-3 text-chart-2 fill-current" />
               <span>Status: Ready to deploy</span>
             </div>
             <span>Environment: Node 22.x / Next.js 15</span>

@@ -72,7 +72,7 @@ export function BentoFeatures() {
                   <div className="size-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                     <Icon className="size-6" />
                   </div>
-                  <Badge variant="secondary" className="font-semibold text-[11px] px-2.5 py-0.5">
+                  <Badge variant="secondary" className="font-semibold">
                     {feature.badge}
                   </Badge>
                 </div>

@@ -23,7 +23,7 @@ export function CtaSection() {
             href="/docs"
             className={cn(
               buttonVariants({ size: "lg" }),
-              "rounded-full px-8 font-semibold shadow-lg text-sm"
+              "font-semibold shadow-lg"
             )}
           >
             Deploy Your App Now <ArrowRight className="ml-2 size-4" />
