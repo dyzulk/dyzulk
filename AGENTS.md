@@ -12,3 +12,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
   - Component names start with `Si` followed by PascalCase brand name (e.g., `SiGithub`, `SiX`, `SiDiscord`, `SiNextdotjs`, `SiReact`, `SiTurborepo`, `SiTailwindcss`, `SiCloudflare`, `SiRender`, `SiPostgresql`, `SiDocker`).
 - **Styling**: Always use Tailwind `size-*` classes (e.g. `size-4`, `size-5`) and theme text color classes (`text-muted-foreground hover:text-foreground`).
 
+# Front-end Development Guidelines
+
+- **Explicit Page Composition**: Main pages must always explicitly list and call the rendered child components directly in the page body (e.g., `<HeroSection />`, `<TerminalPreview />`) instead of concealing them behind dynamic routing or bloated layout hierarchies.
+- **Shadcn UI Monorepo Components**: Always use UI components from the monorepo's shared packages (`@workspace/ui/components/...`).
+- **No Raw CSS Component Overrides**: Do not override default style configurations of UI components via custom CSS styles or files. Use utility classes (Tailwind CSS) or customize the theme configuration.
+
