@@ -237,6 +237,7 @@ async function scrapeContent(url: string, deviceType: 'desktop' | 'mobile' = 'de
       deviceScaleFactor: config.deviceScaleFactor,
       isMobile: config.isMobile,
       hasTouch: config.hasTouch,
+      ignoreHTTPSErrors: true,
     });
     const page = await context.newPage();
     
