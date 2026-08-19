@@ -17,4 +17,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Explicit Page Composition**: Main pages must always explicitly list and call the rendered child components directly in the page body (e.g., `<HeroSection />`, `<TerminalPreview />`) instead of concealing them behind dynamic routing or bloated layout hierarchies.
 - **Shadcn UI Monorepo Components**: Always use UI components from the monorepo's shared packages (`@workspace/ui/components/...`).
 - **No Raw CSS Component Overrides**: Do not override default style configurations of UI components via custom CSS styles or files. Use utility classes (Tailwind CSS) or customize the theme configuration.
+- **Strict Zero Rounded (Flat Design) Rule**: This codebase uses the flat **Lyra theme**. All UI elements—including buttons, cards, menus, accordions, inputs, AND manual layouts (like `div` containers, wrappers, or grids)—must have **square corners** (`rounded-none`).
+  - **DO NOT** use `rounded`, `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-3xl` on any structural or layout element.
+  - The **ONLY** exception is for naturally circular elements (such as `Avatar`, `Switch`, checkboxes, or status dot indicators) which should use `rounded-full`.
+
 
