@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/navigation/header";
 import { Footer } from "@/components/navigation/footer";
 import { cn } from "@workspace/ui/lib/utils";
+import { TooltipProvider } from "@workspace/ui/components/tooltip";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -25,9 +26,11 @@ export default function RootLayout({
     >
       <body className="flex min-h-screen flex-col bg-background text-foreground">
         <ThemeProvider>
-          <Header />
-          <div className="flex-1">{children}</div>
-          <Footer />
+          <TooltipProvider>
+            <Header />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
