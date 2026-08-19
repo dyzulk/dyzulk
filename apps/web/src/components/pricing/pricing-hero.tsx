@@ -11,7 +11,7 @@ interface PricingHeroProps {
 
 export function PricingHero({ billingCycle, setBillingCycle }: PricingHeroProps) {
   return (
-    <section className="relative flex flex-col items-center justify-center py-12 md:py-16 text-center">
+    <section className="relative overflow-hidden flex flex-col items-center justify-center py-12 md:py-16 text-center">
       {/* Background Ambient Glow */}
       <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-primary/10 blur-[100px] pointer-events-none" />
 
