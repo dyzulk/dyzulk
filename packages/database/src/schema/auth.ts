@@ -4,7 +4,6 @@ import { pgTable, text, uuid, timestamp, uniqueIndex } from "drizzle-orm/pg-core
 export const accounts = pgTable("accounts", {
   id: uuid("id").defaultRandom().primaryKey(),
   email: text("email").notNull().unique(),
-  passwordHash: text("password_hash"), // Nullable to allow OAuth-only signups
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
 });
