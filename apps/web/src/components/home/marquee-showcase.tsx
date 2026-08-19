@@ -29,6 +29,28 @@ const techStack = [
 ];
 
 export function MarqueeShowcase() {
+  const renderTrack = () => (
+    <div className="flex gap-6 animate-marquee shrink-0 min-w-full">
+      {techStack.map((item, index) => {
+        const Icon = item.icon;
+        return (
+          <div
+            key={index}
+            className="flex items-center gap-3 w-[240px] h-[68px] px-5 rounded-2xl border bg-card/60 backdrop-blur-sm text-card-foreground shrink-0 shadow-sm hover:border-primary/40 transition group"
+          >
+            <div className="size-6 flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors shrink-0">
+              <Icon className="size-4" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-semibold whitespace-nowrap truncate">{item.name}</p>
+              <p className="text-[10px] text-muted-foreground truncate">{item.category}</p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+
   return (
     <section className="mx-auto w-full max-w-[1400px] mt-24 px-4 overflow-hidden">
       <div className="text-center mb-8">
@@ -37,26 +59,12 @@ export function MarqueeShowcase() {
         </p>
       </div>
 
-      <div className="relative flex overflow-hidden select-none border-y border-border/40 py-6 mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
-        <div className="flex gap-6 animate-marquee shrink-0 min-w-full">
-          {techStack.concat(techStack).map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={index}
-                className="flex items-center gap-3 px-5 py-3 rounded-2xl border bg-card/60 backdrop-blur-sm text-card-foreground shrink-0 shadow-sm hover:border-primary/40 transition group"
-              >
-                <div className="size-6 flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors">
-                  <Icon className="size-4" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold whitespace-nowrap">{item.name}</p>
-                  <p className="text-[10px] text-muted-foreground">{item.category}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      <div 
+        className="relative flex overflow-hidden select-none border-y border-border/40 py-6 mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] gap-6"
+        style={{ "--gap": "1.5rem" } as React.CSSProperties}
+      >
+        {renderTrack()}
+        {renderTrack()}
       </div>
     </section>
   );
