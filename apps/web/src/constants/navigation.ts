@@ -6,7 +6,7 @@ export const PATHS = {
   login: "#login",
   products: "#products",
   solutions: "#solutions",
-  pricing: "#pricing",
+  pricing: "/pricing",
   changelog: "#changelog",
 } as const;
 
