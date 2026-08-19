@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import { chromium } from 'playwright';
+import { devicesConfig } from '../../playwright.config.ts';
 
 interface ScrapeResult {
   title: string;
@@ -217,11 +218,13 @@ class HtmlToMarkdownConverter {
 /**
  * Scrape content from URL and convert to Markdown
  */
-async function scrapeContent(url: string): Promise<ScrapeResult> {
+async function scrapeContent(url: string, deviceType: 'desktop' | 'mobile' = 'desktop'): Promise<ScrapeResult> {
   let targetUrl = url;
   if (!/^https?:\/\//i.test(targetUrl)) {
     targetUrl = 'https://' + targetUrl;
   }
+
+  const config = (devicesConfig[deviceType] || devicesConfig.desktop) as any;
 
   const browser = await chromium.launch({ headless: true });
   let html = '';
@@ -229,12 +232,13 @@ async function scrapeContent(url: string): Promise<ScrapeResult> {
   
   try {
     const context = await browser.newContext({
-      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      userAgent: config.userAgent,
+      viewport: config.viewport,
+      deviceScaleFactor: config.deviceScaleFactor,
+      isMobile: config.isMobile,
+      hasTouch: config.hasTouch,
     });
     const page = await context.newPage();
-    
-    // Set viewport size
-    await page.setViewportSize({ width: 1280, height: 800 });
     
     await page.goto(targetUrl, { waitUntil: 'networkidle', timeout: 30000 });
     
@@ -304,17 +308,28 @@ async function scrapeContent(url: string): Promise<ScrapeResult> {
 // Main execution block
 async function main() {
   const args = process.argv.slice(2);
-  const targetUrl = args[0];
+  const targetUrl = args.find(arg => !arg.startsWith('--'));
 
   if (!targetUrl) {
-    console.error('Usage: node --experimental-strip-types scripts/tools/content-scraper.ts <url>');
+    console.error('Usage: node --experimental-strip-types scripts/tools/content-scraper.ts <url> [--device mobile|desktop]');
     process.exit(1);
   }
 
+  let device: 'desktop' | 'mobile' = 'desktop';
+  const deviceIdx = args.indexOf('--device');
+  const deviceVal = deviceIdx !== -1 ? args[deviceIdx + 1] : undefined;
+  if (deviceVal) {
+    const val = deviceVal.toLowerCase();
+    if (val === 'mobile' || val === 'desktop') {
+      device = val as 'desktop' | 'mobile';
+    }
+  }
+
   try {
-    const result = await scrapeContent(targetUrl);
+    const result = await scrapeContent(targetUrl, device);
     console.log(`Title: ${result.title}`);
     console.log(`URL: ${result.url}`);
+    console.log(`Device: ${device}`);
     console.log('\n--- MARKDOWN CONTENT ---\n');
     console.log(result.markdown);
   } catch (error: any) {
