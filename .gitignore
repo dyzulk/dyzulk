@@ -46,8 +46,10 @@ yarn-error.log*
 next-env.d.ts
 
 # submodule
-submodule/
+submodule/*
 !submodule/README.md
+!submodule/fumadocs/
+!submodule/dokploy/
 
 # other
 .kilo

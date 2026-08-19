@@ -1,3 +1,6 @@
 [submodule "submodule/fumadocs"]
 	path = submodule/fumadocs
 	url = https://github.com/fuma-nama/fumadocs.git
+[submodule "submodule/dokploy"]
+	path = submodule/dokploy
+	url = https://github.com/dokploy/dokploy.git
