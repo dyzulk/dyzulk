@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
 import { Button } from "@dyzulk/ui/components/button";
 import { Input } from "@dyzulk/ui/components/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@dyzulk/ui/components/card";
@@ -9,23 +8,17 @@ import { Label } from "@dyzulk/ui/components/label";
 import { SiGithub, SiGoogle } from "@icons-pack/react-simple-icons";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Logo } from "@dyzulk/ui/components/logo";
+import { useLogin } from "@/hooks/use-login";
 
 export default function LoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleEmailSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setIsLoading(true);
-    // Simulating sending verification code
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push(`/verify?email=${encodeURIComponent(email)}`);
-    }, 1200);
-  };
+  const {
+    email,
+    setEmail,
+    isLoading,
+    error,
+    handleEmailSubmit,
+    handleOAuthLogin,
+  } = useLogin();
 
   return (
     <div className="space-y-6 rounded-none">
@@ -43,6 +36,11 @@ export default function LoginPage() {
           <CardDescription className="text-xs text-muted-foreground rounded-none">
             Enter your email to receive a passwordless login code, or sign in with your provider.
           </CardDescription>
+          {error && (
+            <div className="text-xs font-mono text-red-500 bg-red-50 dark:bg-red-950/30 p-2 border border-red-200 dark:border-red-900 rounded-none mt-2">
+              {error}
+            </div>
+          )}
         </CardHeader>
         <CardContent className="space-y-4 rounded-none">
           {/* Email form */}
@@ -94,12 +92,7 @@ export default function LoginPage() {
           <div className="grid grid-cols-2 gap-2.5 rounded-none">
             <Button
               variant="outline"
-              onClick={() => {
-                setIsLoading(true);
-                setTimeout(() => {
-                  router.push("/");
-                }, 1000);
-              }}
+              onClick={() => handleOAuthLogin("github")}
               disabled={isLoading}
               className="rounded-none border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 flex items-center justify-center gap-2 font-mono h-10 text-xs"
             >
@@ -107,12 +100,7 @@ export default function LoginPage() {
             </Button>
             <Button
               variant="outline"
-              onClick={() => {
-                setIsLoading(true);
-                setTimeout(() => {
-                  router.push("/");
-                }, 1000);
-              }}
+              onClick={() => handleOAuthLogin("google")}
               disabled={isLoading}
               className="rounded-none border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 flex items-center justify-center gap-2 font-mono h-10 text-xs"
             >

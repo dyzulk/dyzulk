@@ -20,5 +20,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Strict Zero Rounded (Flat Design) Rule**: This codebase uses the flat **Lyra theme**. All UI elements—including buttons, cards, menus, accordions, inputs, AND manual layouts (like `div` containers, wrappers, or grids)—must have **square corners** (`rounded-none`).
   - **DO NOT** use `rounded`, `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-3xl` on any structural or layout element.
   - The **ONLY** exception is for naturally circular elements (such as `Avatar`, `Switch`, checkboxes, or status dot indicators) which should use `rounded-full`.
+- **Strict Modularity Rule**: All applications (`web`, `docs`, `dashboard`) must maintain absolute modular separation. Types, helper libraries, API calls, custom logic, and reusable hooks MUST be written in their respective modular folders (e.g., `types/`, `lib/`, `hooks/`, `actions/`) rather than being defined inline inside pages, layouts, or components.
+  - **No Logic in UI Files**: Pages, components, and layouts are **strictly forbidden** from containing any application logic, state-manipulation functions, event handlers definition, API calls, or computations. They must be purely UI/presentational shells. All such logic must be delegated to hooks or external modules.
+  - This rule is strict and applies even if the code contains only a single function or 3 lines of code. No logic should clutter components, layout, or page files.
+# Runtime Target Rules
 
-
+- **Standard Node.js Runtime Only**: The applications in this workspace (especially the dashboard) are built and deployed to run on a standard Node.js server environment.
+  - **DO NOT** assume serverless environment constraints or limitations.
+  - **DO NOT** limit Next.js API routes, actions, or middleware to Edge Runtime unless explicitly required for specific micro-features. Full Node.js APIs (like `pg` Pool connections) are fully supported and should be used directly in server components and server actions.

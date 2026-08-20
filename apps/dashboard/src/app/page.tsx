@@ -1,8 +1,15 @@
 import { Button } from "@dyzulk/ui/components/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@dyzulk/ui/components/card";
 import { Logo } from "@dyzulk/ui/components/logo";
+import { getServerSession } from "@dyzulk/server";
+import { redirect } from "next/navigation";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const { session, account } = await getServerSession();
+
+  if (!session || !account) {
+    redirect("/login");
+  }
   return (
     <div className="p-8 space-y-8 max-w-5xl mx-auto rounded-none">
       {/* Hero Welcome Header */}

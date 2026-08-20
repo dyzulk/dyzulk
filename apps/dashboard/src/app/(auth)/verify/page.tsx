@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import React, { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@dyzulk/ui/components/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@dyzulk/ui/components/card";
 import { Logo } from "@dyzulk/ui/components/logo";
@@ -12,58 +13,22 @@ import {
   InputOTPSeparator,
 } from "@dyzulk/ui/components/input-otp";
 import { ArrowLeft, CheckCircle2, Mail, ShieldAlert } from "lucide-react";
+import { useVerifyOTP } from "@/hooks/use-verify-otp";
 
 function VerifyContent() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") || "your email";
-  
-  const [otp, setOtp] = useState("");
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [timer, setTimer] = useState(60);
-  const [canResend, setCanResend] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
 
-  // Timer countdown logic
-  useEffect(() => {
-    if (timer > 0) {
-      const interval = setInterval(() => {
-        setTimer((prev) => prev - 1);
-      }, 1000);
-      return () => clearInterval(interval);
-    } else {
-      setCanResend(true);
-    }
-  }, [timer]);
-
-  const handleResend = () => {
-    if (!canResend) return;
-    setTimer(60);
-    setCanResend(false);
-    // Simulating resending OTP
-  };
-
-  const handleOTPComplete = (value: string) => {
-    setIsVerifying(true);
-    
-    // Simulate API call to verify OTP
-    setTimeout(() => {
-      setIsVerifying(false);
-      setIsSuccess(true);
-      
-      // Navigate to dashboard after short delay
-      setTimeout(() => {
-        router.push("/");
-      }, 1000);
-    }, 1500);
-  };
-
-  const handleOtpChange = (val: string) => {
-    setOtp(val);
-    if (val.length === 6) {
-      handleOTPComplete(val);
-    }
-  };
+  const {
+    otp,
+    isVerifying,
+    timer,
+    canResend,
+    isSuccess,
+    error,
+    handleResend,
+    handleOtpChange,
+  } = useVerifyOTP(email);
 
   return (
     <div className="space-y-6 rounded-none">
@@ -92,6 +57,11 @@ function VerifyContent() {
               : `We've sent a 6-digit confirmation code to ${email}.`
             }
           </CardDescription>
+          {error && (
+            <div className="text-xs font-mono text-red-500 bg-red-50 dark:bg-red-950/30 p-2 border border-red-200 dark:border-red-900 rounded-none mt-2 w-full text-center">
+              {error}
+            </div>
+          )}
         </CardHeader>
         <CardContent className="space-y-6 flex flex-col items-center justify-center rounded-none">
           {/* OTP Code Input */}
@@ -141,14 +111,15 @@ function VerifyContent() {
               )}
             </p>
 
-            <Button
-              variant="ghost"
-              onClick={() => router.push("/login")}
-              disabled={isVerifying || isSuccess}
-              className="rounded-none font-mono text-[11px] text-zinc-500 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 h-8 w-full flex items-center justify-center gap-1.5"
-            >
-              <ArrowLeft className="size-3" /> Back to Login
-            </Button>
+            <Link href="/login" className="w-full block">
+              <Button
+                variant="ghost"
+                disabled={isVerifying || isSuccess}
+                className="rounded-none font-mono text-[11px] text-zinc-500 hover:text-zinc-950 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-900 h-8 w-full flex items-center justify-center gap-1.5"
+              >
+                <ArrowLeft className="size-3" /> Back to Login
+              </Button>
+            </Link>
           </div>
         </CardContent>
       </Card>
