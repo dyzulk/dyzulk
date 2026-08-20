@@ -4,6 +4,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@workspace/ui/components/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card";
+import { Logo } from "@workspace/ui/components/logo";
 import {
   InputOTP,
   InputOTPGroup,
@@ -68,9 +69,7 @@ function VerifyContent() {
     <div className="space-y-6 rounded-none">
       {/* Mobile Branding */}
       <div className="flex items-center gap-2.5 font-mono text-sm tracking-wider lg:hidden rounded-none">
-        <div className="flex h-7 w-7 items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-none">
-          <span className="font-extrabold text-sm">D</span>
-        </div>
+        <Logo className="size-7" />
         <span className="font-semibold">DYZULK DEV</span>
       </div>
 

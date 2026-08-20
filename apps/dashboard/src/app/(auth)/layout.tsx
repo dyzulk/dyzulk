@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Terminal, Shield, Cpu, Activity } from "lucide-react";
+import { Logo } from "@workspace/ui/components/logo";
 
 export default function AuthLayout({
   children,
@@ -16,9 +17,7 @@ export default function AuthLayout({
         
         {/* Top Branding */}
         <div className="relative z-10 flex items-center gap-3 font-mono text-lg tracking-wider rounded-none">
-          <div className="flex h-9 w-9 items-center justify-center bg-white text-black rounded-none">
-            <span className="font-extrabold text-xl">D</span>
-          </div>
+          <Logo className="size-9" />
           <span className="font-semibold text-zinc-100">DYZULK DEV</span>
         </div>
 

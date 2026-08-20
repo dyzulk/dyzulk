@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@work
 import { Label } from "@workspace/ui/components/label";
 import { SiGithub, SiGoogle } from "@icons-pack/react-simple-icons";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { Logo } from "@workspace/ui/components/logo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -30,9 +31,7 @@ export default function LoginPage() {
     <div className="space-y-6 rounded-none">
       {/* Mobile Branding (only visible when sidebar is hidden) */}
       <div className="flex items-center gap-2.5 font-mono text-sm tracking-wider lg:hidden rounded-none">
-        <div className="flex h-7 w-7 items-center justify-center bg-black dark:bg-white text-white dark:text-black rounded-none">
-          <span className="font-extrabold text-sm">D</span>
-        </div>
+        <Logo className="size-7" />
         <span className="font-semibold">DYZULK DEV</span>
       </div>
 
