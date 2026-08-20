@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Terminal, Shield, Cpu, Activity } from "lucide-react";
-import { Logo } from "@workspace/ui/components/logo";
+import { Logo } from "@dyzulk/ui/components/logo";
 
 export default function AuthLayout({
   children,

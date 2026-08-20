@@ -1,6 +1,6 @@
 import { Globe, Cpu, GitBranch, ShieldCheck, Zap, BarChart3, Database } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@workspace/ui/components/card";
-import { Badge } from "@workspace/ui/components/badge";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@dyzulk/ui/components/card";
+import { Badge } from "@dyzulk/ui/components/badge";
 
 const features = [
   {

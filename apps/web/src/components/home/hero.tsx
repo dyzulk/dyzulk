@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Button, buttonVariants } from "@workspace/ui/components/button";
-import { Badge } from "@workspace/ui/components/badge";
-import { cn } from "@workspace/ui/lib/utils";
+import { Button, buttonVariants } from "@dyzulk/ui/components/button";
+import { Badge } from "@dyzulk/ui/components/badge";
+import { cn } from "@dyzulk/ui/lib/utils";
 import { ArrowRight, Sparkles, Terminal as TerminalIcon, ShieldCheck } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { PATHS } from "@/constants/navigation";

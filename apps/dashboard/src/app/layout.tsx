@@ -1,7 +1,7 @@
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import "@workspace/ui/globals.css";
+import "@dyzulk/ui/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { cn } from "@workspace/ui/lib/utils";
+import { cn } from "@dyzulk/ui/lib/utils";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
 

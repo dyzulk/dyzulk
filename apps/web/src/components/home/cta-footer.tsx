@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { buttonVariants } from "@workspace/ui/components/button";
-import { Card } from "@workspace/ui/components/card";
-import { cn } from "@workspace/ui/lib/utils";
+import { buttonVariants } from "@dyzulk/ui/components/button";
+import { Card } from "@dyzulk/ui/components/card";
+import { cn } from "@dyzulk/ui/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { PATHS } from "@/constants/navigation";
 

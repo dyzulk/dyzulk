@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Button } from "@workspace/ui/components/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card";
-import { Logo } from "@workspace/ui/components/logo";
+import { Button } from "@dyzulk/ui/components/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@dyzulk/ui/components/card";
+import { Logo } from "@dyzulk/ui/components/logo";
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
   InputOTPSeparator,
-} from "@workspace/ui/components/input-otp";
+} from "@dyzulk/ui/components/input-otp";
 import { ArrowLeft, CheckCircle2, Mail, ShieldAlert } from "lucide-react";
 
 function VerifyContent() {

@@ -2,13 +2,13 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@workspace/ui/components/button";
-import { Input } from "@workspace/ui/components/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card";
-import { Label } from "@workspace/ui/components/label";
+import { Button } from "@dyzulk/ui/components/button";
+import { Input } from "@dyzulk/ui/components/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@dyzulk/ui/components/card";
+import { Label } from "@dyzulk/ui/components/label";
 import { SiGithub, SiGoogle } from "@icons-pack/react-simple-icons";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { Logo } from "@workspace/ui/components/logo";
+import { Logo } from "@dyzulk/ui/components/logo";
 
 export default function LoginPage() {
   const router = useRouter();

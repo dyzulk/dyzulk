@@ -1,10 +1,10 @@
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import "@workspace/ui/globals.css";
+import "@dyzulk/ui/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/navigation/header";
 import { Footer } from "@/components/navigation/footer";
-import { cn } from "@workspace/ui/lib/utils";
-import { TooltipProvider } from "@workspace/ui/components/tooltip";
+import { cn } from "@dyzulk/ui/lib/utils";
+import { TooltipProvider } from "@dyzulk/ui/components/tooltip";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
 

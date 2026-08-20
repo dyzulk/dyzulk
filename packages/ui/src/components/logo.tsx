@@ -1,5 +1,5 @@
 import * as React from "react"
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@dyzulk/ui/lib/utils"
 
 export interface LogoProps extends React.ComponentPropsWithoutRef<"svg"> {
   /**

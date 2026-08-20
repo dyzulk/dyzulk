@@ -1,10 +1,10 @@
 "use client";
 
 import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
-import "@workspace/ui/globals.css";
-import { buttonVariants } from "@workspace/ui/components/button";
+import "@dyzulk/ui/globals.css";
+import { buttonVariants } from "@dyzulk/ui/components/button";
 import { AlertCircle, RotateCcw } from "lucide-react";
-import { cn } from "@workspace/ui/lib/utils";
+import { cn } from "@dyzulk/ui/lib/utils";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
 

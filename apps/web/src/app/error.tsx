@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
-import { buttonVariants } from "@workspace/ui/components/button";
+import { buttonVariants } from "@dyzulk/ui/components/button";
 import { AlertCircle, RotateCcw, Home } from "lucide-react";
-import { cn } from "@workspace/ui/lib/utils";
+import { cn } from "@dyzulk/ui/lib/utils";
 
 export default function ErrorPage({
   error,

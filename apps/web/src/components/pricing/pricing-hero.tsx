@@ -1,8 +1,8 @@
 "use client";
 
-import { Badge } from "@workspace/ui/components/badge";
+import { Badge } from "@dyzulk/ui/components/badge";
 import { Sparkles } from "lucide-react";
-import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@dyzulk/ui/components/tabs";
 
 interface PricingHeroProps {
   billingCycle: "monthly" | "annual";

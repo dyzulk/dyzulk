@@ -2,17 +2,17 @@
 
 import Link from "next/link";
 import { Menu, ArrowRight } from "lucide-react";
-import { Button, buttonVariants } from "@workspace/ui/components/button";
+import { Button, buttonVariants } from "@dyzulk/ui/components/button";
 import {
   Sheet,
   SheetTrigger,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@workspace/ui/components/sheet";
-import { Logo } from "@workspace/ui/components/logo";
+} from "@dyzulk/ui/components/sheet";
+import { Logo } from "@dyzulk/ui/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { cn } from "@workspace/ui/lib/utils";
+import { cn } from "@dyzulk/ui/lib/utils";
 import { PATHS } from "@/constants/navigation";
 import {
   NavigationMenu,
@@ -20,13 +20,13 @@ import {
   NavigationMenuItem,
   NavigationMenuTrigger,
   NavigationMenuContent,
-} from "@workspace/ui/components/navigation-menu";
+} from "@dyzulk/ui/components/navigation-menu";
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@workspace/ui/components/accordion";
+} from "@dyzulk/ui/components/accordion";
 import {
   PRODUCT_MEGA_MENU,
   DEVELOPERS_MEGA_MENU,

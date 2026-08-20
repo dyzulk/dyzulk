@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { Terminal, Check, Copy, Play, Database, Shield } from "lucide-react";
-import { Card, CardHeader, CardContent, CardFooter } from "@workspace/ui/components/card";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@workspace/ui/components/tabs";
-import { Button } from "@workspace/ui/components/button";
+import { Card, CardHeader, CardContent, CardFooter } from "@dyzulk/ui/components/card";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@dyzulk/ui/components/tabs";
+import { Button } from "@dyzulk/ui/components/button";
 
 const codeSnippets = {
   db: `// Connect to Dyzulk Managed Postgres instantly from any worker

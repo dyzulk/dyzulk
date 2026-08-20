@@ -1,0 +1,29 @@
+{
+  "name": "@dyzulk/server",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/pg": "^8.11.10",
+    "@dyzulk/typescript-config": "workspace:*",
+    "drizzle-kit": "^0.31.10",
+    "next": "16.3.0",
+    "typescript": "^5"
+  },
+  "peerDependencies": {
+    "next": ">=15.0.0"
+  }
+}

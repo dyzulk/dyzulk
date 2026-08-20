@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
-import { buttonVariants } from "@workspace/ui/components/button";
-import { cn } from "@workspace/ui/lib/utils";
+import { buttonVariants } from "@dyzulk/ui/components/button";
+import { cn } from "@dyzulk/ui/lib/utils";
 import { PATHS } from "@/constants/navigation";
 
 export function ProductsHero() {

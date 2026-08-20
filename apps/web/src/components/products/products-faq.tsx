@@ -1,6 +1,6 @@
 "use client";
 
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@workspace/ui/components/accordion";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@dyzulk/ui/components/accordion";
 import { HelpCircle } from "lucide-react";
 
 export function ProductsFaq() {

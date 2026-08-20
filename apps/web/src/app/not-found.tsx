@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { buttonVariants } from "@workspace/ui/components/button";
+import { buttonVariants } from "@dyzulk/ui/components/button";
 import { ArrowLeft, Home } from "lucide-react";
-import { cn } from "@workspace/ui/lib/utils";
+import { cn } from "@dyzulk/ui/lib/utils";
 
 export default function NotFound() {
   return (

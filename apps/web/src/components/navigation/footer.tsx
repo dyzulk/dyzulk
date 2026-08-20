@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { SiGithub, SiX, SiDiscord } from "@icons-pack/react-simple-icons";
-import { Badge } from "@workspace/ui/components/badge";
-import { Separator } from "@workspace/ui/components/separator";
-import { Logo } from "@workspace/ui/components/logo";
+import { Badge } from "@dyzulk/ui/components/badge";
+import { Separator } from "@dyzulk/ui/components/separator";
+import { Logo } from "@dyzulk/ui/components/logo";
 import { SITE_CONFIG } from "@/constants/site";
 import { PATHS, FOOTER_SECTIONS } from "@/constants/navigation";
 

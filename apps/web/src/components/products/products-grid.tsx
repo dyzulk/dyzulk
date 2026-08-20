@@ -1,6 +1,6 @@
 import { Cpu, Database, Shield, Terminal, Check, Globe, Server, Key, GitBranch } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@workspace/ui/components/card";
-import { Badge } from "@workspace/ui/components/badge";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@dyzulk/ui/components/card";
+import { Badge } from "@dyzulk/ui/components/badge";
 
 interface ProductItem {
   name: string;

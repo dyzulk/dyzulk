@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Slider } from "@workspace/ui/components/slider";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@workspace/ui/components/card";
-import { Badge } from "@workspace/ui/components/badge";
-import { Button } from "@workspace/ui/components/button";
+import { Slider } from "@dyzulk/ui/components/slider";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@dyzulk/ui/components/card";
+import { Badge } from "@dyzulk/ui/components/badge";
+import { Button } from "@dyzulk/ui/components/button";
 import { Cpu, Database, Server, RefreshCw } from "lucide-react";
-import { cn } from "@workspace/ui/lib/utils";
+import { cn } from "@dyzulk/ui/lib/utils";
 
 interface InstancePlan {
   id: string;

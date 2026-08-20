@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { Check, ArrowRight, Server, ShieldCheck, Zap, HelpCircle } from "lucide-react";
-import { Button, buttonVariants } from "@workspace/ui/components/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@workspace/ui/components/card";
-import { Badge } from "@workspace/ui/components/badge";
-import { cn } from "@workspace/ui/lib/utils";
+import { Button, buttonVariants } from "@dyzulk/ui/components/button";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@dyzulk/ui/components/card";
+import { Badge } from "@dyzulk/ui/components/badge";
+import { cn } from "@dyzulk/ui/lib/utils";
 import { PATHS } from "@/constants/navigation";
 
 interface PricingCardsProps {

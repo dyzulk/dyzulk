@@ -1,4 +1,4 @@
-import { cn } from "@workspace/ui/lib/utils"
+import { cn } from "@dyzulk/ui/lib/utils"
 
 function AspectRatio({
   ratio,

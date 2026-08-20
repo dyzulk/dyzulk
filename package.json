@@ -18,8 +18,8 @@
     "content-scrape": "node --no-warnings --experimental-strip-types scripts/tools/content-scraper.ts"
   },
   "devDependencies": {
-    "@workspace/eslint-config": "workspace:*",
-    "@workspace/typescript-config": "workspace:*",
+    "@dyzulk/eslint-config": "workspace:*",
+    "@dyzulk/typescript-config": "workspace:*",
     "cheerio": "^1.2.0",
     "playwright": "^1.62.1",
     "prettier": "^3.8.3",

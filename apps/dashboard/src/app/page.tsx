@@ -1,6 +1,6 @@
-import { Button } from "@workspace/ui/components/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card";
-import { Logo } from "@workspace/ui/components/logo";
+import { Button } from "@dyzulk/ui/components/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@dyzulk/ui/components/card";
+import { Logo } from "@dyzulk/ui/components/logo";
 
 export default function DashboardPage() {
   return (

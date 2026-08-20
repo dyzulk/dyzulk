@@ -1,8 +1,8 @@
 "use client";
 
 import { Check, Minus, Info } from "lucide-react";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@workspace/ui/components/table";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@workspace/ui/components/tooltip";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@dyzulk/ui/components/table";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@dyzulk/ui/components/tooltip";
 
 interface FeatureRow {
   name: string;

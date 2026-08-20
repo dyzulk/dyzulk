@@ -1,4 +1,4 @@
-import { Spinner } from "@workspace/ui/components/spinner";
+import { Spinner } from "@dyzulk/ui/components/spinner";
 
 export default function Loading() {
   return (
