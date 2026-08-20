@@ -36,7 +36,7 @@ export function HeroSection() {
       {/* CTA Buttons */}
       <div className="flex flex-wrap items-center justify-center gap-4 mt-8 px-4">
         <Link
-          href={PATHS.docs}
+          href={PATHS.login}
           className={cn(
             buttonVariants({ size: "lg" }),
             "font-semibold shadow-md"

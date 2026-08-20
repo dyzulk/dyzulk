@@ -21,7 +21,7 @@ export function CtaSection() {
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           <Link
-            href={PATHS.docs}
+            href={PATHS.login}
             className={cn(
               buttonVariants({ size: "lg" }),
               "font-semibold shadow-lg"

@@ -28,7 +28,7 @@ export function ProductsHero() {
 
         <div className="mt-10 flex flex-wrap gap-3 justify-center">
           <Link
-            href={PATHS.docs}
+            href={PATHS.login}
             className={cn(
               buttonVariants({ variant: "default", size: "lg" }),
               "font-bold shadow-md rounded-none px-6"
