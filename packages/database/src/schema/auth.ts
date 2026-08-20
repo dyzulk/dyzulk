@@ -68,3 +68,14 @@ export const verificationTokens = pgTable("verification_tokens", {
   uniqueIndex("verification_token_idx").on(table.identifier, table.token)
 ]);
 
+// Sessions table for Database-backed Session Management
+export const sessions = pgTable("sessions", {
+  id: text("id").primaryKey(), // Cryptographically secure random session ID (e.g. 32+ characters)
+  accountId: uuid("account_id")
+    .notNull()
+    .references(() => accounts.id, { onDelete: "cascade" }),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  userAgent: text("user_agent"),
+  ipAddress: text("ip_address"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+});
