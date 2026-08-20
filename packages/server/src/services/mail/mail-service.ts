@@ -10,15 +10,15 @@ export class MailService {
 
   constructor() {
     this.fromAddress = process.env.MAIL_FROM || "Dyzulk <noreply@dyzulk.com>";
-    const providerType = process.env.MAIL_PROVIDER || "console";
+    const explicitProvider = process.env.MAIL_PROVIDER;
 
-    if (providerType === "resend") {
+    if (explicitProvider === "resend" || (!explicitProvider && process.env.RESEND_API_KEY)) {
       const apiKey = process.env.RESEND_API_KEY;
       if (!apiKey) {
         throw new Error("RESEND_API_KEY is not defined but provider is set to resend");
       }
       this.provider = new ResendMailProvider(apiKey);
-    } else if (providerType === "smtp") {
+    } else if (explicitProvider === "smtp" || (!explicitProvider && process.env.SMTP_HOST)) {
       const host = process.env.SMTP_HOST;
       const port = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : undefined;
       const user = process.env.SMTP_USER;

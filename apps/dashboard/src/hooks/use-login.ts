@@ -5,6 +5,7 @@ import { sendOTPAction } from "@/actions/auth";
 export function useLogin() {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [hpCompany, setHpCompany] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -15,7 +16,7 @@ export function useLogin() {
     setIsLoading(true);
     setError(null);
     try {
-      const res = await sendOTPAction(email);
+      const res = await sendOTPAction(email, hpCompany);
       if (res.success) {
         router.push(`/verify?email=${encodeURIComponent(email)}`);
       } else {
@@ -39,6 +40,8 @@ export function useLogin() {
   return {
     email,
     setEmail,
+    hpCompany,
+    setHpCompany,
     isLoading,
     error,
     handleEmailSubmit,

@@ -3,18 +3,38 @@ import { randomBytes, randomInt } from "crypto";
 import { db } from "../db/db";
 import { verificationTokens } from "../db/schema/auth";
 
+const TOKEN_COOLDOWN_MS = 1000 * 60; // 60 Seconds Cooldown
 const TOKEN_EXPIRATION_MS = 1000 * 60 * 15; // 15 Minutes
 
 /**
  * Generates a verification token for an identifier (e.g. email) and stores it in the database.
  * If type is "numeric", it generates a 6-digit OTP code. Otherwise, it generates a hex token.
+ * Enforces a 60-second cooldown per identifier to prevent spam and rate-limit abuse.
  */
 export async function generateVerificationToken(
   identifier: string,
   type: "numeric" | "hex" = "numeric"
 ): Promise<string> {
-  // Clear any existing tokens for this identifier to prevent accumulation
-  await db.delete(verificationTokens).where(eq(verificationTokens.identifier, identifier));
+  // Check for existing token and enforce cooldown
+  const [existingToken] = await db
+    .select({
+      id: verificationTokens.id,
+      createdAt: verificationTokens.createdAt,
+    })
+    .from(verificationTokens)
+    .where(eq(verificationTokens.identifier, identifier))
+    .limit(1);
+
+  if (existingToken) {
+    const elapsedMs = Date.now() - existingToken.createdAt.getTime();
+    if (elapsedMs < TOKEN_COOLDOWN_MS) {
+      const remainingSeconds = Math.ceil((TOKEN_COOLDOWN_MS - elapsedMs) / 1000);
+      throw new Error(`Please wait ${remainingSeconds}s before requesting a new verification code.`);
+    }
+
+    // Clear existing token after cooldown check passes
+    await db.delete(verificationTokens).where(eq(verificationTokens.identifier, identifier));
+  }
 
   // Generate token value
   const token =

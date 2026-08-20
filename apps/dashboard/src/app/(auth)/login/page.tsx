@@ -14,6 +14,8 @@ export default function LoginPage() {
   const {
     email,
     setEmail,
+    hpCompany,
+    setHpCompany,
     isLoading,
     error,
     handleEmailSubmit,
@@ -45,6 +47,18 @@ export default function LoginPage() {
         <CardContent className="space-y-4 rounded-none">
           {/* Email form */}
           <form onSubmit={handleEmailSubmit} className="space-y-3.5 rounded-none">
+            {/* Honeypot field for bot spam protection */}
+            <input
+              type="text"
+              name="hp_company"
+              value={hpCompany}
+              onChange={(e) => setHpCompany(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
+
             <div className="space-y-1.5 rounded-none">
               <Label htmlFor="email" className="text-xs font-mono uppercase tracking-wider text-zinc-500">
                 Email Address
