@@ -95,3 +95,10 @@ packages/server/
 
 - `@dyzulk/server` targets a standard **Node.js runtime** (`node:crypto`, `pg` Pool, long-lived connections).
 - Do not constrain `@dyzulk/server` database or authentication helpers to Edge Runtime limitations.
+
+---
+
+## Single Package Backend Standard (Dokploy Reference)
+
+- **All Backend Logic is Unified**: Unlike frontend components, all backend utilities, services, emails, scheduled workers, Docker managers, and helpers must be colocated inside `@dyzulk/server`.
+- **No Fragmentation**: Do not build separate packages for single concerns (like `@dyzulk/mail` or `@dyzulk/docker`) to keep the server package "lightweight". Colocating these layers under `@dyzulk/server/src/services/` keeps imports, types, and database transaction propagation simple, matching the architecture used in the Dokploy submodule.

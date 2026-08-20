@@ -12,13 +12,21 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@react-email/render": "^2.1.0",
     "drizzle-orm": "^0.45.2",
-    "pg": "^8.13.1"
+    "nodemailer": "^9.0.5",
+    "pg": "^8.13.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "resend": "^6.21.0"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
-    "@types/pg": "^8.11.10",
     "@dyzulk/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "@types/nodemailer": "^8.0.1",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "drizzle-kit": "^0.31.10",
     "next": "16.3.0",
     "typescript": "^5"

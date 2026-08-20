@@ -75,3 +75,10 @@ For domain-specific task execution, activate the specialized skills located unde
 - **Documentation & File Links**: Always use standard repository-relative paths (`./...` or `../...`).
 - **Code Imports**: Always use the official declared module namespace aliases configured in `tsconfig.json` or the workspace (e.g. `@dyzulk/ui/...`, `@dyzulk/server`, `@/...`) instead of arbitrary multi-level relative path traversals or broken paths.
 
+---
+
+# Strict Kebab-Case File Naming Rule
+
+- **Prohibition of camelCase & PascalCase Filenames**: All source code files, components, styles, utility modules, types, and templates across the monorepo must strictly use **kebab-case** naming (e.g., `mail-service.ts`, `otp-verification.tsx`, `organization-invite.tsx`, `use-login.ts`). DO NOT name files in camelCase or PascalCase.
+
+

@@ -18,6 +18,7 @@ Before planning, executing, or proposing any changes, you must review and strict
 - **Server Package Layering**: Strict adherence to `@dyzulk/server` layers (`types`, `repositories`, `services`, `lib`, `db/schema`, `auth`).
 - **Standard Node.js Runtime**: Full Node.js server APIs without edge runtime constraints.
 - **Prohibition of Machine-Specific Absolute Paths**: Always use repository-relative paths (`./...`, `../...`) and tsconfig aliases (`@/...`, `@dyzulk/ui/...`, `@dyzulk/server`).
+- **Strict Kebab-Case Naming**: All files across the workspace must strictly use kebab-case naming (no camelCase/PascalCase filenames).
 
 ---
 
