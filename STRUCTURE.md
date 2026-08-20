@@ -5,12 +5,13 @@ This document outlines the complete folder hierarchy across the Dyzulk monorepo.
 ```text
 dyzulk/
 ├─ .agents/
+│  ├─ rules/
 │  └─ skills/
-│     ├─ dyzulk-database-operations/
-│     │  └─ rules/
 │     ├─ dyzulk-modular-architecture/
 │     │  └─ rules/
 │     ├─ dyzulk-monorepo-workflow/
+│     │  └─ rules/
+│     ├─ dyzulk-server-development/
 │     │  └─ rules/
 │     └─ dyzulk-ui-development/
 │        └─ rules/
@@ -112,6 +113,10 @@ dyzulk/
 │  │  │  ├─ auth/
 │  │  │  ├─ db/
 │  │  │  │  └─ schema/
+│  │  │  ├─ lib/
+│  │  │  ├─ repositories/
+│  │  │  ├─ services/
+│  │  │  ├─ types/
 │  │  │  └─ index.ts
 │  │  ├─ drizzle.config.ts
 │  │  └─ package.json

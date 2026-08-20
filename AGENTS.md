@@ -11,7 +11,7 @@ For the complete layout of all apps, packages, and folders, refer to [STRUCTURE.
 For domain-specific task execution, activate the specialized skills located under `.agents/skills/`:
 - [`dyzulk-ui-development`](.agents/skills/dyzulk-ui-development/SKILL.md)
 - [`dyzulk-modular-architecture`](.agents/skills/dyzulk-modular-architecture/SKILL.md)
-- [`dyzulk-database-operations`](.agents/skills/dyzulk-database-operations/SKILL.md)
+- [`dyzulk-server-development`](.agents/skills/dyzulk-server-development/SKILL.md)
 - [`dyzulk-monorepo-workflow`](.agents/skills/dyzulk-monorepo-workflow/SKILL.md)
 
 ---
@@ -42,6 +42,18 @@ For domain-specific task execution, activate the specialized skills located unde
 - **Strict Modularity Rule**: All applications (`web`, `docs`, `dashboard`) must maintain absolute modular separation. Types, helper libraries, API calls, custom logic, and reusable hooks MUST be written in their respective modular folders (e.g., `types/`, `lib/`, `hooks/`, `actions/`) rather than being defined inline inside pages, layouts, or components.
   - **No Logic in UI Files**: Pages, components, and layouts are **strictly forbidden** from containing any application logic, state-manipulation functions, event handlers definition, API calls, or computations. They must be purely UI/presentational shells. All such logic must be delegated to hooks or external modules.
   - This rule is strict and applies even if the code contains only a single function or 3 lines of code. No logic should clutter components, layout, or page files.
+
+---
+
+# Server Package Architecture Guidelines (`@dyzulk/server`)
+
+- **Layered Architecture Enforcement**: All backend features developed within `packages/server` must strictly separate concerns across distinct layers:
+  - **`types/`**: Shared interfaces, DTOs, and schema inferences (`InferSelectModel`, `InferInsertModel`).
+  - **`repositories/`**: Data Access Layer (DAL) focusing solely on Drizzle ORM queries, CRUD, joins, and filters. Repositories accept an optional `tx` client for transactions and MUST NOT contain business rules or side effects.
+  - **`services/`**: Business Logic Layer (BLL) coordinating domain validations, multi-table transactions (`db.transaction`), business error normalization, and side effects. Consumer apps (`apps/dashboard`, `apps/web`) call services or auth helpers, never raw table queries.
+  - **`lib/`**: Pure utility functions (cryptography, token generators, custom domain error classes).
+  - **`db/schema/`**: Drizzle schema definitions using UUID v4 primary keys (`defaultRandom()`), timestamp with timezone (`{ withTimezone: true }`), and explicit cascading relations (`onDelete: "cascade"`).
+  - **`auth/`**: Authentication engine managing session lifecycles (30-day sliding expiry), password hashing, verification tokens, and Next.js cookie helpers.
 
 ---
 
