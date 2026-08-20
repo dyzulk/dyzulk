@@ -14,7 +14,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 # Front-end Development Guidelines
 
-- **Explicit Page Composition**: Main pages must always explicitly list and call the rendered child components directly in the page body (e.g., `<HeroSection />`, `<TerminalPreview />`) instead of concealing them behind dynamic routing or bloated layout hierarchies.
+- **Explicit Page Composition**: Main pages (`page.tsx`) must always explicitly list and call the rendered child components directly in the page body (e.g., `<HeroSection />`, `<TerminalPreview />`) instead of concealing them behind dynamic routing or bloated layout hierarchies. **DO NOT write direct UI code or layouts in `page.tsx`.** All page UIs must be constructed from isolated page-specific components located in their respective components directory (e.g., `apps/web/src/components/home/`).
 - **Shadcn UI Monorepo Components**: Always use UI components from the monorepo's shared packages (`@workspace/ui/components/...`).
 - **No Raw CSS Component Overrides**: Do not override default style configurations of UI components via custom CSS styles or files. Use utility classes (Tailwind CSS) or customize the theme configuration.
 - **Strict Zero Rounded (Flat Design) Rule**: This codebase uses the flat **Lyra theme**. All UI elements—including buttons, cards, menus, accordions, inputs, AND manual layouts (like `div` containers, wrappers, or grids)—must have **square corners** (`rounded-none`).
