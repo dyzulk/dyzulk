@@ -31,7 +31,7 @@ For domain-specific task execution, activate the specialized skills located unde
 
 - **Explicit Page Composition**: Main pages (`page.tsx`) must always explicitly list and call the rendered child components directly in the page body (e.g., `<HeroSection />`, `<TerminalPreview />`) instead of concealing them behind dynamic routing or bloated layout hierarchies. **DO NOT write direct UI code or layouts in `page.tsx`.** All page UIs must be constructed from isolated page-specific components located in their respective components directory (e.g., `apps/web/src/components/home/`).
 - **Shadcn UI Monorepo Components & Protection**:
-  - Always use UI components from the monorepo's shared packages (`@workspace/ui/components/...`).
+  - Always use UI components from the monorepo's shared packages (`@dyzulk/ui/components/...`).
   - **Protected Directory**: `packages/ui/src/components/` is strictly for official Shadcn UI components managed via CLI (`pnpm dlx shadcn@latest add <component> -c apps/web`).
   - **DO NOT touch, rewrite, modify, or delete** existing Shadcn UI components in `packages/ui/src/components/`.
   - **DO NOT add non-Shadcn or custom components** to `packages/ui/src/components/`. Keep all custom components inside their respective app's `components/` directory.
@@ -73,5 +73,5 @@ For domain-specific task execution, activate the specialized skills located unde
     - ❌ Windows: `C:\...`, `file:///C:/...`
     - ❌ macOS: `/Users/...`, `file:///Users/...`
 - **Documentation & File Links**: Always use standard repository-relative paths (`./...` or `../...`).
-- **Code Imports**: Always use the official declared module namespace aliases configured in `tsconfig.json` or the workspace (e.g. `@workspace/ui/...`, `@dyzulk/server`, `@/...`) instead of arbitrary multi-level relative path traversals or broken paths.
+- **Code Imports**: Always use the official declared module namespace aliases configured in `tsconfig.json` or the workspace (e.g. `@dyzulk/ui/...`, `@dyzulk/server`, `@/...`) instead of arbitrary multi-level relative path traversals or broken paths.
 

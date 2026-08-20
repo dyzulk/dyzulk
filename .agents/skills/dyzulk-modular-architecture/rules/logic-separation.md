@@ -81,8 +81,8 @@ export function useDeploymentForm() {
 ```tsx
 // apps/dashboard/src/components/deployments/deploy-form.tsx
 import { useDeploymentForm } from "@/hooks/use-deployment-form";
-import { Button } from "@workspace/ui/components/button";
-import { Input } from "@workspace/ui/components/input";
+import { Button } from "@dyzulk/ui/components/button";
+import { Input } from "@dyzulk/ui/components/input";
 
 export function DeployForm() {
   const { repo, setRepo, loading, handleDeploy } = useDeploymentForm();

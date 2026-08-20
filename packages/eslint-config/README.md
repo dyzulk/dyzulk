@@ -1,3 +1,3 @@
-# `@workspace/eslint-config`
+# `@dyzulk/eslint-config`
 
 Shared eslint configuration for the workspace.

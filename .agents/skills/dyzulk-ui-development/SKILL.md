@@ -13,7 +13,7 @@ Best practices and guidelines for building user interfaces across Dyzulk web app
 ## Consistency First
 
 Before creating new components or overriding styles, inspect what the application already does.
-- Check neighboring components, existing layouts in the same app, and `@workspace/ui` packages for established patterns.
+- Check neighboring components, existing layouts in the same app, and `@dyzulk/ui` packages for established patterns.
 - Never introduce rounded corners or ad-hoc Tailwind colors when the design system mandates square borders (`rounded-none`) and CSS variable tokens.
 - Keep components declarative, modular, and consistent.
 

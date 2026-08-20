@@ -17,7 +17,7 @@ Before planning, executing, or proposing any changes, you must review and strict
 - **Strict Modularity**: 100% separation between UI presentation, custom hooks (`hooks/`), server actions (`actions/`), and business logic.
 - **Server Package Layering**: Strict adherence to `@dyzulk/server` layers (`types`, `repositories`, `services`, `lib`, `db/schema`, `auth`).
 - **Standard Node.js Runtime**: Full Node.js server APIs without edge runtime constraints.
-- **Prohibition of Machine-Specific Absolute Paths**: Always use repository-relative paths (`./...`, `../...`) and tsconfig aliases (`@/...`, `@workspace/ui/...`, `@dyzulk/server`).
+- **Prohibition of Machine-Specific Absolute Paths**: Always use repository-relative paths (`./...`, `../...`) and tsconfig aliases (`@/...`, `@dyzulk/ui/...`, `@dyzulk/server`).
 
 ---
 
