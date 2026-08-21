@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export interface Member {
   id: string;
@@ -24,6 +24,13 @@ export interface ApiTokenItem {
 }
 
 export function useOrganizationSettings(orgSlug: string) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   // General State
   const [orgName, setOrgName] = useState("DyzulkDev");
   const [orgHandle, setOrgHandle] = useState("dyzulkdev");
@@ -177,5 +184,6 @@ export function useOrganizationSettings(orgSlug: string) {
     handleSaveSpendingLimit,
     handleCreateToken,
     toggleScope,
+    isLoading,
   };
 }

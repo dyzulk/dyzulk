@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "@dyzulk/ui/components/select";
 import { Check, CreditCard } from "lucide-react";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 
 export function SettingsBilling() {
   const params = useParams();
@@ -34,6 +35,7 @@ export function SettingsBilling() {
     setIsSpendingLimitModalOpen,
     handleSaveBilling,
     handleSaveSpendingLimit,
+    isLoading,
   } = useOrganizationSettings(orgSlug);
 
   // Auto scroll to spending limit if hash is present
@@ -58,61 +60,87 @@ export function SettingsBilling() {
         </div>
 
         <CardContent className="p-5 space-y-4">
-          <div className="border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/20 dark:bg-zinc-900/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 rounded-none">
-            <div className="space-y-1">
-              <h4 className="font-bold text-foreground">Your plan</h4>
-              <p className="text-[11px] text-muted-foreground">Your base pricing plan.</p>
-              <div className="text-sm font-bold text-foreground mt-2">Starter</div>
-              
-              <ul className="space-y-1.5 mt-3 text-[10px] text-muted-foreground font-semibold">
-                <li className="flex items-center gap-2">
-                  <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
-                  <span>Unlimited applications and automatic deployments</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
-                  <span>Managed queues</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
-                  <span>Basic logs and monitoring</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
-                  <span>Scale-to-Zero compute and spending limits</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
-                  <span>Custom domains and laravel.cloud domains</span>
-                </li>
-              </ul>
+          {isLoading ? (
+            <div className="space-y-4 rounded-none">
+              <div className="border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/20 dark:bg-zinc-900/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 rounded-none">
+                <div className="space-y-2 flex-1 rounded-none">
+                  <Skeleton className="h-4 w-28 rounded-none animate-pulse" />
+                  <Skeleton className="h-3 w-40 rounded-none animate-pulse" />
+                  <Skeleton className="h-5 w-20 rounded-none mt-2 animate-pulse" />
+                  <div className="space-y-1.5 mt-3">
+                    <Skeleton className="h-3 w-4/5 rounded-none animate-pulse" />
+                    <Skeleton className="h-3 w-3/4 rounded-none animate-pulse" />
+                  </div>
+                </div>
+                <Skeleton className="h-5 w-24 rounded-none animate-pulse" />
+              </div>
+              <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div className="space-y-1 rounded-none flex-1">
+                  <Skeleton className="h-4 w-32 rounded-none animate-pulse" />
+                  <Skeleton className="h-3 w-64 rounded-none animate-pulse" />
+                </div>
+                <Skeleton className="h-9 w-32 rounded-none animate-pulse" />
+              </div>
             </div>
-            
-            <div className="sm:text-right shrink-0">
-              <div className="text-xs font-bold text-foreground">$0.00 <span className="text-[10px] font-normal text-muted-foreground">per month + usage</span></div>
-            </div>
-          </div>
+          ) : (
+            <>
+              <div className="border border-zinc-200 dark:border-zinc-800 p-4 bg-zinc-50/20 dark:bg-zinc-900/5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 rounded-none">
+                <div className="space-y-1">
+                  <h4 className="font-bold text-foreground">Your plan</h4>
+                  <p className="text-[11px] text-muted-foreground">Your base pricing plan.</p>
+                  <div className="text-sm font-bold text-foreground mt-2">Starter</div>
+                  
+                  <ul className="space-y-1.5 mt-3 text-[10px] text-muted-foreground font-semibold">
+                    <li className="flex items-center gap-2">
+                      <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
+                      <span>Unlimited applications and automatic deployments</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
+                      <span>Managed queues</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
+                      <span>Basic logs and monitoring</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
+                      <span>Scale-to-Zero compute and spending limits</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check className="size-3.5 text-zinc-950 dark:text-zinc-50 shrink-0" />
+                      <span>Custom domains and laravel.cloud domains</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div className="sm:text-right shrink-0">
+                  <div className="text-xs font-bold text-foreground">$0.00 <span className="text-[10px] font-normal text-muted-foreground">per month + usage</span></div>
+                </div>
+              </div>
 
-          <div className="border border-zinc-200/60 dark:border-zinc-800/80 p-4 bg-zinc-50/10 dark:bg-zinc-900/5 rounded-none flex items-center justify-between gap-4">
-            <div className="text-[11px] text-muted-foreground">
-              You are on the legacy Starter plan. You can keep using it or upgrade.
-            </div>
-            <Button variant="outline" size="sm" className="rounded-none border-zinc-200 dark:border-zinc-800 h-8 font-semibold shrink-0">
-              Select a plan
-            </Button>
-          </div>
+              <div className="border border-zinc-200/60 dark:border-zinc-800/80 p-4 bg-zinc-50/10 dark:bg-zinc-900/5 rounded-none flex items-center justify-between gap-4">
+                <div className="text-[11px] text-muted-foreground">
+                  You are on the legacy Starter plan. You can keep using it or upgrade.
+                </div>
+                <Button variant="outline" size="sm" className="rounded-none border-zinc-200 dark:border-zinc-800 h-8 font-semibold shrink-0">
+                  Select a plan
+                </Button>
+              </div>
 
-          <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div className="space-y-0.5">
-              <h4 className="font-bold text-foreground">Cancel subscription</h4>
-              <p className="text-[10px] text-muted-foreground">
-                You won't be able to deploy projects, or use paid resources.
-              </p>
-            </div>
-            <Button variant="outline" size="sm" className="rounded-none border-red-200 hover:border-red-300 text-red-600 hover:text-red-700 h-9 font-semibold">
-              Cancel subscription
-            </Button>
-          </div>
+              <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div className="space-y-0.5">
+                  <h4 className="font-bold text-foreground">Cancel subscription</h4>
+                  <p className="text-[10px] text-muted-foreground">
+                    You won't be able to deploy projects, or use paid resources.
+                  </p>
+                </div>
+                <Button variant="outline" size="sm" className="rounded-none border-red-200 hover:border-red-300 text-red-600 hover:text-red-700 h-9 font-semibold">
+                  Cancel subscription
+                </Button>
+              </div>
+            </>
+          )}
         </CardContent>
       </Card>
 
@@ -126,18 +154,28 @@ export function SettingsBilling() {
         </div>
 
         <CardContent className="p-20 text-center rounded-none flex flex-col items-center justify-center">
-          <h4 className="font-mono font-bold text-xs text-foreground mb-1">
-            {spendingLimit !== null ? `$${spendingLimit.toFixed(2)} spending limit active` : "No spending limit set"}
-          </h4>
-          <p className="text-muted-foreground text-[11px] max-w-sm mb-6">
-            Get notified or stop compute to control your organization's usage.
-          </p>
-          <Button
-            onClick={() => setIsSpendingLimitModalOpen(true)}
-            className="rounded-none font-mono text-xs bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 px-5"
-          >
-            Set spending limit
-          </Button>
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center space-y-3 rounded-none">
+              <Skeleton className="h-4 w-40 rounded-none animate-pulse" />
+              <Skeleton className="h-3 w-56 rounded-none animate-pulse" />
+              <Skeleton className="h-9 w-32 rounded-none mt-3 animate-pulse" />
+            </div>
+          ) : (
+            <>
+              <h4 className="font-mono font-bold text-xs text-foreground mb-1">
+                {spendingLimit !== null ? `$${spendingLimit.toFixed(2)} spending limit active` : "No spending limit set"}
+              </h4>
+              <p className="text-muted-foreground text-[11px] max-w-sm mb-6">
+                Get notified or stop compute to control your organization's usage.
+              </p>
+              <Button
+                onClick={() => setIsSpendingLimitModalOpen(true)}
+                className="rounded-none font-mono text-xs bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 px-5"
+              >
+                Set spending limit
+              </Button>
+            </>
+          )}
         </CardContent>
       </Card>
 

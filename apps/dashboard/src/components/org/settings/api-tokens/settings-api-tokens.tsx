@@ -8,6 +8,7 @@ import { Card, CardContent } from "@dyzulk/ui/components/card";
 import { Input } from "@dyzulk/ui/components/input";
 import { Label } from "@dyzulk/ui/components/label";
 import { Checkbox } from "@dyzulk/ui/components/checkbox";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 import {
   Sheet,
   SheetContent,
@@ -30,6 +31,7 @@ export function SettingsApiTokens() {
     setGeneratedToken,
     handleCreateToken,
     toggleScope,
+    isLoading,
   } = useOrganizationSettings(orgSlug);
 
   const [copied, setCopied] = React.useState(false);
@@ -62,7 +64,25 @@ export function SettingsApiTokens() {
         </p>
       </div>
 
-      {apiTokens.length === 0 ? (
+      {isLoading ? (
+        <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
+          <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 flex justify-between items-center rounded-none">
+            <Skeleton className="h-4 w-24 rounded-none animate-pulse" />
+            <Skeleton className="h-8 w-24 rounded-none animate-pulse" />
+          </div>
+          <div className="divide-y divide-zinc-200 dark:divide-zinc-800 rounded-none">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="p-4 flex justify-between items-center bg-background rounded-none">
+                <div className="space-y-2 flex-1 rounded-none">
+                  <Skeleton className="h-4 w-32 rounded-none animate-pulse" />
+                  <Skeleton className="h-3 w-40 rounded-none animate-pulse" />
+                </div>
+                <Skeleton className="h-3.5 w-12 rounded-none animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </Card>
+      ) : apiTokens.length === 0 ? (
         <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
           <CardContent className="p-20 text-center rounded-none flex flex-col items-center justify-center">
             <div className="mb-6 text-zinc-300 dark:text-zinc-700">

@@ -7,6 +7,7 @@ import { Button } from "@dyzulk/ui/components/button";
 import { Card, CardContent } from "@dyzulk/ui/components/card";
 import { Input } from "@dyzulk/ui/components/input";
 import { Label } from "@dyzulk/ui/components/label";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 import {
   Select,
   SelectContent,
@@ -27,6 +28,7 @@ export function SettingsAccess() {
     members,
     handleSendInvite,
     handleRoleChange,
+    isLoading,
   } = useOrganizationSettings(orgSlug);
 
   return (
@@ -84,46 +86,64 @@ export function SettingsAccess() {
             </Label>
             
             <div className="border border-zinc-200 dark:border-zinc-800 divide-y divide-zinc-200 dark:divide-zinc-800 rounded-none overflow-hidden">
-              {members.map((member) => (
-                <div key={member.id} className="p-3.5 flex items-center justify-between gap-4 bg-background">
-                  <div className="flex items-center gap-3">
-                    <div className="size-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-foreground font-bold text-xs rounded-none select-none">
-                      {member.name.charAt(0).toUpperCase()}
+              {isLoading ? (
+                Array.from({ length: 2 }).map((_, i) => (
+                  <div key={i} className="p-3.5 flex items-center justify-between gap-4 bg-background">
+                    <div className="flex items-center gap-3">
+                      <Skeleton className="size-8 rounded-none animate-pulse" />
+                      <div className="space-y-1.5 rounded-none">
+                        <Skeleton className="h-4 w-28 rounded-none animate-pulse" />
+                        <Skeleton className="h-3 w-40 rounded-none animate-pulse" />
+                      </div>
                     </div>
-                    <div className="font-mono text-xs">
-                      <span className="font-bold text-foreground">
-                        {member.name} {member.isYou && <span className="text-muted-foreground font-normal">(You)</span>}
-                      </span>
-                      <span className="block text-[10px] text-muted-foreground mt-0.5">{member.email}</span>
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-8 w-28 rounded-none animate-pulse" />
+                      <Skeleton className="h-6 w-6 rounded-none animate-pulse" />
                     </div>
                   </div>
+                ))
+              ) : (
+                members.map((member) => (
+                  <div key={member.id} className="p-3.5 flex items-center justify-between gap-4 bg-background">
+                    <div className="flex items-center gap-3">
+                      <div className="size-8 flex items-center justify-center bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-foreground font-bold text-xs rounded-none select-none">
+                        {member.name.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="font-mono text-xs">
+                        <span className="font-bold text-foreground">
+                          {member.name} {member.isYou && <span className="text-muted-foreground font-normal">(You)</span>}
+                        </span>
+                        <span className="block text-[10px] text-muted-foreground mt-0.5">{member.email}</span>
+                      </div>
+                    </div>
 
-                  <div className="flex items-center gap-2">
-                    {member.isYou ? (
-                      <span className="font-mono text-xs text-muted-foreground uppercase border border-zinc-200 dark:border-zinc-800 px-3 py-1 font-semibold rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
-                        {member.role}
-                      </span>
-                    ) : (
-                      <Select
-                        value={member.role}
-                        onValueChange={(val) => handleRoleChange(member.id, (val as "admin" | "developer") ?? "developer")}
-                      >
-                        <SelectTrigger className="rounded-none border border-zinc-200 dark:border-zinc-800 font-mono text-xs h-8 px-2.5 bg-background w-28">
-                          <SelectValue placeholder="Select role" />
-                        </SelectTrigger>
-                        <SelectContent className="rounded-none font-mono text-xs border-zinc-200 dark:border-zinc-800">
-                          <SelectItem value="developer" className="rounded-none">Developer</SelectItem>
-                          <SelectItem value="admin" className="rounded-none">Admin</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    )}
-                    
-                    <button className="p-1.5 text-zinc-400 hover:text-foreground transition-colors">
-                      <MoreHorizontal className="size-4" />
-                    </button>
+                    <div className="flex items-center gap-2">
+                      {member.isYou ? (
+                        <span className="font-mono text-xs text-muted-foreground uppercase border border-zinc-200 dark:border-zinc-800 px-3 py-1 font-semibold rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
+                          {member.role}
+                        </span>
+                      ) : (
+                        <Select
+                          value={member.role}
+                          onValueChange={(val) => handleRoleChange(member.id, (val as "admin" | "developer") ?? "developer")}
+                        >
+                          <SelectTrigger className="rounded-none border border-zinc-200 dark:border-zinc-800 font-mono text-xs h-8 px-2.5 bg-background w-28">
+                            <SelectValue placeholder="Select role" />
+                          </SelectTrigger>
+                          <SelectContent className="rounded-none font-mono text-xs border-zinc-200 dark:border-zinc-800">
+                            <SelectItem value="developer" className="rounded-none">Developer</SelectItem>
+                            <SelectItem value="admin" className="rounded-none">Admin</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      )}
+                      
+                      <button className="p-1.5 text-zinc-400 hover:text-foreground transition-colors">
+                        <MoreHorizontal className="size-4" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         </CardContent>
