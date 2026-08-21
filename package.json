@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "build:web": "turbo build --filter=web...",
+    "build:docs": "turbo build --filter=docs...",
+    "build:dashboard": "turbo build --filter=dashboard...",
     "dev": "turbo dev",
     "dev:web": "turbo dev --filter=web",
     "dev:docs": "turbo dev --filter=docs",
