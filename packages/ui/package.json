@@ -19,6 +19,7 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^1.31.0",
     "next-themes": "^0.4.6",
+    "nextjs-toploader": "^3.9.17",
     "react": "19.2.4",
     "react-day-picker": "^10.0.1",
     "react-dom": "19.2.4",
@@ -30,13 +31,13 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@dyzulk/eslint-config": "workspace:*",
+    "@dyzulk/typescript-config": "workspace:*",
     "@tailwindcss/postcss": "^4",
     "@turbo/gen": "^2.9.15",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@dyzulk/eslint-config": "workspace:*",
-    "@dyzulk/typescript-config": "workspace:*",
     "eslint": "^9",
     "tailwindcss": "^4",
     "typescript": "^5"
@@ -46,6 +47,7 @@
     "./postcss.config": "./postcss.config.mjs",
     "./lib/*": "./src/lib/*.ts",
     "./components/*": "./src/components/*.tsx",
+    "./custom/*": "./src/custom/*.tsx",
     "./hooks/*": "./src/hooks/*.ts"
   }
 }

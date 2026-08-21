@@ -2,6 +2,7 @@ import { JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "@dyzulk/ui/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@dyzulk/ui/lib/utils";
+import { TopLoader } from "@dyzulk/ui/custom/top-loader";
 
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-screen flex-col bg-background text-foreground rounded-none">
         <ThemeProvider>
+          <TopLoader />
           <div className="flex-1 rounded-none">{children}</div>
         </ThemeProvider>
       </body>

@@ -1,27 +1,72 @@
-import { Spinner } from "@dyzulk/ui/components/spinner";
+import { Skeleton } from "@dyzulk/ui/components/skeleton"
 
 export default function Loading() {
   return (
-    <div className="relative flex min-h-[75vh] flex-col items-center justify-center overflow-hidden px-6 py-12 rounded-none">
-      {/* Background radial glow */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06),transparent_60%)] pointer-events-none" />
+    <div className="flex-1 space-y-6 p-8 bg-background text-foreground rounded-none">
+      {/* Dashboard Top Header Section */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 rounded-none">
+        <div className="space-y-2 rounded-none">
+          {/* Dashboard Title */}
+          <Skeleton className="h-8 w-48 rounded-none" />
+          {/* Subtitle description */}
+          <Skeleton className="h-4 w-72 rounded-none" />
+        </div>
+        {/* Header Action Button */}
+        <Skeleton className="h-10 w-36 rounded-none" />
+      </div>
 
-      {/* Loading Container - strictly rounded-none */}
-      <div className="flex flex-col items-center gap-4 p-8 border border-border/40 bg-card/30 backdrop-blur-md rounded-none shadow-sm">
-        {/* Glow spinner wrapper */}
-        <div className="relative flex items-center justify-center select-none">
-          <span className="absolute -inset-1 rounded-full bg-primary/20 opacity-20 blur-xl animate-pulse" />
-          <div className="relative flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary border border-primary/20">
-            <Spinner className="size-6" />
+      {/* Grid of Key Metrics Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 rounded-none">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div
+            key={i}
+            className="border border-border/40 bg-card/30 p-6 space-y-3 rounded-none"
+          >
+            <div className="flex justify-between items-center rounded-none">
+              <Skeleton className="h-4 w-24 rounded-none" />
+              <Skeleton className="h-5 w-5 rounded-none" />
+            </div>
+            <Skeleton className="h-8 w-20 rounded-none" />
+            <Skeleton className="h-3 w-32 rounded-none" />
           </div>
+        ))}
+      </div>
+
+      {/* Main Content Area: Graph and Table Skeleton */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-none">
+        {/* Left main graph skeleton area */}
+        <div className="lg:col-span-2 border border-border/40 bg-card/30 p-6 space-y-6 rounded-none">
+          <div className="flex justify-between items-center rounded-none">
+            <div className="space-y-1 rounded-none">
+              <Skeleton className="h-5 w-36 rounded-none" />
+              <Skeleton className="h-3.5 w-48 rounded-none" />
+            </div>
+            <Skeleton className="h-8 w-24 rounded-none" />
+          </div>
+          {/* Main big graphic representation area */}
+          <Skeleton className="h-[280px] w-full rounded-none" />
         </div>
 
-        {/* Text */}
-        <div className="text-center">
-          <p className="text-sm font-medium text-foreground">Loading Dashboard</p>
-          <p className="text-xs text-muted-foreground mt-1">Please wait a moment...</p>
+        {/* Right sub list/activity area */}
+        <div className="border border-border/40 bg-card/30 p-6 space-y-6 rounded-none">
+          <div className="space-y-1 rounded-none">
+            <Skeleton className="h-5 w-28 rounded-none" />
+            <Skeleton className="h-3.5 w-40 rounded-none" />
+          </div>
+          {/* List of activity loaders */}
+          <div className="space-y-4 rounded-none">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="flex items-center gap-3 rounded-none">
+                <Skeleton className="h-9 w-9 rounded-full" /> {/* Avatar can be circular */}
+                <div className="space-y-1.5 flex-1 rounded-none">
+                  <Skeleton className="h-4 w-5/6 rounded-none" />
+                  <Skeleton className="h-3 w-1/2 rounded-none" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
