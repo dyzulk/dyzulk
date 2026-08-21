@@ -1,12 +1,15 @@
 "use client";
 
-import React from "react";
-import { ChevronDown, Plus, LogOut, LayoutDashboard, Settings, User } from "lucide-react";
-import { Button } from "@dyzulk/ui/components/button";
+import React, { useRef, useEffect } from "react";
+import { ChevronDown, Plus, Search, Sun, Moon } from "lucide-react";
 import { Logo } from "@dyzulk/ui/components/logo";
 import { useWorkspaceLayout } from "@/hooks/use-workspace-layout";
+import { useWorkspaceHeader } from "@/hooks/use-workspace-header";
 import { logoutAction } from "@/actions/auth";
 import { useRouter } from "next/navigation";
+import { OnboardingPopover } from "./onboarding-popover";
+import { ProfileMenuDropdown } from "./profile-menu-dropdown";
+import { SearchCommandDialog } from "./search-command-dialog";
 
 interface WorkspaceLayoutShellProps {
   activeSlug: string;
@@ -25,12 +28,49 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
     handleCreateOrgClick,
   } = useWorkspaceLayout(activeSlug);
 
+  const {
+    resolvedTheme,
+    toggleTheme,
+    isProgressOpen,
+    setIsProgressOpen,
+    isProfileOpen,
+    setIsProfileOpen,
+    isSearchOpen,
+    setIsSearchOpen,
+    onboardingItems,
+    completedCount,
+    totalCount,
+    isShipCollapsed,
+    setIsShipCollapsed,
+    isDiscoverCollapsed,
+    setIsDiscoverCollapsed,
+    handleSkipAll,
+    handleChecklistItemClick,
+  } = useWorkspaceHeader(activeSlug);
+
   const handleLogout = async () => {
     const res = await logoutAction();
     if (res.success) {
       router.push("/login");
     }
   };
+
+  // Ref container helpers to close dropdowns when clicking outside
+  const progressRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (progressRef.current && !progressRef.current.contains(e.target as Node)) {
+        setIsProgressOpen(false);
+      }
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [setIsProgressOpen, setIsProfileOpen]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground rounded-none">
@@ -98,16 +138,79 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
             </div>
           </div>
 
-          {/* User Account Actions / Logout */}
+          {/* Top navigation actions widgets */}
           <div className="flex items-center gap-3 rounded-none">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleLogout}
-              className="rounded-none border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 flex items-center gap-2 font-mono text-xs"
+            {/* Onboarding Checklist Button */}
+            <div ref={progressRef} className="relative rounded-none">
+              <button
+                onClick={() => setIsProgressOpen(!isProgressOpen)}
+                className="flex items-center gap-2 px-3 py-1.5 font-mono text-xs border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none"
+              >
+                {/* Circular indicator */}
+                <span className="size-3.5 rounded-full border border-dashed border-zinc-400 dark:border-zinc-600 flex items-center justify-center text-[8px] font-bold text-zinc-500">
+                  o
+                </span>
+                <span>{completedCount}/{totalCount}</span>
+              </button>
+
+              {isProgressOpen && (
+                <OnboardingPopover
+                  onboardingItems={onboardingItems}
+                  completedCount={completedCount}
+                  totalCount={totalCount}
+                  isShipCollapsed={isShipCollapsed}
+                  setIsShipCollapsed={setIsShipCollapsed}
+                  isDiscoverCollapsed={isDiscoverCollapsed}
+                  setIsDiscoverCollapsed={setIsDiscoverCollapsed}
+                  onSkipAll={handleSkipAll}
+                  onItemClick={handleChecklistItemClick}
+                />
+              )}
+            </div>
+
+            {/* Search Trigger Bar button */}
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className="hidden md:flex items-center gap-2.5 px-3 py-1.5 font-mono text-xs border border-zinc-200 dark:border-zinc-800 text-muted-foreground hover:text-foreground bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none w-44 justify-between"
             >
-              <LogOut className="size-3.5" /> Sign Out
-            </Button>
+              <div className="flex items-center gap-1.5">
+                <Search className="size-3.5 text-zinc-400" />
+                <span>Search</span>
+              </div>
+              <span className="text-[9px] bg-zinc-200/50 dark:bg-zinc-800 px-1 py-0.5 rounded-none font-semibold">
+                Ctrl+K
+              </span>
+            </button>
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-1.5 border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none flex items-center justify-center"
+              aria-label="Toggle theme"
+            >
+              {resolvedTheme === "dark" ? (
+                <Sun className="size-3.5 text-zinc-400 hover:text-foreground" />
+              ) : (
+                <Moon className="size-3.5 text-zinc-400 hover:text-foreground" />
+              )}
+            </button>
+
+            {/* User Profile avatar dropdown */}
+            <div ref={profileRef} className="relative rounded-none">
+              <button
+                onClick={() => setIsProfileOpen(!isProfileOpen)}
+                className="size-8 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200 dark:border-zinc-800 flex items-center justify-center rounded-none font-bold font-mono text-sm focus:outline-none hover:bg-zinc-50 dark:hover:bg-zinc-950"
+              >
+                {activeOrg?.name ? activeOrg.name.charAt(0).toUpperCase() : "D"}
+              </button>
+
+              {isProfileOpen && (
+                <ProfileMenuDropdown
+                  onLogout={handleLogout}
+                  orgName={activeOrg?.name || "DyzulkDev"}
+                />
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -116,6 +219,13 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
       <main className="flex-1 w-full bg-background rounded-none">
         {children}
       </main>
+
+      {/* Global search command Dialog popup */}
+      <SearchCommandDialog
+        isOpen={isSearchOpen}
+        onOpenChange={setIsSearchOpen}
+        orgSlug={activeSlug}
+      />
     </div>
   );
 }
