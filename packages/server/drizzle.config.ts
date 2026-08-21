@@ -1,10 +1,15 @@
 import { defineConfig } from "drizzle-kit";
 
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error("DATABASE_URL environment variable is not defined");
+}
+
 export default defineConfig({
   schema: "./src/db/schema/index.ts",
   out: "./drizzle",
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL || "postgresql://dyzulk:gaksjndkiu12@172.31.100.3:5432/dyzulk-cloud",
+    url: databaseUrl,
   },
 });

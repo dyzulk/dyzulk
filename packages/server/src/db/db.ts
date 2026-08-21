@@ -2,8 +2,13 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
 import * as schema from "./schema";
 
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error("DATABASE_URL environment variable is not defined");
+}
+
 const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL || "postgresql://dyzulk:gaksjndkiu12@172.31.100.3:5432/dyzulk-cloud",
+  connectionString: databaseUrl,
 });
 
 export const db = drizzle(pool, { schema });
