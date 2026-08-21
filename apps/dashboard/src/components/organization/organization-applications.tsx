@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { SiGithub, SiReact, SiSvelte, SiVuedotjs, SiLaravel } from "@icons-pack/react-simple-icons";
 import { MoreHorizontal, Plus, Cpu } from "lucide-react";
 import { Button } from "@dyzulk/ui/components/button";
@@ -69,9 +70,11 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
             Get started and create your first application.
           </p>
 
-          <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 px-6">
-            <Plus className="size-4 mr-2" /> New application
-          </Button>
+          <Link href={`/${orgSlug}/applications/create`} passHref>
+            <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 px-6">
+              <Plus className="size-4 mr-2" /> New application
+            </Button>
+          </Link>
         </div>
       </div>
     );
@@ -95,9 +98,11 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
           >
             Show Empty State
           </Button>
-          <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 px-4">
-            <Plus className="size-3.5 mr-1.5" /> New application
-          </Button>
+          <Link href={`/${orgSlug}/applications/create`} passHref>
+            <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 px-4">
+              <Plus className="size-3.5 mr-1.5" /> New application
+            </Button>
+          </Link>
         </div>
       </div>
 
