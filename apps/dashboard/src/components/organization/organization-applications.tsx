@@ -78,7 +78,7 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-6">
+    <div className="max-w-5xl mx-auto px-4 py-8 rounded-none flex flex-col gap-6">
       {/* Sub-header inside page content */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 rounded-none">
         <div className="rounded-none">
@@ -109,20 +109,20 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
             className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
           >
             {/* Header row: Icon, App Name, Git Repo & action trigger */}
-            <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
-              <div className="flex items-center gap-2 rounded-none">
-                <div className="size-6 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200/65 dark:border-zinc-800/80 flex items-center justify-center rounded-none font-bold">
+            <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none">
+              <div className="flex items-center gap-2.5 rounded-none">
+                <div className="size-6 bg-zinc-50 dark:bg-zinc-900/50 text-foreground flex items-center justify-center rounded-none font-bold">
                   {renderTechIcon(app.tech)}
                 </div>
-                <h3 className="font-mono font-bold text-xs text-foreground">
+                <h3 className="font-sans font-medium text-sm text-foreground">
                   {app.name}
                 </h3>
               </div>
 
               <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground rounded-none">
-                <div className="flex items-center gap-1">
-                  <SiGithub className="size-3 text-zinc-400" />
-                  <span className="text-foreground text-[11px]">{app.repo}</span>
+                <div className="flex items-center gap-1.5">
+                  <SiGithub className="size-3.5 text-zinc-400" />
+                  <span className="text-zinc-500 text-xs">{app.repo}</span>
                 </div>
                 <button className="text-zinc-400 hover:text-foreground transition-colors p-1">
                   <MoreHorizontal className="size-3.5" />
@@ -131,10 +131,10 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
             </div>
 
             {/* Inner row: status, commit message & time ago */}
-            <div className="py-2 px-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-              <div className="flex items-center gap-1.5">
-                <span className="size-2 bg-blue-500 rounded-full shrink-0" />
-                <span className="font-semibold text-zinc-950 dark:text-zinc-100 uppercase text-[9px] tracking-wider">
+            <div className="py-2 px-4 border-t border-zinc-100 dark:border-zinc-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+              <div className="flex items-center gap-2">
+                <span className="size-2 bg-blue-500 rounded-full shrink-0 animate-pulse" />
+                <span className="text-zinc-600 dark:text-zinc-400 lowercase">
                   {app.env}
                 </span>
               </div>
