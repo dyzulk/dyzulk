@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { SiGithub, SiReact } from "@icons-pack/react-simple-icons";
 import { ChevronDown, Info, Calendar, DollarSign, Database, Cpu, Plus, Sparkles } from "lucide-react";
 import { Button } from "@dyzulk/ui/components/button";
@@ -99,14 +100,15 @@ export function OrganizationUsage({ orgSlug }: OrganizationUsageProps) {
           <CardContent className="p-4 pt-0 flex flex-col justify-between h-full min-h-[70px]">
             <p className="text-xs font-mono text-muted-foreground">{spendingLimit}</p>
             <div className="mt-3 rounded-none">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowLimitModal(true)}
-                className="font-mono text-[10px] tracking-wider uppercase rounded-none border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 h-8"
-              >
-                Set up spending limit
-              </Button>
+              <Link href={`/${orgSlug}/settings/billing`}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="font-mono text-[10px] tracking-wider uppercase rounded-none border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 h-8"
+                >
+                  Set up spending limit
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>
@@ -277,49 +279,6 @@ export function OrganizationUsage({ orgSlug }: OrganizationUsageProps) {
         ))}
       </div>
 
-      {/* Spending limit modal mock */}
-      {showLimitModal && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center z-50 p-4">
-          <div className="bg-background border border-zinc-200 dark:border-zinc-800 p-6 max-w-md w-full rounded-none shadow-2xl">
-            <h3 className="text-base font-bold font-mono uppercase tracking-wider text-foreground mb-2">
-              Spending Limit
-            </h3>
-            <p className="text-xs font-mono text-muted-foreground mb-4">
-              Enter your monthly threshold limit to receive alerts or halt resources when spending exceeds this budget.
-            </p>
-            
-            <div className="flex gap-2 rounded-none mb-6">
-              <span className="bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 px-3 py-2 font-mono text-sm flex items-center text-foreground">
-                $
-              </span>
-              <input
-                type="number"
-                placeholder="5.00"
-                defaultValue="5.00"
-                className="w-full bg-background border border-zinc-200 dark:border-zinc-800 px-3 py-2 font-mono text-sm focus:outline-none focus:border-zinc-900 dark:focus:border-zinc-100 rounded-none text-foreground"
-              />
-            </div>
-
-            <div className="flex justify-end gap-3 rounded-none">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowLimitModal(false)}
-                className="font-mono text-xs rounded-none border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900"
-              >
-                Cancel
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => setShowLimitModal(false)}
-                className="font-mono text-xs rounded-none bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200"
-              >
-                Save Limits
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
