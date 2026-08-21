@@ -1,7 +1,6 @@
 import React from "react";
 import { notFound, redirect } from "next/navigation";
 import { getOrganizationBySlugAction } from "@/actions/organization";
-import { OrganizationHeader } from "@/components/organization/organization-header";
 import { OrganizationTabs } from "@/components/organization/organization-tabs";
 import { OrganizationOverview } from "@/components/organization/organization-overview";
 
@@ -22,9 +21,8 @@ export default async function WorkspaceDashboardPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col w-full rounded-none">
-      <OrganizationHeader orgName={organization.name} />
       <OrganizationTabs orgSlug={organization.slug} />
-      <OrganizationOverview orgSlug={organization.slug} />
+      <OrganizationOverview orgName={organization.name} orgSlug={organization.slug} />
     </div>
   );
 }

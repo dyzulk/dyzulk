@@ -7,6 +7,7 @@ import { Button } from "@dyzulk/ui/components/button";
 import { Card, CardContent } from "@dyzulk/ui/components/card";
 
 interface OrganizationOverviewProps {
+  orgName: string;
   orgSlug: string;
 }
 
@@ -128,7 +129,7 @@ const MOCK_DEPLOYMENTS = [
   },
 ];
 
-export function OrganizationOverview({ orgSlug }: OrganizationOverviewProps) {
+export function OrganizationOverview({ orgName, orgSlug }: OrganizationOverviewProps) {
   const [isEmpty, setIsEmpty] = useState(false);
 
   // Render correct icon based on technology tag
@@ -149,9 +150,19 @@ export function OrganizationOverview({ orgSlug }: OrganizationOverviewProps) {
 
   if (isEmpty) {
     return (
-      <div className="max-w-7xl mx-auto px-4 py-12 rounded-none">
+      <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-6">
+        {/* Organization name and pink avatar badge inside overview content */}
+        <div className="flex items-center gap-3 pt-4 pb-2 rounded-none">
+          <div className="size-10 flex items-center justify-center bg-pink-100 dark:bg-pink-950/30 text-pink-700 dark:text-pink-400 text-lg font-bold font-mono rounded-none border border-pink-200 dark:border-pink-900/50 select-none">
+            {orgName.charAt(0).toUpperCase()}
+          </div>
+          <h1 className="text-2xl font-bold tracking-tight text-foreground font-mono">
+            {orgName}
+          </h1>
+        </div>
+
         {/* Toggle state info banner */}
-        <div className="mb-6 flex justify-end">
+        <div className="flex justify-end">
           <Button
             variant="outline"
             size="sm"
@@ -200,6 +211,16 @@ export function OrganizationOverview({ orgSlug }: OrganizationOverviewProps) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-8">
+      {/* Organization name and pink avatar badge inside overview content */}
+      <div className="flex items-center gap-3 pt-4 pb-2 rounded-none border-b border-zinc-100 dark:border-zinc-900">
+        <div className="size-10 flex items-center justify-center bg-pink-100 dark:bg-pink-950/30 text-pink-700 dark:text-pink-400 text-lg font-bold font-mono rounded-none border border-pink-200 dark:border-pink-900/50 select-none">
+          {orgName.charAt(0).toUpperCase()}
+        </div>
+        <h1 className="text-2xl font-bold tracking-tight text-foreground font-mono">
+          {orgName}
+        </h1>
+      </div>
+
       {/* Upper header section for Overview content */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 rounded-none">
         <div className="rounded-none">
