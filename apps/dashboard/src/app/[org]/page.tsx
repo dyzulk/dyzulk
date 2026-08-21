@@ -1,8 +1,9 @@
 import React from "react";
 import { notFound, redirect } from "next/navigation";
 import { getOrganizationBySlugAction } from "@/actions/organization";
-import { WorkspaceHeader } from "@/components/workspace/workspace-header";
-import { WorkspaceStats } from "@/components/workspace/workspace-stats";
+import { OrganizationHeader } from "@/components/organization/organization-header";
+import { OrganizationTabs } from "@/components/organization/organization-tabs";
+import { OrganizationOverview } from "@/components/organization/organization-overview";
 
 interface PageProps {
   params: Promise<{ org: string }>;
@@ -20,9 +21,10 @@ export default async function WorkspaceDashboardPage({ params }: PageProps) {
   const organization = result.data;
 
   return (
-    <div className="p-8 space-y-8 max-w-5xl mx-auto rounded-none">
-      <WorkspaceHeader orgName={organization.name} />
-      <WorkspaceStats />
+    <div className="flex flex-col w-full rounded-none">
+      <OrganizationHeader orgName={organization.name} />
+      <OrganizationTabs orgSlug={organization.slug} />
+      <OrganizationOverview orgSlug={organization.slug} />
     </div>
   );
 }
