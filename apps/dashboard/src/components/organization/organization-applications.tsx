@@ -18,15 +18,15 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
   const renderTechIcon = (tech: string) => {
     switch (tech) {
       case "react":
-        return <SiReact className="size-4 text-sky-500" />;
+        return <SiReact className="size-3.5 text-sky-500" />;
       case "svelte":
-        return <SiSvelte className="size-4 text-orange-500" />;
+        return <SiSvelte className="size-3.5 text-orange-500" />;
       case "vue":
-        return <SiVuedotjs className="size-4 text-emerald-500" />;
+        return <SiVuedotjs className="size-3.5 text-emerald-500" />;
       case "laravel":
-        return <SiLaravel className="size-4 text-red-500" />;
+        return <SiLaravel className="size-3.5 text-red-500" />;
       default:
-        return <Cpu className="size-4 text-zinc-500" />;
+        return <Cpu className="size-3.5 text-zinc-500" />;
     }
   };
 
@@ -109,50 +109,50 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
             className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
           >
             {/* Header row: Icon, App Name, Git Repo & action trigger */}
-            <div className="p-4 flex items-center justify-between gap-4 rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
-              <div className="flex items-center gap-2.5 rounded-none">
-                <div className="size-8 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none font-bold">
+            <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
+              <div className="flex items-center gap-2 rounded-none">
+                <div className="size-6 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200/65 dark:border-zinc-800/80 flex items-center justify-center rounded-none font-bold">
                   {renderTechIcon(app.tech)}
                 </div>
-                <h3 className="font-mono font-bold text-sm text-foreground">
+                <h3 className="font-mono font-bold text-xs text-foreground">
                   {app.name}
                 </h3>
               </div>
 
               <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground rounded-none">
-                <div className="flex items-center gap-1.5">
-                  <SiGithub className="size-3.5" />
-                  <span className="text-foreground">{app.repo}</span>
+                <div className="flex items-center gap-1">
+                  <SiGithub className="size-3 text-zinc-400" />
+                  <span className="text-foreground text-[11px]">{app.repo}</span>
                 </div>
                 <button className="text-zinc-400 hover:text-foreground transition-colors p-1">
-                  <MoreHorizontal className="size-4" />
+                  <MoreHorizontal className="size-3.5" />
                 </button>
               </div>
             </div>
 
             {/* Inner row: status, commit message & time ago */}
-            <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-              <div className="flex items-center gap-2">
+            <div className="py-2 px-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+              <div className="flex items-center gap-1.5">
                 <span className="size-2 bg-blue-500 rounded-full shrink-0" />
-                <span className="font-semibold text-zinc-950 dark:text-zinc-100 uppercase text-[10px] tracking-wider">
+                <span className="font-semibold text-zinc-950 dark:text-zinc-100 uppercase text-[9px] tracking-wider">
                   {app.env}
                 </span>
               </div>
 
               {app.status === "deployed" ? (
-                <div className="text-zinc-500 truncate max-w-md">
+                <div className="text-zinc-500 text-[11px] truncate max-w-md">
                   {/* Branch icon and commit message */}
                   <span className="text-zinc-300 dark:text-zinc-800 mr-2">o-</span>
                   {app.commitDesc}
                 </div>
               ) : (
-                <div className="text-zinc-500">
+                <div className="text-zinc-500 text-[11px]">
                   <span className="text-zinc-300 dark:text-zinc-800 mr-2">o-</span>
                   Initial commit by Laravel Cloud
                 </div>
               )}
 
-              <div className="text-muted-foreground text-right sm:text-left shrink-0">
+              <div className="text-muted-foreground text-[11px] text-right sm:text-left shrink-0">
                 {app.timeAgo}
               </div>
             </div>
