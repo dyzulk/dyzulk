@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { SiLaravel, SiReact, SiVuedotjs, SiSvelte } from "@icons-pack/react-simple-icons";
+import { SiNextdotjs, SiReact, SiVuedotjs, SiSvelte, SiNodedotjs, SiPython, SiGo, SiLaravel, SiWordpress } from "@icons-pack/react-simple-icons";
 import { Cpu } from "lucide-react";
 import { Card } from "@dyzulk/ui/components/card";
 import { ApplicationTemplate } from "@/hooks/use-create-application";
@@ -15,14 +15,24 @@ export function UseTemplateView({ templates, onSelect }: UseTemplateViewProps) {
   const renderTemplateIcon = (tech: string) => {
     const iconSize = "size-5 text-muted-foreground group-hover:text-foreground transition-colors";
     switch (tech) {
-      case "laravel":
-        return <SiLaravel className={`${iconSize} text-red-600 dark:text-red-500`} />;
+      case "nextjs":
+        return <SiNextdotjs className={iconSize} />;
       case "react":
         return <SiReact className={`${iconSize} text-sky-500`} />;
       case "vue":
         return <SiVuedotjs className={`${iconSize} text-emerald-500`} />;
       case "svelte":
         return <SiSvelte className={`${iconSize} text-orange-500`} />;
+      case "node":
+        return <SiNodedotjs className={`${iconSize} text-green-600 dark:text-green-500`} />;
+      case "python":
+        return <SiPython className={`${iconSize} text-yellow-500 dark:text-yellow-400`} />;
+      case "go":
+        return <SiGo className={`${iconSize} text-sky-400`} />;
+      case "laravel":
+        return <SiLaravel className={`${iconSize} text-red-600 dark:text-red-500`} />;
+      case "wordpress":
+        return <SiWordpress className={`${iconSize} text-sky-600 dark:text-sky-500`} />;
       default:
         return <Cpu className={iconSize} />;
     }

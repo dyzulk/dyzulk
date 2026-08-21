@@ -14,7 +14,6 @@ interface CreateApplicationTabsProps {
 export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
   const {
     activeTab,
-    setActiveTab,
     searchQuery,
     setSearchQuery,
     selectedProvider,
@@ -23,10 +22,11 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
     templates,
     handleSelectRepository,
     handleSelectTemplate,
+    namespace,
   } = useCreateApplication();
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12 rounded-none flex flex-col gap-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-8">
       {/* Back button and page description */}
       <div className="flex flex-col gap-3 rounded-none">
         <Link
@@ -48,8 +48,8 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
 
       {/* Tabs navigation headers */}
       <div className="flex border-b border-zinc-200 dark:border-zinc-800 rounded-none font-mono text-xs font-bold">
-        <button
-          onClick={() => setActiveTab("import")}
+        <Link
+          href={`/${orgSlug}/applications/create?from=repository&namespace=${namespace}&provider=${selectedProvider}`}
           className={`px-4 py-2 border-b-2 transition-colors rounded-none -mb-[2px] ${
             activeTab === "import"
               ? "border-foreground text-foreground"
@@ -57,9 +57,9 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
           }`}
         >
           Import a repository
-        </button>
-        <button
-          onClick={() => setActiveTab("template")}
+        </Link>
+        <Link
+          href={`/${orgSlug}/applications/create?from=template&namespace=${namespace}&provider=${selectedProvider}&v2=1`}
           className={`px-4 py-2 border-b-2 transition-colors rounded-none -mb-[2px] ${
             activeTab === "template"
               ? "border-foreground text-foreground"
@@ -67,7 +67,7 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
           }`}
         >
           Use a template
-        </button>
+        </Link>
       </div>
 
       {/* Render selected view content */}
