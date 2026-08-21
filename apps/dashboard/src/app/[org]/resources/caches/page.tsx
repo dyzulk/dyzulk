@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import { useResources } from "@/hooks/use-resources";
-import { ResourcesEmptyState } from "@/components/organization/resources-empty-state";
+import { ResourcesEmptyState } from "@/components/org/resources/resources-empty-state";
 
 export default function CachesPage() {
   const params = useParams();

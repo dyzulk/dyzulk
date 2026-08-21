@@ -17,6 +17,6 @@ export default async function RootPage() {
       redirect(`/${firstOrg.slug}`);
     }
   }
-  redirect("/new");
+  redirect("/org/new");
 }
 

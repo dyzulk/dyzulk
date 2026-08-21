@@ -13,7 +13,7 @@ This document outlines mandatory guidelines for AI agents working within the Dyz
 Before planning, executing, or proposing any changes, you must review and strictly follow all rules defined in [AGENTS.md](../../AGENTS.md):
 - **Lyra Flat Theme**: Strictly zero rounded corners (`rounded-none`) on all layout and structural UI elements.
 - **Icon Usage Rules**: Strictly `lucide-react` for UI/system icons and `@icons-pack/react-simple-icons` for tech/brand/social icons. No raw emojis.
-- **Explicit Page Composition**: Clean presentational `page.tsx` calling isolated components directly. No complex inline layouts or inline logic in pages/components.
+- **Explicit Page Composition & Component Folder Nesting**: Clean presentational `page.tsx` calling isolated components directly. Component folders under `src/components/` must strictly mirror page URL paths (e.g. `components/organizations/applications/create/`). No complex inline layouts or inline logic.
 - **Strict Modularity**: 100% separation between UI presentation, custom hooks (`hooks/`), server actions (`actions/`), and business logic.
 - **Server Package Layering**: Strict adherence to `@dyzulk/server` layers (`types`, `repositories`, `services`, `lib`, `db/schema`, `auth`).
 - **Standard Node.js Runtime**: Full Node.js server APIs without edge runtime constraints.

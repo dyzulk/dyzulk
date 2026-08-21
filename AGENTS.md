@@ -29,7 +29,7 @@ For domain-specific task execution, activate the specialized skills located unde
 
 # Front-end Development Guidelines
 
-- **Explicit Page Composition**: Main pages (`page.tsx`) must always explicitly list and call the rendered child components directly in the page body (e.g., `<HeroSection />`, `<TerminalPreview />`) instead of concealing them behind dynamic routing or bloated layout hierarchies. **DO NOT write direct UI code or layouts in `page.tsx`.** All page UIs must be constructed from isolated page-specific components located in their respective components directory (e.g., `apps/web/src/components/home/`).
+- **Explicit Page Composition & Component Folder Nesting**: Main pages (`page.tsx`) must always explicitly list and call the rendered child components directly in the page body (e.g., `<HeroSection />`, `<TerminalPreview />`) instead of concealing them behind dynamic routing or bloated layout hierarchies. **DO NOT write direct UI code or layouts in `page.tsx`.** All page UIs must be constructed from isolated page-specific components located in their respective components directory. The directory structure under `src/components/` must strictly mirror the routing structure under `src/app/` (e.g., components for `/organizations/applications/create` must reside in `components/organizations/applications/create/` and NOT in a flat folder like `components/organization/`).
 - **Shadcn UI Monorepo Components & Protection**:
   - Always use UI components from the monorepo's shared packages (`@dyzulk/ui/components/...`).
   - **Protected Directory**: `packages/ui/src/components/` is strictly for official Shadcn UI components managed via CLI (`pnpm dlx shadcn@latest add <component> -c apps/web`).

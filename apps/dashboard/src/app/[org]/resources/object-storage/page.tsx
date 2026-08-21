@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ResourcesEmptyState } from "@/components/organization/resources-empty-state";
+import { ResourcesEmptyState } from "@/components/org/resources/resources-empty-state";
 
 export default function ObjectStoragePage() {
   return (

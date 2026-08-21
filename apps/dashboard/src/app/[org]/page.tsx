@@ -1,8 +1,8 @@
 import React from "react";
 import { notFound, redirect } from "next/navigation";
 import { getOrganizationBySlugAction } from "@/actions/organization";
-import { OrganizationTabs } from "@/components/organization/organization-tabs";
-import { OrganizationOverview } from "@/components/organization/organization-overview";
+import { OrganizationTabs } from "@/components/org/organization-tabs";
+import { OrganizationOverview } from "@/components/org/organization-overview";
 
 interface PageProps {
   params: Promise<{ org: string }>;

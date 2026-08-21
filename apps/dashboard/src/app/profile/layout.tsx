@@ -2,7 +2,7 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { getUserOrganizationsAction } from "@/actions/organization";
 import { WorkspaceLayoutShell } from "@/components/workspace/layout/workspace-layout-shell";
-import { ProfileSidebar } from "@/components/organization/profile-sidebar";
+import { ProfileSidebar } from "@/components/profile/profile-sidebar";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export default async function ProfileLayout({ children }: LayoutProps) {
   const result = await getUserOrganizationsAction();
 
   if (!result.success || !result.data || result.data.length === 0) {
-    redirect("/new");
+    redirect("/org/new");
   }
 
   const defaultOrg = result.data[0];

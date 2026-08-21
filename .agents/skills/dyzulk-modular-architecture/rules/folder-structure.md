@@ -23,7 +23,7 @@ dyzulk/
 
 ### A. `apps/dashboard/` (PaaS Control Panel)
 - **`src/app/`**: Next.js App Router routing shells only (`(auth)`, `[org]`, `new`). Strictly no business logic here.
-- **`src/components/`**: Page-specific UI components grouped by feature (`new-org/`, `workspace/layout/`).
+- **`src/components/`**: Page-specific UI components grouped strictly by their URL path structure (e.g., `components/organizations/applications/create/` for `/organizations/applications/create`).
 - **`src/actions/`**: Next.js Server Actions handling mutations and API calls (`auth.ts`, `organization.ts`).
 - **`src/hooks/`**: Custom React hooks handling client state, event handlers, and form submissions (`use-login.ts`, `use-create-org.ts`, `use-workspace-layout.ts`).
 

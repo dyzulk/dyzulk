@@ -1,5 +1,5 @@
 import React from "react";
-import { ProfileGeneral } from "@/components/organization/profile-general";
+import { ProfileGeneral } from "@/components/profile/profile-general";
 
 export default function ProfileRootPage() {
   return <ProfileGeneral />;

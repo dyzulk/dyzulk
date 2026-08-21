@@ -38,7 +38,7 @@ export function useWorkspaceLayout(activeSlug: string) {
 
   const handleCreateOrgClick = () => {
     setIsOpen(false);
-    router.push("/new");
+    router.push("/org/new");
   };
 
   const activeOrg = organizations.find((o) => o.slug === activeSlug);

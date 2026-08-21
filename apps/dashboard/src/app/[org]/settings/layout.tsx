@@ -1,8 +1,8 @@
 import React from "react";
 import { redirect } from "next/navigation";
 import { getOrganizationBySlugAction } from "@/actions/organization";
-import { OrganizationTabs } from "@/components/organization/organization-tabs";
-import { SettingsSidebar } from "@/components/organization/settings-sidebar";
+import { OrganizationTabs } from "@/components/org/organization-tabs";
+import { SettingsSidebar } from "@/components/org/settings/settings-sidebar";
 
 interface LayoutProps {
   children: React.ReactNode;
