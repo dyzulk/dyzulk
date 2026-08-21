@@ -71,7 +71,7 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
       </div>
 
       {/* Render selected view content */}
-      <div className="rounded-none">
+      <div className="w-full rounded-none">
         {activeTab === "import" ? (
           <ImportRepositoryView
             repositories={repositories}

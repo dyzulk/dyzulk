@@ -37,7 +37,7 @@ export function ImportRepositoryView({
   };
 
   return (
-    <div className="flex flex-col gap-4 rounded-none font-mono text-xs">
+    <div className="w-full flex flex-col gap-4 rounded-none font-mono text-xs">
       {/* Account and Search Header */}
       <div className="flex flex-col sm:flex-row gap-3 rounded-none">
         {/* Provider Switcher Dropdown */}

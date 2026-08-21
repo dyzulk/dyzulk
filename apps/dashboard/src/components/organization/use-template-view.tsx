@@ -39,12 +39,12 @@ export function UseTemplateView({ templates, onSelect }: UseTemplateViewProps) {
   };
 
   return (
-    <div className="flex flex-col gap-3 rounded-none">
+    <div className="w-full flex flex-col gap-3 rounded-none">
       {templates.map((tmpl) => (
         <Card
           key={tmpl.id}
           onClick={() => onSelect(tmpl.id)}
-          className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background p-4 shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 cursor-pointer transition-colors flex items-start gap-4"
+          className="w-full group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background p-4 shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 cursor-pointer transition-colors flex items-start gap-4"
         >
           <div className="size-10 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none shrink-0">
             {renderTemplateIcon(tmpl.tech)}
