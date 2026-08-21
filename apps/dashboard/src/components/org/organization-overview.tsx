@@ -6,15 +6,17 @@ import { SiGithub, SiReact, SiSvelte, SiVuedotjs, SiLaravel } from "@icons-pack/
 import { Check, ExternalLink, GitBranch, Plus, Cpu, RefreshCw } from "lucide-react";
 import { Button } from "@dyzulk/ui/components/button";
 import { Card, CardContent } from "@dyzulk/ui/components/card";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 
 interface OrganizationOverviewProps {
   orgName: string;
   orgSlug: string;
+  isLoading?: boolean;
 }
 
 import { MOCK_APPLICATIONS, MOCK_DEPLOYMENTS } from "@/lib/mock-data";
 
-export function OrganizationOverview({ orgName, orgSlug }: OrganizationOverviewProps) {
+export function OrganizationOverview({ orgName, orgSlug, isLoading }: OrganizationOverviewProps) {
   const [isEmpty, setIsEmpty] = useState(false);
 
   // Render correct icon based on technology tag
@@ -33,11 +35,11 @@ export function OrganizationOverview({ orgName, orgSlug }: OrganizationOverviewP
     }
   };
 
-  if (isEmpty) {
+  if (isEmpty && !isLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-6">
         {/* Organization name and pink avatar badge inside overview content */}
-        <div className="flex items-center gap-3 pt-4 pb-2 rounded-none">
+        <div className="flex items-center gap-3 pt-4 pb-2 rounded-none border-b border-zinc-100 dark:border-zinc-900">
           <div className="size-10 flex items-center justify-center bg-pink-100 dark:bg-pink-950/30 text-pink-700 dark:text-pink-400 text-lg font-bold font-mono rounded-none border border-pink-200 dark:border-pink-900/50 select-none">
             {orgName.charAt(0).toUpperCase()}
           </div>
@@ -100,12 +102,20 @@ export function OrganizationOverview({ orgName, orgSlug }: OrganizationOverviewP
     <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-8">
       {/* Organization name and pink avatar badge inside overview content */}
       <div className="flex items-center gap-3 pt-4 pb-2 rounded-none border-b border-zinc-100 dark:border-zinc-900">
-        <div className="size-10 flex items-center justify-center bg-pink-100 dark:bg-pink-950/30 text-pink-700 dark:text-pink-400 text-lg font-bold font-mono rounded-none border border-pink-200 dark:border-pink-900/50 select-none">
-          {orgName.charAt(0).toUpperCase()}
-        </div>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground font-mono">
-          {orgName}
-        </h1>
+        {isLoading ? (
+          <Skeleton className="size-10 rounded-none animate-pulse" />
+        ) : (
+          <div className="size-10 flex items-center justify-center bg-pink-100 dark:bg-pink-950/30 text-pink-700 dark:text-pink-400 text-lg font-bold font-mono rounded-none border border-pink-200 dark:border-pink-900/50 select-none">
+            {orgName.charAt(0).toUpperCase()}
+          </div>
+        )}
+        {isLoading ? (
+          <Skeleton className="h-8 w-48 rounded-none animate-pulse" />
+        ) : (
+          <h1 className="text-2xl font-bold tracking-tight text-foreground font-mono">
+            {orgName}
+          </h1>
+        )}
       </div>
 
       {/* Upper header section for Overview content */}
@@ -144,62 +154,95 @@ export function OrganizationOverview({ orgName, orgSlug }: OrganizationOverviewP
             Recently deployed
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-none">
-            {visibleApplications.map((app) => (
-              <Card
-                key={app.id}
-                className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
-              >
-                <CardContent className="p-6 flex flex-col gap-4 rounded-none">
-                  {/* App icon, name and environment pill */}
-                  <div className="flex items-start justify-between gap-4 rounded-none">
-                    <div className="flex items-center gap-3 rounded-none">
-                      <div className="size-10 bg-zinc-50 dark:bg-zinc-900 text-foreground border border-zinc-200 dark:border-zinc-800 flex items-center justify-center rounded-none font-bold">
-                        {renderTechIcon(app.tech)}
+            {isLoading ? (
+              Array.from({ length: 4 }).map((_, i) => (
+                <Card
+                  key={i}
+                  className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none"
+                >
+                  <CardContent className="p-6 flex flex-col gap-4 rounded-none">
+                    {/* App icon, name and environment pill skeleton */}
+                    <div className="flex items-start justify-between gap-4 rounded-none">
+                      <div className="flex items-center gap-3 rounded-none">
+                        <Skeleton className="size-10 rounded-none animate-pulse" />
+                        <div className="space-y-2 rounded-none">
+                          <div className="flex items-center gap-2 rounded-none">
+                            <Skeleton className="h-5 w-28 rounded-none animate-pulse" />
+                            <Skeleton className="h-4 w-12 rounded-none animate-pulse" />
+                          </div>
+                          <Skeleton className="h-4 w-40 rounded-none animate-pulse" />
+                        </div>
                       </div>
-                      <div className="rounded-none">
-                        <h4 className="font-mono font-bold text-sm text-foreground flex items-center gap-2">
-                          {app.name}
-                          <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[9px] font-mono tracking-wider uppercase bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/50 rounded-none">
-                            <span className="size-1 bg-blue-500 rounded-full" />
-                            {app.env}
-                          </span>
-                        </h4>
-                        <p className="text-xs text-muted-foreground mt-0.5 font-mono truncate max-w-[200px] sm:max-w-xs">
-                          {app.domain}
-                        </p>
-                      </div>
+                      <Skeleton className="h-7 w-16 rounded-none animate-pulse" />
                     </div>
 
-                    {app.status === "deployed" && (
-                      <a
-                        href={`https://${app.domain}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center rounded-none font-mono text-[10px] border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 gap-1 h-7 px-2.5 text-foreground transition-colors shrink-0"
-                      >
-                        <ExternalLink className="size-3" /> Visit
-                      </a>
-                    )}
-                  </div>
+                    {/* Git metadata details skeleton */}
+                    <div className="flex items-center gap-4 text-xs font-mono rounded-none border-t border-zinc-100 dark:border-zinc-900 pt-3">
+                      <Skeleton className="h-3.5 w-32 rounded-none animate-pulse" />
+                      <Skeleton className="h-3.5 w-20 rounded-none animate-pulse" />
+                      <Skeleton className="h-3.5 w-16 rounded-none animate-pulse" />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            ) : (
+              visibleApplications.map((app) => (
+                <Card
+                  key={app.id}
+                  className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
+                >
+                  <CardContent className="p-6 flex flex-col gap-4 rounded-none">
+                    {/* App icon, name and environment pill */}
+                    <div className="flex items-start justify-between gap-4 rounded-none">
+                      <div className="flex items-center gap-3 rounded-none">
+                        <div className="size-10 bg-zinc-50 dark:bg-zinc-900 text-foreground border border-zinc-200 dark:border-zinc-800 flex items-center justify-center rounded-none font-bold">
+                          {renderTechIcon(app.tech)}
+                        </div>
+                        <div className="rounded-none">
+                          <h4 className="font-mono font-bold text-sm text-foreground flex items-center gap-2">
+                            {app.name}
+                            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[9px] font-mono tracking-wider uppercase bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/50 rounded-none">
+                              <span className="size-1 bg-blue-500 rounded-full" />
+                              {app.env}
+                            </span>
+                          </h4>
+                          <p className="text-xs text-muted-foreground mt-0.5 font-mono truncate max-w-[200px] sm:max-w-xs">
+                            {app.domain}
+                          </p>
+                        </div>
+                      </div>
 
-                  {/* Git metadata details */}
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-muted-foreground font-mono rounded-none border-t border-zinc-100 dark:border-zinc-900 pt-3">
-                    <div className="flex items-center gap-1">
-                      <SiGithub className="size-3 text-zinc-400" />
-                      <span className="text-foreground truncate max-w-[150px]">{app.repo}</span>
+                      {app.status === "deployed" && (
+                        <a
+                          href={`https://${app.domain}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-none font-mono text-[10px] border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 gap-1 h-7 px-2.5 text-foreground transition-colors shrink-0"
+                        >
+                          <ExternalLink className="size-3" /> Visit
+                        </a>
+                      )}
                     </div>
-                    <div className="flex items-center gap-1">
-                      <GitBranch className="size-3 text-zinc-400" />
-                      <span>{app.branch}</span>
+
+                    {/* Git metadata details */}
+                    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px] text-muted-foreground font-mono rounded-none border-t border-zinc-100 dark:border-zinc-900 pt-3">
+                      <div className="flex items-center gap-1">
+                        <SiGithub className="size-3 text-zinc-400" />
+                        <span className="text-foreground truncate max-w-[150px]">{app.repo}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <GitBranch className="size-3 text-zinc-400" />
+                        <span>{app.branch}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-zinc-400">
+                        <span>•</span>
+                        <span>{app.timeAgo}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1 text-zinc-400">
-                      <span>•</span>
-                      <span>{app.timeAgo}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))
+            )}
           </div>
         </div>
 
@@ -209,51 +252,72 @@ export function OrganizationOverview({ orgName, orgSlug }: OrganizationOverviewP
             Latest deployments
           </h3>
           <div className="border border-zinc-200 dark:border-zinc-800 bg-background divide-y divide-zinc-200 dark:divide-zinc-800 rounded-none">
-            {visibleDeployments.map((dep) => (
-              <div
-                key={dep.id}
-                className="p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/10 transition-colors rounded-none"
-              >
-                <div className="flex items-center gap-3 rounded-none">
-                  {dep.status === "deploying" ? (
-                    <div className="size-6 bg-blue-50 dark:bg-blue-950/20 text-blue-500 dark:text-blue-400 rounded-full flex items-center justify-center animate-spin">
-                      <RefreshCw className="size-3.5" />
+            {isLoading ? (
+              Array.from({ length: 4 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 rounded-none"
+                >
+                  <div className="flex items-center gap-3 rounded-none">
+                    <Skeleton className="size-6 rounded-full animate-pulse" />
+                    <div className="space-y-2 rounded-none">
+                      <div className="flex items-center gap-2 text-xs font-mono rounded-none">
+                        <Skeleton className="h-4 w-16 rounded-none animate-pulse" />
+                        <Skeleton className="h-4 w-28 rounded-none animate-pulse" />
+                      </div>
+                      <Skeleton className="h-4 w-64 rounded-none animate-pulse" />
                     </div>
-                  ) : (
-                    <div className="size-6 bg-emerald-100 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center">
-                      <Check className="size-3.5" />
+                  </div>
+                  <Skeleton className="h-4 w-48 rounded-none animate-pulse" />
+                </div>
+              ))
+            ) : (
+              visibleDeployments.map((dep) => (
+                <div
+                  key={dep.id}
+                  className="p-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/10 transition-colors rounded-none"
+                >
+                  <div className="flex items-center gap-3 rounded-none">
+                    {dep.status === "deploying" ? (
+                      <div className="size-6 bg-blue-50 dark:bg-blue-950/20 text-blue-500 dark:text-blue-400 rounded-full flex items-center justify-center animate-spin">
+                        <RefreshCw className="size-3.5" />
+                      </div>
+                    ) : (
+                      <div className="size-6 bg-emerald-100 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center">
+                        <Check className="size-3.5" />
+                      </div>
+                    )}
+                    <div className="rounded-none">
+                      <div className="flex items-center gap-2 text-xs font-mono">
+                        <span className="font-bold text-foreground hover:underline cursor-pointer">
+                          {dep.commit}
+                        </span>
+                        <span className="text-zinc-300 dark:text-zinc-800">·</span>
+                        <span className="text-muted-foreground flex items-center gap-1">
+                          <Cpu className="size-3" /> {dep.appName} · {dep.env}
+                        </span>
+                      </div>
+                      <p className="text-xs text-foreground mt-0.5 font-mono">
+                        {dep.description}
+                      </p>
                     </div>
-                  )}
-                  <div className="rounded-none">
-                    <div className="flex items-center gap-2 text-xs font-mono">
-                      <span className="font-bold text-foreground hover:underline cursor-pointer">
-                        {dep.commit}
-                      </span>
-                      <span className="text-zinc-300 dark:text-zinc-800">·</span>
-                      <span className="text-muted-foreground flex items-center gap-1">
-                        <Cpu className="size-3" /> {dep.appName} · {dep.env}
-                      </span>
-                    </div>
-                    <p className="text-xs text-foreground mt-0.5 font-mono">
-                      {dep.description}
-                    </p>
+                  </div>
+                  <div className="text-xs text-muted-foreground font-mono self-end md:self-center">
+                    Deployed from{" "}
+                    <span className="text-foreground bg-zinc-100 dark:bg-zinc-900 px-1 py-0.5 rounded-none font-bold">
+                      {dep.branch}
+                    </span>{" "}
+                    {dep.timeAgo}
+                    {dep.author && (
+                      <>
+                        {" "}
+                        by <span className="text-foreground">{dep.author}</span>
+                      </>
+                    )}
                   </div>
                 </div>
-                <div className="text-xs text-muted-foreground font-mono self-end md:self-center">
-                  Deployed from{" "}
-                  <span className="text-foreground bg-zinc-100 dark:bg-zinc-900 px-1 py-0.5 rounded-none font-bold">
-                    {dep.branch}
-                  </span>{" "}
-                  {dep.timeAgo}
-                  {dep.author && (
-                    <>
-                      {" "}
-                      by <span className="text-foreground">{dep.author}</span>
-                    </>
-                  )}
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 

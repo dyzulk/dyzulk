@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export interface ResourceItem {
   name: string;
@@ -26,6 +26,12 @@ export function useOrganizationUsage(orgSlug: string) {
   const [selectedPeriod, setSelectedPeriod] = useState("Jul 22 - Aug 21 Current period");
   const [isPeriodSelectorOpen, setIsPeriodSelectorOpen] = useState(false);
   const [showLimitModal, setShowLimitModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const periods = [
     "Jul 22 - Aug 21 Current period",
@@ -88,5 +94,6 @@ export function useOrganizationUsage(orgSlug: string) {
     showLimitModal,
     setShowLimitModal,
     handlePeriodChange,
+    isLoading,
   };
 }

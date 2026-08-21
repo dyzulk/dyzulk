@@ -1,9 +1,8 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { notFound, redirect } from "next/navigation";
 import { getOrganizationBySlugAction } from "@/actions/organization";
 import { OrganizationTabs } from "@/components/org/organization-tabs";
 import { OrganizationOverview } from "@/components/org/organization-overview";
-import { OrganizationOverviewSkeleton } from "@/components/org/organization-overview-skeleton";
 
 interface PageProps {
   params: Promise<{ org: string }>;
@@ -23,9 +22,7 @@ export default async function WorkspaceDashboardPage({ params }: PageProps) {
   return (
     <div className="flex flex-col w-full rounded-none">
       <OrganizationTabs orgSlug={organization.slug} />
-      <Suspense fallback={<OrganizationOverviewSkeleton />}>
-        <OrganizationOverview orgName={organization.name} orgSlug={organization.slug} />
-      </Suspense>
+      <OrganizationOverview orgName={organization.name} orgSlug={organization.slug} isLoading={false} />
     </div>
   );
 }
