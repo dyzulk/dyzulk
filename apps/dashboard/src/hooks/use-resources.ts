@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function useResources(orgSlug: string) {
   const [isNewDbModalOpen, setIsNewDbModalOpen] = useState(false);
@@ -7,6 +7,12 @@ export function useResources(orgSlug: string) {
   const [dbType, setDbType] = useState("mysql-8.4");
   const [region, setRegion] = useState("us-east");
   const [configPlan, setConfigPlan] = useState("dev");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleCreateDatabase = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,5 +48,6 @@ export function useResources(orgSlug: string) {
     setConfigPlan,
     handleCreateDatabase,
     handleCreateCache,
+    isLoading,
   };
 }

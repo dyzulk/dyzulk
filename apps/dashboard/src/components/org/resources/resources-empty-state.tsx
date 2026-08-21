@@ -3,6 +3,7 @@
 import React from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@dyzulk/ui/components/button";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 
 interface ResourcesEmptyStateProps {
   type: "databases" | "caches" | "object-storage" | "websockets";
@@ -10,6 +11,7 @@ interface ResourcesEmptyStateProps {
   description: string;
   buttonText: string;
   onButtonClick: () => void;
+  isLoading?: boolean;
 }
 
 export function ResourcesEmptyState({
@@ -18,6 +20,7 @@ export function ResourcesEmptyState({
   description,
   buttonText,
   onButtonClick,
+  isLoading,
 }: ResourcesEmptyStateProps) {
   // Render isometric SVG icons based on type
   const renderIcon = () => {
@@ -74,19 +77,30 @@ export function ResourcesEmptyState({
 
   return (
     <div className="border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 p-20 flex flex-col items-center justify-center text-center rounded-none min-h-[400px] w-full">
-      <div className="mb-6">{renderIcon()}</div>
-      <h3 className="text-sm font-bold font-mono tracking-wide mb-1 text-foreground">
-        {title}
-      </h3>
-      <p className="text-muted-foreground font-mono text-xs max-w-sm mb-6">
-        {description}
-      </p>
-      <Button
-        onClick={onButtonClick}
-        className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 px-6"
-      >
-        <Plus className="size-4 mr-2" /> {buttonText}
-      </Button>
+      {isLoading ? (
+        <div className="flex flex-col items-center justify-center space-y-4 rounded-none">
+          <Skeleton className="size-24 rounded-none animate-pulse mb-2" />
+          <Skeleton className="h-4 w-32 rounded-none animate-pulse" />
+          <Skeleton className="h-3.5 w-64 rounded-none animate-pulse" />
+          <Skeleton className="h-10 w-44 rounded-none mt-3 animate-pulse" />
+        </div>
+      ) : (
+        <>
+          <div className="mb-6">{renderIcon()}</div>
+          <h3 className="text-sm font-bold font-mono tracking-wide mb-1 text-foreground">
+            {title}
+          </h3>
+          <p className="text-muted-foreground font-mono text-xs max-w-sm mb-6">
+            {description}
+          </p>
+          <Button
+            onClick={onButtonClick}
+            className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 px-6"
+          >
+            <Plus className="size-4 mr-2" /> {buttonText}
+          </Button>
+        </>
+      )}
     </div>
   );
 }

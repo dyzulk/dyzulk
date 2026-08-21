@@ -8,7 +8,7 @@ import { ResourcesEmptyState } from "@/components/org/resources/resources-empty-
 export default function CachesPage() {
   const params = useParams();
   const orgSlug = (params?.org as string) || "";
-  const { setIsNewCacheModalOpen } = useResources(orgSlug);
+  const { setIsNewCacheModalOpen, isLoading } = useResources(orgSlug);
 
   return (
     <div className="w-full rounded-none">
@@ -18,6 +18,7 @@ export default function CachesPage() {
         description="Create your first cache, compatible with the Redis™ API."
         buttonText="New cache"
         onButtonClick={() => setIsNewCacheModalOpen(true)}
+        isLoading={isLoading}
       />
     </div>
   );

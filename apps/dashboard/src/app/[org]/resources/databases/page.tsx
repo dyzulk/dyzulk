@@ -22,6 +22,7 @@ export default function DatabasesPage() {
     configPlan,
     setConfigPlan,
     handleCreateDatabase,
+    isLoading,
   } = useResources(orgSlug);
 
   return (
@@ -32,6 +33,7 @@ export default function DatabasesPage() {
         description="Create your first database cluster, powered by MySQL or Postgres."
         buttonText="New database cluster"
         onButtonClick={() => setIsNewDbModalOpen(true)}
+        isLoading={isLoading}
       />
 
       <NewDatabaseModal
