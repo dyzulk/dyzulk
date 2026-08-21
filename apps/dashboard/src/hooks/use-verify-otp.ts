@@ -10,6 +10,12 @@ export function useVerifyOTP(email: string) {
   const [canResend, setCanResend] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isChecking, setIsChecking] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsChecking(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (timer > 0) {
@@ -79,5 +85,6 @@ export function useVerifyOTP(email: string) {
     error,
     handleResend,
     handleOtpChange,
+    isChecking,
   };
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { sendOTPAction } from "@/actions/auth";
 
@@ -8,6 +8,12 @@ export function useLogin() {
   const [hpCompany, setHpCompany] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isChecking, setIsChecking] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsChecking(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,5 +52,6 @@ export function useLogin() {
     error,
     handleEmailSubmit,
     handleOAuthLogin,
+    isChecking,
   };
 }

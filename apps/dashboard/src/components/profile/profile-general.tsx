@@ -6,6 +6,7 @@ import { Button } from "@dyzulk/ui/components/button";
 import { Card, CardContent } from "@dyzulk/ui/components/card";
 import { Input } from "@dyzulk/ui/components/input";
 import { Label } from "@dyzulk/ui/components/label";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 
 export function ProfileGeneral() {
   const {
@@ -15,6 +16,7 @@ export function ProfileGeneral() {
     setEmail,
     handleUpdateProfile,
     handleDeactivateAccount,
+    isLoading,
   } = useProfileSettings();
 
   return (
@@ -28,40 +30,56 @@ export function ProfileGeneral() {
         </div>
 
         <CardContent className="p-5 space-y-6">
-          <form onSubmit={handleUpdateProfile} className="space-y-4">
-            <div className="space-y-1.5">
-              <Label htmlFor="profile-name" className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
-                Name
-              </Label>
-              <Input
-                id="profile-name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="rounded-none max-w-md font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9"
-              />
-              <p className="text-[10px] text-muted-foreground mt-0.5">Your full name.</p>
+          {isLoading ? (
+            <div className="space-y-4 rounded-none">
+              <div className="space-y-1.5 rounded-none">
+                <Skeleton className="h-3 w-16 rounded-none animate-pulse" />
+                <Skeleton className="h-9 w-full max-w-md rounded-none animate-pulse" />
+                <Skeleton className="h-3 w-32 rounded-none animate-pulse" />
+              </div>
+              <div className="space-y-1.5 rounded-none">
+                <Skeleton className="h-3 w-16 rounded-none animate-pulse" />
+                <Skeleton className="h-9 w-full max-w-md rounded-none animate-pulse" />
+                <Skeleton className="h-3 w-64 rounded-none animate-pulse" />
+              </div>
+              <Skeleton className="h-9 w-28 rounded-none animate-pulse" />
             </div>
+          ) : (
+            <form onSubmit={handleUpdateProfile} className="space-y-4">
+              <div className="space-y-1.5">
+                <Label htmlFor="profile-name" className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                  Name
+                </Label>
+                <Input
+                  id="profile-name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="rounded-none max-w-md font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9"
+                />
+                <p className="text-[10px] text-muted-foreground mt-0.5">Your full name.</p>
+              </div>
 
-            <div className="space-y-1.5">
-              <Label htmlFor="profile-email" className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
-                Email
-              </Label>
-              <Input
-                id="profile-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="rounded-none max-w-md font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9"
-              />
-              <p className="text-[10px] text-muted-foreground mt-0.5">
-                The email address used for authentication and notifications.
-              </p>
-            </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="profile-email" className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                  Email
+                </Label>
+                <Input
+                  id="profile-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="rounded-none max-w-md font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9"
+                />
+                <p className="text-[10px] text-muted-foreground mt-0.5">
+                  The email address used for authentication and notifications.
+                </p>
+              </div>
 
-            <Button type="submit" variant="outline" size="sm" className="rounded-none border-zinc-200 dark:border-zinc-800 h-9 font-semibold">
-              Save changes
-            </Button>
-          </form>
+              <Button type="submit" variant="outline" size="sm" className="rounded-none border-zinc-200 dark:border-zinc-800 h-9 font-semibold">
+                Save changes
+              </Button>
+            </form>
+          )}
 
           <hr className="border-zinc-200 dark:border-zinc-800" />
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export interface ConnectedAccount {
   provider: "github" | "gitlab" | "bitbucket";
@@ -13,6 +13,13 @@ export interface UserOrganization {
 }
 
 export function useProfileSettings() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   // General State
   const [name, setName] = useState("DyzulkDev");
   const [email, setEmail] = useState("dyzulkdeveloper@gmail.com");
@@ -100,5 +107,6 @@ export function useProfileSettings() {
     handleDisconnectProvider,
     handleLeaveOrganization,
     handleDeactivateAccount,
+    isLoading,
   };
 }
