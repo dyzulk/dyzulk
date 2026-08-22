@@ -84,7 +84,7 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
             isLoading={isLoading}
           />
         ) : (
-          <UseTemplateView templates={templates} onSelect={handleSelectTemplate} />
+          <UseTemplateView templates={templates} onSelect={handleSelectTemplate} isLoading={isLoading} />
         )}
       </div>
     </div>

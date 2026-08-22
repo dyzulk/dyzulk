@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { SiGithub, SiReact, SiSvelte, SiVuedotjs, SiLaravel } from "@icons-pack/react-simple-icons";
 import { Check, ExternalLink, GitBranch, Plus, Cpu, RefreshCw } from "lucide-react";
@@ -18,6 +18,16 @@ import { MOCK_APPLICATIONS, MOCK_DEPLOYMENTS } from "@/lib/mock-data";
 
 export function OrganizationOverview({ orgName, orgSlug, isLoading }: OrganizationOverviewProps) {
   const [isEmpty, setIsEmpty] = useState(false);
+  const [localLoading, setLocalLoading] = useState(isLoading ?? true);
+
+  useEffect(() => {
+    if (isLoading) {
+      setLocalLoading(true);
+    } else {
+      const timer = setTimeout(() => setLocalLoading(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   // Render correct icon based on technology tag
   const renderTechIcon = (tech: string) => {
@@ -35,7 +45,7 @@ export function OrganizationOverview({ orgName, orgSlug, isLoading }: Organizati
     }
   };
 
-  if (isEmpty && !isLoading) {
+  if (isEmpty && !localLoading) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-6">
         {/* Organization name and pink avatar badge inside overview content */}
@@ -102,14 +112,14 @@ export function OrganizationOverview({ orgName, orgSlug, isLoading }: Organizati
     <div className="max-w-7xl mx-auto px-4 py-8 rounded-none flex flex-col gap-8">
       {/* Organization name and pink avatar badge inside overview content */}
       <div className="flex items-center gap-3 pt-4 pb-2 rounded-none border-b border-zinc-100 dark:border-zinc-900">
-        {isLoading ? (
+        {localLoading ? (
           <Skeleton className="size-10 rounded-none animate-pulse" />
         ) : (
           <div className="size-10 flex items-center justify-center bg-pink-100 dark:bg-pink-950/30 text-pink-700 dark:text-pink-400 text-lg font-bold font-mono rounded-none border border-pink-200 dark:border-pink-900/50 select-none">
             {orgName.charAt(0).toUpperCase()}
           </div>
         )}
-        {isLoading ? (
+        {localLoading ? (
           <Skeleton className="h-8 w-48 rounded-none animate-pulse" />
         ) : (
           <h1 className="text-2xl font-bold tracking-tight text-foreground font-mono">
@@ -154,7 +164,7 @@ export function OrganizationOverview({ orgName, orgSlug, isLoading }: Organizati
             Recently deployed
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-none">
-            {isLoading ? (
+            {localLoading ? (
               Array.from({ length: 4 }).map((_, i) => (
                 <Card
                   key={i}
@@ -252,7 +262,7 @@ export function OrganizationOverview({ orgName, orgSlug, isLoading }: Organizati
             Latest deployments
           </h3>
           <div className="border border-zinc-200 dark:border-zinc-800 bg-background divide-y divide-zinc-200 dark:divide-zinc-800 rounded-none">
-            {isLoading ? (
+            {localLoading ? (
               Array.from({ length: 4 }).map((_, i) => (
                 <div
                   key={i}

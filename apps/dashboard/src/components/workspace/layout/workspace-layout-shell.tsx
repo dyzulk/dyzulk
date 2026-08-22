@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { OnboardingPopover } from "./onboarding-popover";
 import { ProfileMenuDropdown } from "./profile-menu-dropdown";
 import { SearchCommandDialog } from "./search-command-dialog";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 
 interface WorkspaceLayoutShellProps {
   activeSlug: string;
@@ -91,10 +92,10 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
             <div className="relative rounded-none">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 text-sm font-mono border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none"
+                className="flex items-center gap-2 px-3 py-1.5 text-sm font-mono border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none h-8 w-36"
               >
                 {isLoading ? (
-                  <span className="text-zinc-400">Loading...</span>
+                  <Skeleton className="h-4 w-full rounded-none animate-pulse" />
                 ) : (
                   <>
                     <span className="font-medium truncate max-w-[120px]">

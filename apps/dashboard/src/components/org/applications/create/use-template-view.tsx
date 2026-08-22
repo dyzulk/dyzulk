@@ -4,14 +4,16 @@ import React from "react";
 import { SiNextdotjs, SiReact, SiVuedotjs, SiSvelte, SiNodedotjs, SiPython, SiGo, SiLaravel, SiWordpress } from "@icons-pack/react-simple-icons";
 import { Cpu } from "lucide-react";
 import { Card } from "@dyzulk/ui/components/card";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 import { ApplicationTemplate } from "@/hooks/use-create-application";
 
 interface UseTemplateViewProps {
   templates: ApplicationTemplate[];
   onSelect: (templateId: string) => void;
+  isLoading: boolean;
 }
 
-export function UseTemplateView({ templates, onSelect }: UseTemplateViewProps) {
+export function UseTemplateView({ templates, onSelect, isLoading }: UseTemplateViewProps) {
   const renderTemplateIcon = (tech: string) => {
     const iconSize = "size-5 text-muted-foreground group-hover:text-foreground transition-colors";
     switch (tech) {
@@ -40,25 +42,40 @@ export function UseTemplateView({ templates, onSelect }: UseTemplateViewProps) {
 
   return (
     <div className="w-full flex flex-col gap-3 rounded-none">
-      {templates.map((tmpl) => (
-        <Card
-          key={tmpl.id}
-          onClick={() => onSelect(tmpl.id)}
-          className="w-full group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background p-4 shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 cursor-pointer transition-colors flex items-start gap-4"
-        >
-          <div className="size-10 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none shrink-0">
-            {renderTemplateIcon(tmpl.tech)}
-          </div>
-          <div className="flex flex-col gap-0.5 rounded-none">
-            <h3 className="font-mono font-bold text-sm text-foreground">
-              {tmpl.name}
-            </h3>
-            <p className="text-xs text-muted-foreground font-mono">
-              {tmpl.description}
-            </p>
-          </div>
-        </Card>
-      ))}
+      {isLoading ? (
+        Array.from({ length: 4 }).map((_, idx) => (
+          <Card
+            key={idx}
+            className="w-full rounded-none border border-zinc-200 dark:border-zinc-800 bg-background p-4 shadow-none flex items-start gap-4"
+          >
+            <Skeleton className="size-10 rounded-none animate-pulse shrink-0" />
+            <div className="flex flex-col gap-1.5 rounded-none flex-1">
+              <Skeleton className="h-4 w-32 rounded-none animate-pulse" />
+              <Skeleton className="h-3 w-4/5 rounded-none animate-pulse" />
+            </div>
+          </Card>
+        ))
+      ) : (
+        templates.map((tmpl) => (
+          <Card
+            key={tmpl.id}
+            onClick={() => onSelect(tmpl.id)}
+            className="w-full group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background p-4 shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 cursor-pointer transition-colors flex items-start gap-4"
+          >
+            <div className="size-10 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none shrink-0">
+              {renderTemplateIcon(tmpl.tech)}
+            </div>
+            <div className="flex flex-col gap-0.5 rounded-none">
+              <h3 className="font-mono font-bold text-sm text-foreground">
+                {tmpl.name}
+              </h3>
+              <p className="text-xs text-muted-foreground font-mono">
+                {tmpl.description}
+              </p>
+            </div>
+          </Card>
+        ))
+      )}
     </div>
   );
 }
