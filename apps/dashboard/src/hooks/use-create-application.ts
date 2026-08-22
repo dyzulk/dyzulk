@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 export interface GitRepository {
@@ -19,6 +19,12 @@ export function useCreateApplication() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Read active state directly from URL search parameters
   const fromParam = searchParams.get("from");
@@ -107,6 +113,7 @@ export function useCreateApplication() {
     handleSelectRepository,
     handleSelectTemplate,
     namespace,
+    isLoading,
   };
 }
 

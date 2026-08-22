@@ -5,61 +5,80 @@ import { Button } from "@dyzulk/ui/components/button";
 import { Input } from "@dyzulk/ui/components/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@dyzulk/ui/components/card";
 import { Label } from "@dyzulk/ui/components/label";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 import { ArrowRight, Building } from "lucide-react";
 import { useCreateOrg } from "@/hooks/use-create-org";
 
 export function CreateOrgSection() {
-  const { name, setName, isLoading, error, handleSubmit } = useCreateOrg();
+  const { name, setName, isLoading, error, handleSubmit, isChecking } = useCreateOrg();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] px-4 rounded-none">
       <Card className="w-full max-w-md border-zinc-200 dark:border-zinc-800 bg-card rounded-none shadow-none">
-        <CardHeader className="space-y-1.5 pb-6 rounded-none">
-          <CardTitle className="text-xl font-bold tracking-tight font-mono flex items-center gap-2 rounded-none">
-            <Building className="size-5 text-emerald-500" /> Buat Organisasi Baru
-          </CardTitle>
-          <CardDescription className="text-xs text-muted-foreground rounded-none">
-            Buat ruang kerja kolaboratif Anda sendiri untuk memonitor kluster dan layanan node.
-          </CardDescription>
-          {error && (
-            <div className="text-xs font-mono text-red-500 bg-red-50 dark:bg-red-950/30 p-2 border border-red-200 dark:border-red-900 rounded-none mt-2">
-              {error}
+        {isChecking ? (
+          <CardContent className="p-6 space-y-6 rounded-none">
+            <div className="space-y-2 rounded-none">
+              <Skeleton className="h-6 w-48 rounded-none animate-pulse" />
+              <Skeleton className="h-3.5 w-full rounded-none animate-pulse" />
             </div>
-          )}
-        </CardHeader>
-        <CardContent className="space-y-4 rounded-none">
-          <form onSubmit={handleSubmit} className="space-y-3.5 rounded-none">
-            <div className="space-y-1.5 rounded-none">
-              <Label htmlFor="org-name" className="text-xs font-mono uppercase tracking-wider text-zinc-500">
-                Nama Organisasi
-              </Label>
-              <Input
-                id="org-name"
-                type="text"
-                placeholder="Misal: Acme Corp atau Kelompok Kami"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                disabled={isLoading}
-                className="rounded-none border-zinc-200 dark:border-zinc-800 bg-background text-sm focus-visible:ring-1 focus-visible:ring-zinc-950 dark:focus-visible:ring-white h-10"
-              />
+            <div className="space-y-4 rounded-none">
+              <div className="space-y-1.5 rounded-none">
+                <Skeleton className="h-3 w-28 rounded-none animate-pulse" />
+                <Skeleton className="h-10 w-full rounded-none animate-pulse" />
+              </div>
+              <Skeleton className="h-10 w-full rounded-none animate-pulse" />
             </div>
-            
-            <Button 
-              type="submit" 
-              className="w-full rounded-none bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 flex items-center justify-center gap-2 font-mono h-10 text-sm"
-              disabled={isLoading || !name.trim()}
-            >
-              {isLoading ? (
-                <div className="size-4 animate-spin border-2 border-current border-t-transparent" />
-              ) : (
-                <>
-                  Lanjutkan <ArrowRight className="size-3.5" />
-                </>
+          </CardContent>
+        ) : (
+          <>
+            <CardHeader className="space-y-1.5 pb-6 rounded-none">
+              <CardTitle className="text-xl font-bold tracking-tight font-mono flex items-center gap-2 rounded-none">
+                <Building className="size-5 text-emerald-500" /> Buat Organisasi Baru
+              </CardTitle>
+              <CardDescription className="text-xs text-muted-foreground rounded-none">
+                Buat ruang kerja kolaboratif Anda sendiri untuk memonitor kluster dan layanan node.
+              </CardDescription>
+              {error && (
+                <div className="text-xs font-mono text-red-500 bg-red-50 dark:bg-red-950/30 p-2 border border-red-200 dark:border-red-900 rounded-none mt-2">
+                  {error}
+                </div>
               )}
-            </Button>
-          </form>
-        </CardContent>
+            </CardHeader>
+            <CardContent className="space-y-4 rounded-none">
+              <form onSubmit={handleSubmit} className="space-y-3.5 rounded-none">
+                <div className="space-y-1.5 rounded-none">
+                  <Label htmlFor="org-name" className="text-xs font-mono uppercase tracking-wider text-zinc-500">
+                    Nama Organisasi
+                  </Label>
+                  <Input
+                    id="org-name"
+                    type="text"
+                    placeholder="Misal: Acme Corp atau Kelompok Kami"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    disabled={isLoading}
+                    className="rounded-none border-zinc-200 dark:border-zinc-800 bg-background text-sm focus-visible:ring-1 focus-visible:ring-zinc-950 dark:focus-visible:ring-white h-10"
+                  />
+                </div>
+                
+                <Button 
+                  type="submit" 
+                  className="w-full rounded-none bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 flex items-center justify-center gap-2 font-mono h-10 text-sm"
+                  disabled={isLoading || !name.trim()}
+                >
+                  {isLoading ? (
+                    <div className="size-4 animate-spin border-2 border-current border-t-transparent" />
+                  ) : (
+                    <>
+                      Lanjutkan <ArrowRight className="size-3.5" />
+                    </>
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </>
+        )}
       </Card>
     </div>
   );

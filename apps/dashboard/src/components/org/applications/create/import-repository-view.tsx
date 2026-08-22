@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { SiGithub, SiGitlab, SiBitbucket, SiLaravel, SiSymfony, SiNextdotjs, SiNuxt } from "@icons-pack/react-simple-icons";
 import { Search, ChevronDown, Plus, Globe } from "lucide-react";
 import { Button } from "@dyzulk/ui/components/button";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 import { GitRepository } from "@/hooks/use-create-application";
 
 interface ImportRepositoryViewProps {
@@ -13,6 +14,7 @@ interface ImportRepositoryViewProps {
   selectedProvider: "github" | "gitlab" | "bitbucket";
   onProviderChange: (provider: "github" | "gitlab" | "bitbucket") => void;
   onImport: (repoName: string) => void;
+  isLoading: boolean;
 }
 
 export function ImportRepositoryView({
@@ -22,6 +24,7 @@ export function ImportRepositoryView({
   selectedProvider,
   onProviderChange,
   onImport,
+  isLoading,
 }: ImportRepositoryViewProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -128,7 +131,22 @@ export function ImportRepositoryView({
 
       {/* Repositories list wrapper */}
       <div className="border border-zinc-200 dark:border-zinc-800 bg-background rounded-none divide-y divide-zinc-200 dark:divide-zinc-800">
-        {repositories.length > 0 ? (
+        {isLoading ? (
+          Array.from({ length: 4 }).map((_, idx) => (
+            <div
+              key={idx}
+              className="py-3.5 px-4 flex items-center justify-between gap-4"
+            >
+              <div className="flex items-center gap-2.5 w-full max-w-xs">
+                <Skeleton className="h-3.5 w-32 rounded-none animate-pulse" />
+              </div>
+              <div className="flex items-center gap-4 w-full max-w-sm justify-end">
+                <Skeleton className="h-3 w-16 rounded-none animate-pulse" />
+                <Skeleton className="h-7 w-16 rounded-none animate-pulse shrink-0" />
+              </div>
+            </div>
+          ))
+        ) : repositories.length > 0 ? (
           repositories.map((repo) => (
             <div
               key={repo.id}

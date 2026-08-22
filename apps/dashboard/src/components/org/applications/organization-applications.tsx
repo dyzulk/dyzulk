@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { SiGithub, SiReact, SiSvelte, SiVuedotjs, SiLaravel } from "@icons-pack/react-simple-icons";
 import { MoreHorizontal, Plus, Cpu } from "lucide-react";
 import { Button } from "@dyzulk/ui/components/button";
 import { Card } from "@dyzulk/ui/components/card";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 import { MOCK_APPLICATIONS } from "@/lib/mock-data";
 
 interface OrganizationApplicationsProps {
@@ -14,6 +15,12 @@ interface OrganizationApplicationsProps {
 
 export function OrganizationApplications({ orgSlug }: OrganizationApplicationsProps) {
   const [isEmpty, setIsEmpty] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Render correct icon based on technology tag
   const renderTechIcon = (tech: string) => {
@@ -108,61 +115,89 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
 
       {/* Applications List */}
       <div className="flex flex-col gap-4 rounded-none">
-        {MOCK_APPLICATIONS.map((app) => (
-          <Card
-            key={app.id}
-            className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
-          >
-            {/* Header row: Icon, App Name, Git Repo & action trigger */}
-            <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
-              <div className="flex items-center gap-2.5 rounded-none">
-                <div className="size-6 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none font-bold">
-                  {renderTechIcon(app.tech)}
+        {isLoading ? (
+          Array.from({ length: 3 }).map((_, idx) => (
+            <Card
+              key={idx}
+              className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none"
+            >
+              <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
+                <div className="flex items-center gap-2.5 rounded-none w-full max-w-xs">
+                  <Skeleton className="size-6 rounded-none animate-pulse shrink-0" />
+                  <Skeleton className="h-4 w-32 rounded-none animate-pulse" />
                 </div>
-                <h3 className="font-mono font-bold text-sm text-foreground">
-                  {app.name}
-                </h3>
+                <div className="flex items-center gap-4 rounded-none w-full max-w-sm justify-end">
+                  <Skeleton className="h-3 w-40 rounded-none animate-pulse" />
+                  <Skeleton className="size-4 rounded-none animate-pulse shrink-0" />
+                </div>
+              </div>
+              <div className="py-2 px-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2 w-full max-w-[100px]">
+                  <Skeleton className="size-2 rounded-full shrink-0 animate-pulse" />
+                  <Skeleton className="h-3.5 w-16 rounded-none animate-pulse" />
+                </div>
+                <Skeleton className="h-3 w-1/2 rounded-none animate-pulse" />
+                <Skeleton className="h-3 w-20 rounded-none animate-pulse" />
+              </div>
+            </Card>
+          ))
+        ) : (
+          MOCK_APPLICATIONS.map((app) => (
+            <Card
+              key={app.id}
+              className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
+            >
+              {/* Header row: Icon, App Name, Git Repo & action trigger */}
+              <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none bg-zinc-50/50 dark:bg-zinc-900/10">
+                <div className="flex items-center gap-2.5 rounded-none">
+                  <div className="size-6 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none font-bold">
+                    {renderTechIcon(app.tech)}
+                  </div>
+                  <h3 className="font-mono font-bold text-sm text-foreground">
+                    {app.name}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground rounded-none">
+                  <div className="flex items-center gap-1.5">
+                    <SiGithub className="size-3.5 text-zinc-400" />
+                    <span className="text-foreground">{app.repo}</span>
+                  </div>
+                  <button className="text-zinc-400 hover:text-foreground transition-colors p-1">
+                    <MoreHorizontal className="size-4" />
+                  </button>
+                </div>
               </div>
 
-              <div className="flex items-center gap-4 text-xs font-mono text-muted-foreground rounded-none">
-                <div className="flex items-center gap-1.5">
-                  <SiGithub className="size-3.5 text-zinc-400" />
-                  <span className="text-foreground">{app.repo}</span>
+              {/* Inner row: status, commit message & time ago */}
+              <div className="py-2 px-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="size-2 bg-blue-500 rounded-full shrink-0" />
+                  <span className="font-semibold text-zinc-950 dark:text-zinc-100 uppercase text-[10px] tracking-wider">
+                    {app.env}
+                  </span>
                 </div>
-                <button className="text-zinc-400 hover:text-foreground transition-colors p-1">
-                  <MoreHorizontal className="size-4" />
-                </button>
-              </div>
-            </div>
 
-            {/* Inner row: status, commit message & time ago */}
-            <div className="py-2 px-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-              <div className="flex items-center gap-2">
-                <span className="size-2 bg-blue-500 rounded-full shrink-0" />
-                <span className="font-semibold text-zinc-950 dark:text-zinc-100 uppercase text-[10px] tracking-wider">
-                  {app.env}
-                </span>
-              </div>
+                {app.status === "deployed" ? (
+                  <div className="text-zinc-500 text-[11px] truncate max-w-md">
+                    {/* Branch icon and commit message */}
+                    <span className="text-zinc-300 dark:text-zinc-800 mr-2">o-</span>
+                    {app.commitDesc}
+                  </div>
+                ) : (
+                  <div className="text-zinc-500 text-[11px]">
+                    <span className="text-zinc-300 dark:text-zinc-800 mr-2">o-</span>
+                    Initial commit by Laravel Cloud
+                  </div>
+                )}
 
-              {app.status === "deployed" ? (
-                <div className="text-zinc-500 text-[11px] truncate max-w-md">
-                  {/* Branch icon and commit message */}
-                  <span className="text-zinc-300 dark:text-zinc-800 mr-2">o-</span>
-                  {app.commitDesc}
+                <div className="text-muted-foreground text-[11px] text-right sm:text-left shrink-0">
+                  {app.timeAgo}
                 </div>
-              ) : (
-                <div className="text-zinc-500 text-[11px]">
-                  <span className="text-zinc-300 dark:text-zinc-800 mr-2">o-</span>
-                  Initial commit by Laravel Cloud
-                </div>
-              )}
-
-              <div className="text-muted-foreground text-[11px] text-right sm:text-left shrink-0">
-                {app.timeAgo}
               </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { createOrganizationAction } from "@/actions/organization";
 
@@ -7,6 +7,12 @@ export function useCreateOrg() {
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isChecking, setIsChecking] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsChecking(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,5 +44,6 @@ export function useCreateOrg() {
     isLoading,
     error,
     handleSubmit,
+    isChecking,
   };
 }

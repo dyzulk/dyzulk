@@ -23,6 +23,7 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
     handleSelectRepository,
     handleSelectTemplate,
     namespace,
+    isLoading,
   } = useCreateApplication();
 
   return (
@@ -80,6 +81,7 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
             selectedProvider={selectedProvider}
             onProviderChange={setSelectedProvider}
             onImport={handleSelectRepository}
+            isLoading={isLoading}
           />
         ) : (
           <UseTemplateView templates={templates} onSelect={handleSelectTemplate} />
