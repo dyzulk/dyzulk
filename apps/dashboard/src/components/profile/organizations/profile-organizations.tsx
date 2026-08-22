@@ -4,9 +4,10 @@ import React from "react";
 import { useProfileSettings } from "@/hooks/use-profile-settings";
 import { Button } from "@dyzulk/ui/components/button";
 import { Card, CardContent } from "@dyzulk/ui/components/card";
+import { Skeleton } from "@dyzulk/ui/components/skeleton";
 
 export function ProfileOrganizations() {
-  const { userOrgs, handleLeaveOrganization } = useProfileSettings();
+  const { userOrgs, handleLeaveOrganization, isLoading } = useProfileSettings();
 
   return (
     <div className="w-full font-mono text-xs rounded-none">
@@ -19,7 +20,22 @@ export function ProfileOrganizations() {
         </div>
 
         <CardContent className="p-5">
-          {userOrgs.length === 0 ? (
+          {isLoading ? (
+            <div className="border border-zinc-200 dark:border-zinc-800 divide-y divide-zinc-200 dark:divide-zinc-800 rounded-none overflow-hidden">
+              {Array.from({ length: 2 }).map((_, idx) => (
+                <div key={idx} className="p-4 flex items-center justify-between gap-4 bg-background">
+                  <div className="flex items-center gap-3 w-full max-w-xs rounded-none">
+                    <Skeleton className="size-8 rounded-none animate-pulse" />
+                    <div className="space-y-1.5 flex-1 rounded-none">
+                      <Skeleton className="h-3.5 w-24 rounded-none animate-pulse" />
+                      <Skeleton className="h-3 w-12 rounded-none animate-pulse" />
+                    </div>
+                  </div>
+                  <Skeleton className="h-8 w-28 rounded-none animate-pulse" />
+                </div>
+              ))}
+            </div>
+          ) : userOrgs.length === 0 ? (
             <div className="p-8 text-center text-muted-foreground">
               You are not a member of any organization.
             </div>
