@@ -26,7 +26,8 @@ COPY . .
 
 # ── Stage 3: Build Web App (apps/web) ──────────────────────────
 FROM installer AS web-builder
-RUN pnpm build:web
+RUN --mount=type=cache,id=turbo,target=/app/node_modules/.cache/turbo \
+    pnpm build:web
 
 FROM node:24-alpine AS web
 RUN npm install -g pnpm@11.22.0
@@ -39,7 +40,8 @@ CMD ["pnpm", "start:web"]
 
 # ── Stage 4: Build Dashboard App (apps/dashboard) ─────────────
 FROM installer AS dashboard-builder
-RUN pnpm build:dashboard
+RUN --mount=type=cache,id=turbo,target=/app/node_modules/.cache/turbo \
+    pnpm build:dashboard
 
 FROM node:24-alpine AS dashboard
 RUN npm install -g pnpm@11.22.0
@@ -52,7 +54,8 @@ CMD ["pnpm", "start:dashboard"]
 
 # ── Stage 5: Build Docs App (apps/docs) ───────────────────────
 FROM installer AS docs-builder
-RUN pnpm build:docs
+RUN --mount=type=cache,id=turbo,target=/app/node_modules/.cache/turbo \
+    pnpm build:docs
 
 FROM node:24-alpine AS docs
 RUN npm install -g pnpm@11.22.0

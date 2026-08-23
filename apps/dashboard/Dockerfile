@@ -25,7 +25,8 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 FROM base AS builder
 COPY --from=deps /app ./
 COPY . .
-RUN pnpm build:dashboard
+RUN --mount=type=cache,id=turbo,target=/app/node_modules/.cache/turbo \
+    pnpm build:dashboard
 
 # ── Stage 4: Production runner ────────────────────────────────
 FROM node:24-alpine AS runner
