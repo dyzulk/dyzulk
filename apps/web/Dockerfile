@@ -4,7 +4,7 @@
 # ── Stage 1: Base ─────────────────────────────────────────────
 FROM node:24-alpine AS base
 ENV PNPM_SKIP_NODE_INSTALL=true
-RUN npm install -g pnpm@9.15.9 && pnpm config set manage-node-version false
+RUN npm install -g pnpm@11.22.0
 WORKDIR /app
 
 # ── Stage 2: Install dependencies ─────────────────────────────
@@ -27,7 +27,7 @@ RUN pnpm build:web
 
 # ── Stage 4: Production runner ────────────────────────────────
 FROM node:24-alpine AS runner
-RUN npm install -g pnpm@9.15.9
+RUN npm install -g pnpm@11.22.0
 WORKDIR /app
 COPY --from=builder /app ./
 
