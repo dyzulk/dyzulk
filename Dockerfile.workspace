@@ -3,7 +3,7 @@
 
 # ── Stage 1: Base ─────────────────────────────────────────────
 FROM node:24-alpine AS base
-RUN npm install -g pnpm@11.21.0
+RUN npm install -g pnpm@9.15.9
 WORKDIR /app
 
 # ── Stage 2: Install dependencies ─────────────────────────────
@@ -26,7 +26,7 @@ FROM installer AS web-builder
 RUN pnpm build:web
 
 FROM node:24-alpine AS web
-RUN npm install -g pnpm@11.21.0
+RUN npm install -g pnpm@9.15.9
 WORKDIR /app
 COPY --from=web-builder /app ./
 ENV PORT=3000
@@ -39,7 +39,7 @@ FROM installer AS dashboard-builder
 RUN pnpm build:dashboard
 
 FROM node:24-alpine AS dashboard
-RUN npm install -g pnpm@11.21.0
+RUN npm install -g pnpm@9.15.9
 WORKDIR /app
 COPY --from=dashboard-builder /app ./
 ENV PORT=3000
@@ -52,7 +52,7 @@ FROM installer AS docs-builder
 RUN pnpm build:docs
 
 FROM node:24-alpine AS docs
-RUN npm install -g pnpm@11.21.0
+RUN npm install -g pnpm@9.15.9
 WORKDIR /app
 COPY --from=docs-builder /app ./
 ENV PORT=3000

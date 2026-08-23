@@ -3,7 +3,7 @@
 
 # ── Stage 1: Base ─────────────────────────────────────────────
 FROM node:24-alpine AS base
-RUN npm install -g pnpm@11.21.0
+RUN npm install -g pnpm@9.15.9
 WORKDIR /app
 
 # ── Stage 2: Install dependencies ─────────────────────────────
@@ -26,7 +26,7 @@ RUN pnpm build:dashboard
 
 # ── Stage 4: Production runner ────────────────────────────────
 FROM node:24-alpine AS runner
-RUN npm install -g pnpm@11.21.0
+RUN npm install -g pnpm@9.15.9
 WORKDIR /app
 COPY --from=builder /app ./
 
