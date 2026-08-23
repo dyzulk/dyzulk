@@ -49,7 +49,7 @@ export function NewDatabaseModal({
 }: NewDatabaseModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
-      <DialogContent className="rounded-none max-w-lg border border-zinc-200 dark:border-zinc-800 bg-background shadow-2xl p-6 font-mono text-xs">
+      <DialogContent className="rounded-none sm:max-w-lg border border-zinc-200 dark:border-zinc-800 bg-background shadow-2xl p-6 font-mono text-xs max-h-[90dvh] overflow-y-auto">
         <DialogHeader className="relative pb-4 border-b border-zinc-100 dark:border-zinc-900/50">
           <DialogTitle className="text-sm font-bold uppercase tracking-wider text-foreground">
             New database cluster
