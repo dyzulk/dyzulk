@@ -15,8 +15,8 @@ export function SettingsInvoices() {
   return (
     <div className="space-y-6 w-full font-mono text-xs rounded-none">
       {/* Invoice Preview */}
-      <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Invoice preview</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Your upcoming invoice for the current billing period.
@@ -125,8 +125,8 @@ export function SettingsInvoices() {
       </Card>
 
       {/* Invoice History */}
-      <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Invoice history</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             All of your organization's previous invoices.

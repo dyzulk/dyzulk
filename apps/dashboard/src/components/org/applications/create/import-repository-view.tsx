@@ -124,13 +124,13 @@ export function ImportRepositoryView({
             placeholder="Search all repositories"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full h-10 pl-10 pr-4 bg-background border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:border-zinc-400 dark:focus:border-zinc-600 rounded-none text-xs text-foreground placeholder-zinc-400"
+            className="w-full h-10 pl-10 pr-4 bg-background border border-zinc-200 dark:border-zinc-800 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 rounded-none text-xs text-foreground placeholder-zinc-400 transition-all duration-300"
           />
         </div>
       </div>
 
       {/* Repositories list wrapper */}
-      <div className="border border-zinc-200 dark:border-zinc-800 bg-background rounded-none divide-y divide-zinc-200 dark:divide-zinc-800">
+      <div className="border border-zinc-200 dark:border-zinc-800 bg-background rounded-none divide-y divide-zinc-200 dark:divide-zinc-800 hover:border-primary/30 transition-all duration-300 shadow-sm">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, idx) => (
             <div
@@ -150,10 +150,10 @@ export function ImportRepositoryView({
           repositories.map((repo) => (
             <div
               key={repo.id}
-              className="py-3 px-4 flex items-center justify-between hover:bg-zinc-50/50 dark:hover:bg-zinc-900/10 transition-colors"
+              className="py-3 px-4 flex items-center justify-between hover:bg-primary/[0.02] transition-colors duration-200"
             >
               <div className="flex items-center gap-2.5">
-                <span className="font-bold text-foreground hover:underline cursor-pointer" onClick={() => onImport(repo.name)}>
+                <span className="font-bold text-foreground hover:text-primary transition-colors cursor-pointer" onClick={() => onImport(repo.name)}>
                   {repo.name}
                 </span>
               </div>
@@ -162,7 +162,7 @@ export function ImportRepositoryView({
                 <Button
                   onClick={() => onImport(repo.name)}
                   size="sm"
-                  className="h-7 px-3 text-[10px] font-bold rounded-none uppercase tracking-wider bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200"
+                  className="h-7 px-3 text-[10px] font-bold rounded-none uppercase tracking-wider bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all duration-300 cursor-pointer"
                 >
                   Import
                 </Button>

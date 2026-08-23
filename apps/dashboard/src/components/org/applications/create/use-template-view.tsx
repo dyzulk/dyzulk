@@ -15,7 +15,7 @@ interface UseTemplateViewProps {
 
 export function UseTemplateView({ templates, onSelect, isLoading }: UseTemplateViewProps) {
   const renderTemplateIcon = (tech: string) => {
-    const iconSize = "size-5 text-muted-foreground group-hover:text-foreground transition-colors";
+    const iconSize = "size-5 text-muted-foreground group-hover:text-foreground group-hover:scale-110 transition-all duration-300";
     switch (tech) {
       case "nextjs":
         return <SiNextdotjs className={iconSize} />;
@@ -60,13 +60,13 @@ export function UseTemplateView({ templates, onSelect, isLoading }: UseTemplateV
           <Card
             key={tmpl.id}
             onClick={() => onSelect(tmpl.id)}
-            className="w-full group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background p-4 shadow-none hover:border-zinc-300 dark:hover:border-zinc-700 cursor-pointer transition-colors flex items-start gap-4"
+            className="w-full group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background p-4 shadow-sm hover:border-primary/30 cursor-pointer transition-all duration-300 flex items-start gap-4"
           >
-            <div className="size-10 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none shrink-0">
+            <div className="size-10 bg-zinc-100 dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none shrink-0 group-hover:border-primary/30 transition-colors duration-300">
               {renderTemplateIcon(tmpl.tech)}
             </div>
             <div className="flex flex-col gap-0.5 rounded-none">
-              <h3 className="font-mono font-bold text-sm text-foreground">
+              <h3 className="font-mono font-bold text-sm text-foreground group-hover:text-primary transition-colors duration-300">
                 {tmpl.name}
               </h3>
               <p className="text-xs text-muted-foreground font-mono">

@@ -51,20 +51,20 @@ export function CreateApplicationTabs({ orgSlug }: CreateApplicationTabsProps) {
       <div className="flex border-b border-zinc-200 dark:border-zinc-800 rounded-none font-mono text-xs font-bold">
         <Link
           href={`/${orgSlug}/applications/create?from=repository&namespace=${namespace}&provider=${selectedProvider}`}
-          className={`px-4 py-2 border-b-2 transition-colors rounded-none -mb-[2px] ${
+          className={`px-4 py-2 border-b-2 transition-all duration-300 rounded-none -mb-[2px] ${
             activeTab === "import"
-              ? "border-foreground text-foreground"
-              : "border-transparent text-muted-foreground hover:text-foreground"
+              ? "border-primary text-primary font-bold"
+              : "border-transparent text-muted-foreground hover:text-primary hover:bg-primary/5"
           }`}
         >
           Import a repository
         </Link>
         <Link
           href={`/${orgSlug}/applications/create?from=template&namespace=${namespace}&provider=${selectedProvider}&v2=1`}
-          className={`px-4 py-2 border-b-2 transition-colors rounded-none -mb-[2px] ${
+          className={`px-4 py-2 border-b-2 transition-all duration-300 rounded-none -mb-[2px] ${
             activeTab === "template"
-              ? "border-foreground text-foreground"
-              : "border-transparent text-muted-foreground hover:text-foreground"
+              ? "border-primary text-primary font-bold"
+              : "border-transparent text-muted-foreground hover:text-primary hover:bg-primary/5"
           }`}
         >
           Use a template

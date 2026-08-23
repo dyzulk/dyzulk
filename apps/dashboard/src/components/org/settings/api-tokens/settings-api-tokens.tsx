@@ -65,8 +65,8 @@ export function SettingsApiTokens() {
       </div>
 
       {isLoading ? (
-        <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-          <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 flex justify-between items-center rounded-none">
+        <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+          <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300 flex justify-between items-center rounded-none">
             <Skeleton className="h-4 w-24 rounded-none animate-pulse" />
             <Skeleton className="h-8 w-24 rounded-none animate-pulse" />
           </div>
@@ -104,8 +104,8 @@ export function SettingsApiTokens() {
           </CardContent>
         </Card>
       ) : (
-        <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-          <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 flex justify-between items-center rounded-none">
+        <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+          <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300 flex justify-between items-center rounded-none">
             <h4 className="font-bold text-xs text-foreground uppercase tracking-wider">Active Tokens</h4>
             <Button
               onClick={() => {
@@ -189,7 +189,7 @@ export function SettingsApiTokens() {
                   placeholder="production-token"
                   value={newTokenName}
                   onChange={(e) => setNewTokenName(e.target.value)}
-                  className="rounded-none font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9 focus-visible:ring-0 focus-visible:border-zinc-950 dark:focus-visible:border-zinc-100"
+                  className="rounded-none font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary/50 transition-all duration-300"
                 />
               </div>
 

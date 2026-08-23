@@ -33,8 +33,8 @@ export function SettingsAccess() {
 
   return (
     <div className="w-full font-mono text-xs rounded-none">
-      <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Members</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Manage members of your organization, set roles, and invite new users.
@@ -47,7 +47,7 @@ export function SettingsAccess() {
             <Label htmlFor="invite-email" className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
               Invite by email
             </Label>
-            <div className="flex flex-col sm:flex-row border border-zinc-200 dark:border-zinc-800 rounded-none overflow-hidden focus-within:border-zinc-950 dark:focus-within:border-zinc-100">
+            <div className="flex flex-col sm:flex-row border border-zinc-200 dark:border-zinc-800 rounded-none overflow-hidden focus-within:ring-1 focus-within:ring-primary focus-within:border-primary/50 transition-all duration-300">
               <Input
                 id="invite-email"
                 type="email"
@@ -59,7 +59,7 @@ export function SettingsAccess() {
               
               <div className="flex items-center shrink-0 border-t sm:border-t-0 sm:border-l border-zinc-200 dark:border-zinc-800 bg-background">
                 <Select value={inviteRole} onValueChange={(val) => setInviteRole(val ?? "developer")}>
-                  <SelectTrigger className="rounded-none border-0 font-mono text-xs h-9 px-3 bg-transparent w-32 focus:ring-0 focus:border-0 focus:outline-none">
+                  <SelectTrigger className="rounded-none border-0 font-mono text-xs h-9 px-3 bg-transparent w-32 focus:ring-0 focus:border-0 focus:outline-none cursor-pointer">
                     <SelectValue placeholder="Select role" />
                   </SelectTrigger>
                   <SelectContent className="rounded-none font-mono text-xs border-zinc-200 dark:border-zinc-800">
@@ -71,7 +71,7 @@ export function SettingsAccess() {
 
               <Button
                 type="submit"
-                className="rounded-none uppercase font-mono tracking-wider font-bold bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 border-t sm:border-t-0 sm:border-l border-zinc-200 dark:border-zinc-800 px-4 text-xs gap-1.5 shrink-0"
+                className="rounded-none uppercase font-mono tracking-wider font-bold bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 border-t sm:border-t-0 sm:border-l border-zinc-200 dark:border-zinc-800 px-4 text-xs gap-1.5 shrink-0 transition-all duration-300 cursor-pointer"
               >
                 <span>Send Invite</span>
                 <Send className="size-3" />
