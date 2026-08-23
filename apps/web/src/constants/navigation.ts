@@ -3,7 +3,7 @@ import { SITE_CONFIG } from "./site";
 export const PATHS = {
   home: "/",
   docs: "/docs",
-  login: "http://dashboard.dyzulk.com/login",
+  login: "http://dash.dyzulk.com/login",
   products: "/products",
   solutions: "#solutions",
   pricing: "/pricing",
