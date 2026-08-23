@@ -3,6 +3,7 @@
 
 # ── Stage 1: Base ─────────────────────────────────────────────
 FROM node:24-alpine AS base
+ENV PNPM_SKIP_NODE_INSTALL=true
 RUN npm install -g pnpm@9.15.9 && pnpm config set manage-node-version false
 WORKDIR /app
 
