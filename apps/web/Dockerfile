@@ -6,7 +6,7 @@ FROM node:24-alpine AS base
 ENV PNPM_SKIP_NODE_INSTALL=true
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN npm install -g pnpm@11.22.0
+RUN npm config set fetch-retries 5 && npm install -g pnpm@11.22.0
 WORKDIR /app
 
 # ── Stage 2: Install dependencies ─────────────────────────────
@@ -29,8 +29,7 @@ RUN --mount=type=cache,id=turbo,target=/app/node_modules/.cache/turbo \
     pnpm build:web
 
 # ── Stage 4: Production runner ────────────────────────────────
-FROM node:24-alpine AS runner
-RUN npm install -g pnpm@11.22.0
+FROM base AS runner
 WORKDIR /app
 COPY --from=builder /app ./
 
