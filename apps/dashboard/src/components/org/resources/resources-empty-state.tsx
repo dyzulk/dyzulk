@@ -76,7 +76,7 @@ export function ResourcesEmptyState({
   };
 
   return (
-    <div className="border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 p-20 flex flex-col items-center justify-center text-center rounded-none min-h-[400px] w-full">
+    <div className="border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 p-20 flex flex-col items-center justify-center text-center rounded-none min-h-[400px] w-full hover:border-primary/30 transition-all duration-300 shadow-sm">
       {isLoading ? (
         <div className="flex flex-col items-center justify-center space-y-4 rounded-none">
           <Skeleton className="size-24 rounded-none animate-pulse mb-2" />
@@ -95,7 +95,7 @@ export function ResourcesEmptyState({
           </p>
           <Button
             onClick={onButtonClick}
-            className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 px-6"
+            className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 px-6 cursor-pointer transition-all duration-300"
           >
             <Plus className="size-4 mr-2" /> {buttonText}
           </Button>

@@ -2,8 +2,8 @@
 
 import React from "react";
 import { ChevronDown, ChevronUp, Check, ChevronRight } from "lucide-react";
-import { Button } from "@dyzulk/ui/components/button";
 import { OnboardingItem } from "@/hooks/use-workspace-header";
+import { PopoverContent } from "@dyzulk/ui/components/popover";
 
 interface OnboardingPopoverProps {
   onboardingItems: OnboardingItem[];
@@ -32,7 +32,7 @@ export function OnboardingPopover({
   const discoverItems = onboardingItems.slice(3, 6);
 
   return (
-    <div className="absolute right-0 mt-1 w-80 bg-background border border-zinc-200 dark:border-zinc-800 rounded-none shadow-xl z-50 p-4 font-mono text-xs text-foreground">
+    <PopoverContent align="end" className="w-80 p-4 font-mono text-xs rounded-none">
       <div className="font-bold text-xs uppercase tracking-wider text-foreground mb-4">
         Get started with Cloud
       </div>
@@ -43,7 +43,7 @@ export function OnboardingPopover({
           <button
             type="button"
             onClick={() => setIsShipCollapsed(!isShipCollapsed)}
-            className="w-full flex items-center justify-between text-[10px] uppercase font-bold text-muted-foreground tracking-wider pb-1.5 border-b border-zinc-100 dark:border-zinc-900/50"
+            className="w-full flex items-center justify-between text-[10px] uppercase font-bold text-muted-foreground tracking-wider pb-1.5 border-b border-zinc-100 dark:border-zinc-900/50 cursor-pointer"
           >
             <span>Ship your application</span>
             {isShipCollapsed ? <ChevronDown className="size-3" /> : <ChevronUp className="size-3" />}
@@ -55,7 +55,7 @@ export function OnboardingPopover({
                 <button
                   key={item.id}
                   onClick={() => onItemClick(item)}
-                  className="w-full flex items-center justify-between py-1 px-1.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-left group"
+                  className="w-full flex items-center justify-between py-1 px-1.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-left group cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
                     <span
@@ -83,7 +83,7 @@ export function OnboardingPopover({
           <button
             type="button"
             onClick={() => setIsDiscoverCollapsed(!isDiscoverCollapsed)}
-            className="w-full flex items-center justify-between text-[10px] uppercase font-bold text-muted-foreground tracking-wider pb-1.5 border-b border-zinc-100 dark:border-zinc-900/50"
+            className="w-full flex items-center justify-between text-[10px] uppercase font-bold text-muted-foreground tracking-wider pb-1.5 border-b border-zinc-100 dark:border-zinc-900/50 cursor-pointer"
           >
             <span>Discover more</span>
             {isDiscoverCollapsed ? <ChevronDown className="size-3" /> : <ChevronUp className="size-3" />}
@@ -95,7 +95,7 @@ export function OnboardingPopover({
                 <button
                   key={item.id}
                   onClick={() => onItemClick(item)}
-                  className="w-full flex items-center justify-between py-1 px-1.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-left group"
+                  className="w-full flex items-center justify-between py-1 px-1.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors text-left group cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
                     <span
@@ -126,11 +126,11 @@ export function OnboardingPopover({
         </span>
         <button
           onClick={onSkipAll}
-          className="text-zinc-900 dark:text-zinc-100 hover:underline"
+          className="text-zinc-900 dark:text-zinc-100 hover:underline cursor-pointer"
         >
           Skip all
         </button>
       </div>
-    </div>
+    </PopoverContent>
   );
 }

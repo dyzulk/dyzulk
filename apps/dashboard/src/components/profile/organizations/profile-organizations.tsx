@@ -11,8 +11,8 @@ export function ProfileOrganizations() {
 
   return (
     <div className="w-full font-mono text-xs rounded-none">
-      <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Organizations</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             View the organizations you are a member of and leave any you no longer need.
@@ -57,7 +57,7 @@ export function ProfileOrganizations() {
                     variant="outline"
                     size="sm"
                     onClick={() => handleLeaveOrganization(org.id)}
-                    className="rounded-none border-red-200 hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-600 hover:text-red-700 h-8 font-semibold"
+                    className="rounded-none border-red-200 hover:border-red-500/50 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-600 hover:text-red-700 h-8 font-semibold transition-all duration-300 cursor-pointer"
                   >
                     Leave organization
                   </Button>

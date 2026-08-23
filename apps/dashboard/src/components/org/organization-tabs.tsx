@@ -63,10 +63,10 @@ export function OrganizationTabs({ orgSlug }: OrganizationTabsProps) {
                     key={tab.name}
                     ref={isActive ? activeTabRef : undefined}
                     href={tab.href}
-                    className={`px-3 py-1.5 tracking-wider uppercase transition-all whitespace-nowrap rounded-none select-none ${
+                    className={`px-3 py-1.5 tracking-wider uppercase transition-all duration-300 whitespace-nowrap rounded-none select-none border ${
                       isActive
-                        ? "bg-background text-foreground font-bold border border-zinc-200 dark:border-zinc-700 shadow-sm"
-                        : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300 hover:bg-zinc-50/50 dark:hover:bg-zinc-800/50 border border-transparent"
+                        ? "bg-background text-primary font-bold border-zinc-200 dark:border-zinc-800 shadow-xs"
+                        : "text-zinc-500 dark:text-zinc-400 hover:text-primary hover:bg-primary/5 border-transparent"
                     }`}
                   >
                     {tab.name}

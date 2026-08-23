@@ -20,8 +20,8 @@ export function ProfileSecurity() {
   return (
     <div className="space-y-6 w-full font-mono text-xs rounded-none">
       {/* Reset Password */}
-      <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Password</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Request a link to reset your password.
@@ -55,7 +55,7 @@ export function ProfileSecurity() {
                   variant="outline"
                   size="sm"
                   onClick={handleResetPassword}
-                  className="rounded-none border-zinc-200 dark:border-zinc-800 h-9 font-semibold"
+                  className="rounded-none border-zinc-200 dark:border-zinc-800 hover:border-primary/30 hover:bg-primary/5 h-9 font-semibold transition-all duration-300 cursor-pointer"
                 >
                   Send link
                 </Button>
@@ -66,8 +66,8 @@ export function ProfileSecurity() {
       </Card>
 
       {/* 2FA switch */}
-      <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Security</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Enable extra security for your account.

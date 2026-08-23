@@ -70,9 +70,9 @@ export function SearchCommandDialog({
                 <button
                   key={item.name}
                   onClick={() => handleSelectItem(item.href)}
-                  className="w-full flex items-center gap-3 px-3 py-2 text-left rounded-none hover:bg-zinc-100 dark:hover:bg-zinc-900 text-foreground transition-colors font-semibold group"
+                  className="w-full flex items-center gap-3 px-3 py-2 text-left rounded-none hover:bg-primary/5 text-foreground hover:text-primary transition-all duration-200 font-semibold group cursor-pointer"
                 >
-                  <span className="shrink-0">{item.icon}</span>
+                  <span className="shrink-0 group-hover:text-primary group-hover:scale-110 transition-all duration-200">{item.icon}</span>
                   <span className="flex-1 font-mono text-xs">{item.name}</span>
                 </button>
               ))

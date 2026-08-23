@@ -30,8 +30,8 @@ export function ProfileNotifications() {
 
   return (
     <div className="w-full font-mono text-xs rounded-none">
-      <Card className="rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-none">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Notifications</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Configure how you want to receive alerts and notifications.
@@ -112,7 +112,7 @@ export function ProfileNotifications() {
                 </div>
               </div>
 
-              <Button type="submit" variant="outline" size="sm" className="rounded-none border-zinc-200 dark:border-zinc-800 h-9 font-semibold mt-4">
+              <Button type="submit" variant="outline" size="sm" className="rounded-none border-zinc-200 dark:border-zinc-800 hover:border-primary/30 hover:bg-primary/5 h-9 font-semibold mt-4 transition-all duration-300 cursor-pointer">
                 Save preferences
               </Button>
             </form>

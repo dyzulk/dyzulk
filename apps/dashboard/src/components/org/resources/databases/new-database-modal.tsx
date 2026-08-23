@@ -74,7 +74,7 @@ export function NewDatabaseModal({
               placeholder="my_database_cluster"
               value={dbName}
               onChange={(e) => setDbName(e.target.value)}
-              className="rounded-none font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9 focus-visible:ring-0 focus-visible:border-zinc-950 dark:focus-visible:border-zinc-100"
+              className="rounded-none font-mono text-xs border-zinc-200 dark:border-zinc-800 h-9 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary/50 transition-all duration-300"
             />
           </div>
 
@@ -120,10 +120,10 @@ export function NewDatabaseModal({
               {/* Dev Option */}
               <div
                 onClick={() => setConfigPlan("dev")}
-                className={`border p-3 flex items-start gap-3 cursor-pointer transition-colors rounded-none ${
+                className={`border p-3 flex items-start gap-3 cursor-pointer transition-all duration-300 rounded-none ${
                   configPlan === "dev"
-                    ? "border-zinc-900 dark:border-zinc-100 bg-zinc-50/50 dark:bg-zinc-900/10"
-                    : "border-zinc-200 dark:border-zinc-800 bg-background hover:bg-zinc-50/30"
+                    ? "border-primary bg-primary/5"
+                    : "border-zinc-200 dark:border-zinc-800 bg-background hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20"
                 }`}
               >
                 <RadioGroupItem value="dev" id="plan-dev" className="mt-1" />
@@ -140,10 +140,10 @@ export function NewDatabaseModal({
               {/* Prod Option */}
               <div
                 onClick={() => setConfigPlan("prod")}
-                className={`border p-3 flex items-start gap-3 cursor-pointer transition-colors rounded-none ${
+                className={`border p-3 flex items-start gap-3 cursor-pointer transition-all duration-300 rounded-none ${
                   configPlan === "prod"
-                    ? "border-zinc-900 dark:border-zinc-100 bg-zinc-50/50 dark:bg-zinc-900/10"
-                    : "border-zinc-200 dark:border-zinc-800 bg-background hover:bg-zinc-50/30"
+                    ? "border-primary bg-primary/5"
+                    : "border-zinc-200 dark:border-zinc-800 bg-background hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20"
                 }`}
               >
                 <RadioGroupItem value="prod" id="plan-prod" className="mt-1" />
@@ -169,7 +169,7 @@ export function NewDatabaseModal({
           <div className="space-y-3 pt-3 border-t border-zinc-100 dark:border-zinc-900/50 rounded-none">
             <Button
               type="submit"
-              className="w-full rounded-none uppercase font-mono tracking-wider font-bold bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 text-xs"
+              className="w-full rounded-none uppercase font-mono tracking-wider font-bold bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 text-xs transition-all duration-300 cursor-pointer"
             >
               Create database cluster
             </Button>

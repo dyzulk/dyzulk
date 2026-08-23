@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Plus, Search, Sun, Moon } from "lucide-react";
 import { Logo } from "@dyzulk/ui/components/logo";
@@ -12,6 +12,12 @@ import { OnboardingPopover } from "./onboarding-popover";
 import { ProfileMenuDropdown } from "./profile-menu-dropdown";
 import { SearchCommandDialog } from "./search-command-dialog";
 import { Skeleton } from "@dyzulk/ui/components/skeleton";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+} from "@dyzulk/ui/components/dropdown-menu";
+import { Popover, PopoverTrigger } from "@dyzulk/ui/components/popover";
 
 interface WorkspaceLayoutShellProps {
   activeSlug: string;
@@ -60,23 +66,6 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
     }
   };
 
-  // Ref container helpers to close dropdowns when clicking outside
-  const progressRef = useRef<HTMLDivElement>(null);
-  const profileRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (progressRef.current && !progressRef.current.contains(e.target as Node)) {
-        setIsProgressOpen(false);
-      }
-      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
-        setIsProfileOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [setIsProgressOpen, setIsProfileOpen]);
-
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground rounded-none">
       {/* Upper Navigation Bar */}
@@ -97,24 +86,23 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
 
             {/* Organization Switcher Dropdown */}
             <div className="relative rounded-none">
-              <button
-                onClick={() => { setIsOpen(!isOpen); setOrgSearch(""); }}
-                className="flex items-center gap-2 px-3 py-1.5 text-sm font-mono border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none h-8 w-36"
-              >
-                {isLoading ? (
-                  <Skeleton className="h-4 w-full rounded-none animate-pulse" />
-                ) : (
-                  <>
-                    <span className="font-medium truncate max-w-[120px]">
-                      {activeOrg?.name || "Pilih Workspace"}
-                    </span>
-                    <ChevronDown className="size-3.5 text-zinc-400 shrink-0" />
-                  </>
-                )}
-              </button>
+              <DropdownMenu open={isOpen} onOpenChange={(open) => { setIsOpen(open); if (open) setOrgSearch(""); }}>
+                <DropdownMenuTrigger
+                  className="flex items-center justify-between gap-2 px-3 py-1.5 text-sm font-mono border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none h-8 w-36 cursor-pointer"
+                >
+                  {isLoading ? (
+                    <Skeleton className="h-4 w-full rounded-none animate-pulse" />
+                  ) : (
+                    <>
+                      <span className="font-medium truncate max-w-[120px]">
+                        {activeOrg?.name || "Pilih Workspace"}
+                      </span>
+                      <ChevronDown className="size-3.5 text-zinc-400 shrink-0" />
+                    </>
+                  )}
+                </DropdownMenuTrigger>
 
-              {isOpen && (
-                <div className="absolute left-0 mt-1 w-64 border border-zinc-200 dark:border-zinc-800 bg-card rounded-none shadow-xl z-50 font-mono text-xs">
+                <DropdownMenuContent className="w-64 rounded-none font-mono text-xs shadow-xl">
                   <div className="px-3 py-1.5 text-[10px] text-zinc-400 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900">
                     Daftar Organisasi
                   </div>
@@ -140,8 +128,8 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
                       .map((org) => (
                       <button
                         key={org.id}
-                        onClick={() => handleSelectOrg(org.slug)}
-                        className={`w-full text-left px-3 py-2 flex items-center gap-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors ${
+                        onClick={() => { handleSelectOrg(org.slug); setIsOpen(false); }}
+                        className={`w-full text-left px-3 py-2 flex items-center gap-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors rounded-none cursor-pointer ${
                           org.slug === activeSlug ? "text-primary font-bold" : ""
                         }`}
                       >
@@ -165,33 +153,32 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
 
                   <div className="border-t border-zinc-100 dark:border-zinc-900 pt-1 pb-1">
                     <button
-                      onClick={handleCreateOrgClick}
-                      className="w-full text-left px-3 py-2 flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400 transition-colors font-semibold"
+                      onClick={() => { handleCreateOrgClick(); setIsOpen(false); }}
+                      className="w-full text-left px-3 py-2 flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400 transition-colors font-semibold cursor-pointer"
                     >
                       <Plus className="size-3.5" /> Buat Organisasi
                     </button>
                   </div>
-                </div>
-              )}
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 
           {/* Top navigation actions widgets */}
           <div className="flex items-center gap-3 rounded-none">
             {/* Onboarding Checklist Button */}
-            <div ref={progressRef} className="relative rounded-none">
-              <button
-                onClick={() => setIsProgressOpen(!isProgressOpen)}
-                className="flex items-center gap-2 px-3 py-1.5 font-mono text-xs border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none"
-              >
-                {/* Circular indicator */}
-                <span className="size-3.5 rounded-full border border-dashed border-zinc-400 dark:border-zinc-600 flex items-center justify-center text-[8px] font-bold text-zinc-500">
-                  o
-                </span>
-                <span>{completedCount}/{totalCount}</span>
-              </button>
+            <div className="relative rounded-none">
+              <Popover open={isProgressOpen} onOpenChange={setIsProgressOpen}>
+                <PopoverTrigger
+                  className="flex items-center gap-2 px-3 py-1.5 font-mono text-xs border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none cursor-pointer"
+                >
+                  {/* Circular indicator */}
+                  <span className="size-3.5 rounded-full border border-dashed border-zinc-400 dark:border-zinc-600 flex items-center justify-center text-[8px] font-bold text-zinc-500">
+                    o
+                  </span>
+                  <span>{completedCount}/{totalCount}</span>
+                </PopoverTrigger>
 
-              {isProgressOpen && (
                 <OnboardingPopover
                   onboardingItems={onboardingItems}
                   completedCount={completedCount}
@@ -200,10 +187,10 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
                   setIsShipCollapsed={setIsShipCollapsed}
                   isDiscoverCollapsed={isDiscoverCollapsed}
                   setIsDiscoverCollapsed={setIsDiscoverCollapsed}
-                  onSkipAll={handleSkipAll}
-                  onItemClick={handleChecklistItemClick}
+                  onSkipAll={() => { handleSkipAll(); setIsProgressOpen(false); }}
+                  onItemClick={(item) => { handleChecklistItemClick(item); setIsProgressOpen(false); }}
                 />
-              )}
+              </Popover>
             </div>
 
             {/* Search Trigger Bar button */}
@@ -234,20 +221,19 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
             </button>
 
             {/* User Profile avatar dropdown */}
-            <div ref={profileRef} className="relative rounded-none">
-              <button
-                onClick={() => setIsProfileOpen(!isProfileOpen)}
-                className="size-8 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200 dark:border-zinc-800 flex items-center justify-center rounded-none font-bold font-mono text-sm focus:outline-none hover:bg-zinc-50 dark:hover:bg-zinc-950"
-              >
-                {activeOrg?.name ? activeOrg.name.charAt(0).toUpperCase() : "D"}
-              </button>
+            <div className="relative rounded-none">
+              <DropdownMenu open={isProfileOpen} onOpenChange={setIsProfileOpen}>
+                <DropdownMenuTrigger
+                  className="size-8 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200 dark:border-zinc-800 flex items-center justify-center rounded-none font-bold font-mono text-sm focus:outline-none hover:bg-zinc-50 dark:hover:bg-zinc-950 cursor-pointer"
+                >
+                  {activeOrg?.name ? activeOrg.name.charAt(0).toUpperCase() : "D"}
+                </DropdownMenuTrigger>
 
-              {isProfileOpen && (
                 <ProfileMenuDropdown
-                  onLogout={handleLogout}
+                  onLogout={() => { handleLogout(); setIsProfileOpen(false); }}
                   orgName={activeOrg?.name || "DyzulkDev"}
                 />
-              )}
+              </DropdownMenu>
             </div>
           </div>
         </div>

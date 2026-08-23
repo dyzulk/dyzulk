@@ -28,10 +28,10 @@ export function ProfileSidebar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`w-full px-3 py-1.5 text-left transition-all rounded-none font-semibold select-none ${
+              className={`w-full px-3 py-1.5 text-left transition-all duration-300 rounded-none font-semibold select-none border ${
                 isActive
-                  ? "bg-background text-foreground font-bold border border-zinc-200 dark:border-zinc-700 shadow-sm"
-                  : "text-muted-foreground hover:text-foreground hover:bg-zinc-50/50 dark:hover:bg-zinc-800/50 border border-transparent"
+                  ? "bg-background text-primary font-bold border-zinc-200 dark:border-zinc-700 shadow-xs"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5 border-transparent"
               }`}
             >
               {link.name}
