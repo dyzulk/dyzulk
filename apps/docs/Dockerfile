@@ -3,7 +3,7 @@
 
 # ── Stage 1: Base ─────────────────────────────────────────────
 FROM node:24-alpine AS base
-RUN npm install -g pnpm@9.15.9
+RUN npm install -g pnpm@9.15.9 && pnpm config set manage-node-version false
 WORKDIR /app
 
 # ── Stage 2: Install dependencies ─────────────────────────────
@@ -16,13 +16,13 @@ COPY packages/ui/package.json ./packages/ui/
 COPY packages/server/package.json ./packages/server/
 COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/typescript-config/package.json ./packages/typescript-config/
-RUN pnpm install --frozen-lockfile --use-node-version=24
+RUN pnpm install --frozen-lockfile
 
 # ── Stage 3: Build ────────────────────────────────────────────
 FROM base AS builder
 COPY --from=deps /app ./
 COPY . .
-RUN pnpm --use-node-version=24 build:docs
+RUN pnpm build:docs
 
 # ── Stage 4: Production runner ────────────────────────────────
 FROM node:24-alpine AS runner
