@@ -9,7 +9,7 @@ Deployment guide for the Dyzulk monorepo to Coolify with three available build s
 | Aspect | Dockerfile (Recommended) | Railpack | Nixpacks |
 |---|---|---|---|
 | Subsequent build speed | Fastest (Docker layer cache) | Moderate | Moderate |
-| Image size | ~150MB (standalone) | ~1GB+ (full monorepo) | ~800MB+ |
+| Image size | Moderate (Standard monorepo bundle) | ~1GB+ (full monorepo) | ~800MB+ |
 | Control | Full | Limited | Moderate (nixpacks.toml) |
 | Setup complexity | Requires maintaining Dockerfiles | Zero config | Minimal config |
 | Monorepo support | Native (multi-stage) | Custom commands | Custom commands |
@@ -31,109 +31,35 @@ Coolify Project: Dyzulk Cloud
 
 # Strategy 1: Dockerfile (Recommended)
 
-## Required Code Changes
+## Deployment Options
 
-### 1. Enable `output: "standalone"` in every `next.config`
+You have two options for deployment using Docker:
+1. **Per-app Dockerfile (Standard)**: Target the specific Dockerfile inside the app's directory.
+2. **Centralized Workspace Dockerfile**: Use the root `Dockerfile.workspace` and target a specific build stage.
 
-Required so Docker images only contain necessary files.
+### Setup Option A: Per-app Dockerfile
+Each application runs with its own container utilizing the monorepo workspace code:
+- Web App: `apps/web/Dockerfile`
+- Dashboard: `apps/dashboard/Dockerfile`
+- Docs: `apps/docs/Dockerfile`
 
-**`apps/web/next.config.ts`** and **`apps/dashboard/next.config.ts`**:
+Configure Coolify with:
+- **Build strategy**: `Dockerfile`
+- **Dockerfile location**: `apps/<app>/Dockerfile`
+- **Base directory**: `/`
+- **Port**: `3000`
 
-```typescript
-import type { NextConfig } from "next"
-import { join, dirname } from "path"
-import { fileURLToPath } from "url"
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-
-const nextConfig: NextConfig = {
-  output: "standalone",
-  outputFileTracingRoot: join(__dirname, "../../"),
-  transpilePackages: ["@dyzulk/ui"],
-}
-
-export default nextConfig
-```
-
-**`apps/docs/next.config.mjs`**:
-
-```javascript
-import { createMDX } from 'fumadocs-mdx/next';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const withMDX = createMDX();
-
-const config = {
-  reactStrictMode: true,
-  output: 'standalone',
-  outputFileTracingRoot: join(__dirname, '../../'),
-};
-
-export default withMDX(config);
-```
-
-`outputFileTracingRoot` must point to the **monorepo root** (`../../` from `apps/<app>/`). Without this, Next.js standalone will not include shared packages (`@dyzulk/ui`, `@dyzulk/server`).
-
-### 2. Dockerfile per app
-
-Located at:
-
-- `apps/web/Dockerfile`
-- `apps/dashboard/Dockerfile`
-- `apps/docs/Dockerfile`
-
-Each Dockerfile has 4 stages:
-
-```
-Stage 1: base     - Node 24 + Corepack pnpm@11
-Stage 2: deps     - Copy package.json files + pnpm install (CACHED layer)
-Stage 3: builder  - Copy source + turbo build --filter=<app>...
-Stage 4: runner   - Copy standalone output only (~150MB final image)
-```
-
-## Coolify Configuration
-
-### dyzulk-web
-
-| Setting | Value |
-|---|---|
-| Build strategy | Dockerfile |
-| Dockerfile location | `apps/web/Dockerfile` |
-| Base directory | `/` |
-| Port | `3000` |
-| Domain | `dyzulk.com` |
-
-### dyzulk-dashboard
-
-| Setting | Value |
-|---|---|
-| Build strategy | Dockerfile |
-| Dockerfile location | `apps/dashboard/Dockerfile` |
-| Base directory | `/` |
-| Port | `3000` |
-| Domain | `dash.dyzulk.com` |
-
-### dyzulk-docs
-
-| Setting | Value |
-|---|---|
-| Build strategy | Dockerfile |
-| Dockerfile location | `apps/docs/Dockerfile` |
-| Base directory | `/` |
-| Port | `3000` |
-| Domain | `docs.dyzulk.com` |
+### Setup Option B: Centralized Workspace Dockerfile
+Target the single workspace Dockerfile in the root and specify the build target stage:
+- **Build strategy**: `Dockerfile`
+- **Dockerfile location**: `Dockerfile.workspace`
+- **Base directory**: `/`
+- **Port**: `3000`
+- **Build target / stage**: `web`, `dashboard`, or `docs` respectively.
 
 ---
 
 # Strategy 2: Railpack
-
-## Required Code Changes
-
-**None** — Railpack auto-detects Next.js. No `output: "standalone"` or Dockerfile needed.
-
-If `output: "standalone"` is already set in next.config (from a Dockerfile setup), **remove or comment out** both `output` and `outputFileTracingRoot` before using Railpack. Railpack runs `next start` which requires full `node_modules`, not the standalone server.
 
 ## Coolify Configuration
 
@@ -147,7 +73,7 @@ If `output: "standalone"` is already set in next.config (from a Dockerfile setup
 | Publish directory | `/` |
 | Install command | `pnpm install --frozen-lockfile` |
 | Build command | `pnpm build:web` |
-| Start command | `pnpm --filter web start` |
+| Start command | `pnpm start:web` |
 | Port | `3000` |
 | Domain | `dyzulk.com` |
 
@@ -161,7 +87,7 @@ If `output: "standalone"` is already set in next.config (from a Dockerfile setup
 | Publish directory | `/` |
 | Install command | `pnpm install --frozen-lockfile` |
 | Build command | `pnpm build:dashboard` |
-| Start command | `pnpm --filter dashboard start` |
+| Start command | `pnpm start:dashboard` |
 | Port | `3000` |
 | Domain | `dash.dyzulk.com` |
 
@@ -175,7 +101,7 @@ If `output: "standalone"` is already set in next.config (from a Dockerfile setup
 | Publish directory | `/` |
 | Install command | `pnpm install --frozen-lockfile` |
 | Build command | `pnpm build:docs` |
-| Start command | `pnpm --filter docs start` |
+| Start command | `pnpm start:docs` |
 | Port | `3000` |
 | Domain | `docs.dyzulk.com` |
 
@@ -185,12 +111,6 @@ Base directory must be `/` (monorepo root) because `pnpm install` requires acces
 
 # Strategy 3: Nixpacks
 
-## Required Code Changes
-
-**None** — Nixpacks auto-detects Next.js. Same as Railpack, no `output: "standalone"` or Dockerfile needed.
-
-If `output: "standalone"` is already set, **remove or comment out** before using Nixpacks.
-
 ## Coolify Configuration
 
 ### dyzulk-web
@@ -201,7 +121,7 @@ If `output: "standalone"` is already set, **remove or comment out** before using
 | Base directory | `/` |
 | Install command | `pnpm install --frozen-lockfile` |
 | Build command | `pnpm build:web` |
-| Start command | `pnpm --filter web start` |
+| Start command | `pnpm start:web` |
 | Port | `3000` |
 | Domain | `dyzulk.com` |
 
@@ -213,7 +133,7 @@ If `output: "standalone"` is already set, **remove or comment out** before using
 | Base directory | `/` |
 | Install command | `pnpm install --frozen-lockfile` |
 | Build command | `pnpm build:dashboard` |
-| Start command | `pnpm --filter dashboard start` |
+| Start command | `pnpm start:dashboard` |
 | Port | `3000` |
 | Domain | `dash.dyzulk.com` |
 
@@ -225,7 +145,7 @@ If `output: "standalone"` is already set, **remove or comment out** before using
 | Base directory | `/` |
 | Install command | `pnpm install --frozen-lockfile` |
 | Build command | `pnpm build:docs` |
-| Start command | `pnpm --filter docs start` |
+| Start command | `pnpm start:docs` |
 | Port | `3000` |
 | Domain | `docs.dyzulk.com` |
 

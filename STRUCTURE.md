@@ -46,6 +46,7 @@ dyzulk/
 │  │  │  ├─ hooks/
 │  │  │  └─ middleware.ts
 │  │  ├─ next.config.ts
+│  │  ├─ Dockerfile
 │  │  └─ package.json
 │  ├─ docs/
 │  │  ├─ content/
@@ -75,6 +76,7 @@ dyzulk/
 │  │  │  ├─ components/
 │  │  │  └─ lib/
 │  │  ├─ next.config.mjs
+│  │  ├─ Dockerfile
 │  │  └─ package.json
 │  └─ web/
 │     ├─ public/
@@ -102,6 +104,7 @@ dyzulk/
 │     │  ├─ lib/
 │     │  └─ styles/
 │     ├─ next.config.ts
+│     ├─ Dockerfile
 │     └─ package.json
 ├─ packages/
 │  ├─ eslint-config/
@@ -137,7 +140,8 @@ dyzulk/
 ├─ traefik/
 │  └─ traefik.yml
 ├─ AGENTS.md
-├─ Dockerfile
+├─ DEPLOYMENT.md
+├─ Dockerfile.workspace
 ├─ package.json
 ├─ pnpm-lock.yaml
 ├─ pnpm-workspace.yaml
