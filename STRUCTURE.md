@@ -29,21 +29,84 @@ dyzulk/
 │  │  │  │  │  │  └─ page.tsx
 │  │  │  │  │  └─ layout.tsx
 │  │  │  │  ├─ [org]/
+│  │  │  │  │  ├─ applications/
+│  │  │  │  │  │  ├─ create/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  ├─ resources/
+│  │  │  │  │  │  ├─ caches/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ databases/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ object-storage/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ websockets/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ layout.tsx
+│  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  ├─ settings/
+│  │  │  │  │  │  ├─ access/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ api-tokens/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ billing/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ general/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ invoices/
+│  │  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  │  ├─ layout.tsx
+│  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  ├─ usage/
+│  │  │  │  │  │  └─ page.tsx
 │  │  │  │  │  ├─ layout.tsx
 │  │  │  │  │  └─ page.tsx
-│  │  │  │  ├─ new/
+│  │  │  │  ├─ org/
+│  │  │  │  │  └─ new/
+│  │  │  │  │     └─ page.tsx
+│  │  │  │  ├─ profile/
+│  │  │  │  │  ├─ notifications/
+│  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  ├─ organizations/
+│  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  ├─ security/
+│  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  ├─ source-control/
+│  │  │  │  │  │  └─ page.tsx
+│  │  │  │  │  ├─ layout.tsx
 │  │  │  │  │  └─ page.tsx
 │  │  │  │  ├─ error.tsx
 │  │  │  │  ├─ layout.tsx
-│  │  │  │  ├─ loading.tsx
 │  │  │  │  ├─ not-found.tsx
 │  │  │  │  └─ page.tsx
 │  │  │  ├─ components/
-│  │  │  │  ├─ new-org/
+│  │  │  │  ├─ org/
+│  │  │  │  │  ├─ applications/
+│  │  │  │  │  │  └─ create/
+│  │  │  │  │  ├─ new/
+│  │  │  │  │  ├─ resources/
+│  │  │  │  │  │  ├─ caches/
+│  │  │  │  │  │  ├─ databases/
+│  │  │  │  │  │  ├─ object-storage/
+│  │  │  │  │  │  └─ websockets/
+│  │  │  │  │  ├─ settings/
+│  │  │  │  │  │  ├─ access/
+│  │  │  │  │  │  ├─ api-tokens/
+│  │  │  │  │  │  ├─ billing/
+│  │  │  │  │  │  ├─ general/
+│  │  │  │  │  │  └─ invoices/
+│  │  │  │  │  └─ usage/
+│  │  │  │  ├─ profile/
+│  │  │  │  │  ├─ general/
+│  │  │  │  │  ├─ notifications/
+│  │  │  │  │  ├─ organizations/
+│  │  │  │  │  ├─ security/
+│  │  │  │  │  └─ source-control/
 │  │  │  │  ├─ workspace/
 │  │  │  │  │  └─ layout/
 │  │  │  │  └─ theme-provider.tsx
 │  │  │  ├─ hooks/
+│  │  │  ├─ lib/
 │  │  │  └─ middleware.ts
 │  │  ├─ next.config.ts
 │  │  ├─ Dockerfile
@@ -91,7 +154,6 @@ dyzulk/
 │     │  │  ├─ error.tsx
 │     │  │  ├─ global-error.tsx
 │     │  │  ├─ layout.tsx
-│     │  │  ├─ loading.tsx
 │     │  │  └─ not-found.tsx
 │     │  ├─ components/
 │     │  │  ├─ home/
