@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 import { ChevronDown, Plus, Search, Sun, Moon } from "lucide-react";
 import { Logo } from "@dyzulk/ui/components/logo";
 import { useWorkspaceLayout } from "@/hooks/use-workspace-layout";
@@ -49,6 +50,9 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
     handleChecklistItemClick,
   } = useWorkspaceHeader(activeSlug);
 
+  // Local UI state for org switcher search filter
+  const [orgSearch, setOrgSearch] = useState("");
+
   const handleLogout = async () => {
     const res = await logoutAction();
     if (res.success) {
@@ -79,11 +83,14 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
       <header className="border-b border-zinc-200 dark:border-zinc-800 bg-background/50 backdrop-blur-md sticky top-0 z-50 rounded-none">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between rounded-none">
           <div className="flex items-center gap-6 rounded-none">
-            {/* Logo and App Title */}
-            <div className="flex items-center gap-2 font-mono text-sm tracking-wider rounded-none">
+            {/* Logo and App Title — navigates to home */}
+            <Link href="/" className="flex items-center gap-2 font-mono text-sm tracking-wider rounded-none hover:opacity-80 transition-opacity">
               <Logo className="size-6" />
-              <span className="font-bold hidden sm:inline">DYZULK</span>
-            </div>
+              <span className="font-bold hidden sm:inline">
+                <span className="text-primary">Dyzulk</span>
+                <span className="text-foreground">Cloud</span>
+              </span>
+            </Link>
 
             {/* Separator Slash */}
             <span className="text-zinc-300 dark:text-zinc-800 font-mono text-lg select-none">/</span>
@@ -91,7 +98,7 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
             {/* Organization Switcher Dropdown */}
             <div className="relative rounded-none">
               <button
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => { setIsOpen(!isOpen); setOrgSearch(""); }}
                 className="flex items-center gap-2 px-3 py-1.5 text-sm font-mono border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors rounded-none focus:outline-none h-8 w-36"
               >
                 {isLoading ? (
@@ -107,26 +114,56 @@ export function WorkspaceLayoutShell({ activeSlug, children }: WorkspaceLayoutSh
               </button>
 
               {isOpen && (
-                <div className="absolute left-0 mt-1 w-56 border border-zinc-200 dark:border-zinc-800 bg-card rounded-none shadow-xl z-50 py-1 font-mono text-xs">
+                <div className="absolute left-0 mt-1 w-64 border border-zinc-200 dark:border-zinc-800 bg-card rounded-none shadow-xl z-50 font-mono text-xs">
                   <div className="px-3 py-1.5 text-[10px] text-zinc-400 uppercase tracking-widest border-b border-zinc-100 dark:border-zinc-900">
                     Daftar Organisasi
                   </div>
+
+                  {/* Search input */}
+                  <div className="px-2 py-1.5 border-b border-zinc-100 dark:border-zinc-900">
+                    <div className="flex items-center gap-1.5 px-2 py-1 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-none">
+                      <Search className="size-3 text-zinc-400 shrink-0" />
+                      <input
+                        type="text"
+                        placeholder="Cari organisasi..."
+                        value={orgSearch}
+                        onChange={(e) => setOrgSearch(e.target.value)}
+                        className="w-full bg-transparent text-xs text-foreground placeholder:text-zinc-400 focus:outline-none"
+                        autoFocus
+                      />
+                    </div>
+                  </div>
+
                   <div className="max-h-48 overflow-y-auto py-1">
-                    {organizations.map((org) => (
+                    {organizations
+                      .filter((org) => org.name.toLowerCase().includes(orgSearch.toLowerCase()))
+                      .map((org) => (
                       <button
                         key={org.id}
                         onClick={() => handleSelectOrg(org.slug)}
-                        className={`w-full text-left px-3 py-2 flex items-center justify-between hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors ${
-                          org.slug === activeSlug ? "text-emerald-500 font-bold" : ""
+                        className={`w-full text-left px-3 py-2 flex items-center gap-2.5 hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors ${
+                          org.slug === activeSlug ? "text-primary font-bold" : ""
                         }`}
                       >
-                        <span className="truncate">{org.name}</span>
-                        {org.slug === activeSlug && <span className="size-1.5 bg-emerald-500 rounded-full shrink-0" />}
+                        <span className={`size-5 shrink-0 flex items-center justify-center text-[10px] font-bold rounded-none border ${
+                          org.slug === activeSlug
+                            ? "bg-primary/10 border-primary/30 text-primary"
+                            : "bg-zinc-100 dark:bg-zinc-800 border-zinc-200 dark:border-zinc-700 text-zinc-500"
+                        }`}>
+                          {org.name.charAt(0).toUpperCase()}
+                        </span>
+                        <span className="truncate flex-1">{org.name}</span>
+                        {org.slug === activeSlug && <span className="size-1.5 bg-primary rounded-full shrink-0" />}
                       </button>
                     ))}
+                    {organizations.filter((org) => org.name.toLowerCase().includes(orgSearch.toLowerCase())).length === 0 && (
+                      <div className="px-3 py-3 text-center text-zinc-400 text-[10px]">
+                        Tidak ditemukan
+                      </div>
+                    )}
                   </div>
 
-                  <div className="border-t border-zinc-100 dark:border-zinc-900 pt-1">
+                  <div className="border-t border-zinc-100 dark:border-zinc-900 pt-1 pb-1">
                     <button
                       onClick={handleCreateOrgClick}
                       className="w-full text-left px-3 py-2 flex items-center gap-2 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400 transition-colors font-semibold"
