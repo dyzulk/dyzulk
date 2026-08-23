@@ -4,6 +4,8 @@
 # ── Stage 1: Base ─────────────────────────────────────────────
 FROM node:24-alpine AS base
 ENV PNPM_SKIP_NODE_INSTALL=true
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
 RUN npm install -g pnpm@11.22.0
 WORKDIR /app
 
@@ -17,7 +19,7 @@ COPY packages/ui/package.json ./packages/ui/
 COPY packages/server/package.json ./packages/server/
 COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/typescript-config/package.json ./packages/typescript-config/
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 # Copy all source files
 COPY . .
