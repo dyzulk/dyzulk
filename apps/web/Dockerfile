@@ -16,13 +16,13 @@ COPY packages/ui/package.json ./packages/ui/
 COPY packages/server/package.json ./packages/server/
 COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/typescript-config/package.json ./packages/typescript-config/
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --use-node-version=24
 
 # ── Stage 3: Build ────────────────────────────────────────────
 FROM base AS builder
 COPY --from=deps /app ./
 COPY . .
-RUN pnpm build:web
+RUN pnpm --use-node-version=24 build:web
 
 # ── Stage 4: Production runner ────────────────────────────────
 FROM node:24-alpine AS runner

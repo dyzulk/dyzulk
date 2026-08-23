@@ -16,14 +16,14 @@ COPY packages/ui/package.json ./packages/ui/
 COPY packages/server/package.json ./packages/server/
 COPY packages/eslint-config/package.json ./packages/eslint-config/
 COPY packages/typescript-config/package.json ./packages/typescript-config/
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --use-node-version=24
 
 # Copy all source files
 COPY . .
 
 # ── Stage 3: Build Web App (apps/web) ──────────────────────────
 FROM installer AS web-builder
-RUN pnpm build:web
+RUN pnpm --use-node-version=24 build:web
 
 FROM node:24-alpine AS web
 RUN npm install -g pnpm@9.15.9
@@ -36,7 +36,7 @@ CMD ["pnpm", "start:web"]
 
 # ── Stage 4: Build Dashboard App (apps/dashboard) ─────────────
 FROM installer AS dashboard-builder
-RUN pnpm build:dashboard
+RUN pnpm --use-node-version=24 build:dashboard
 
 FROM node:24-alpine AS dashboard
 RUN npm install -g pnpm@9.15.9
@@ -49,7 +49,7 @@ CMD ["pnpm", "start:dashboard"]
 
 # ── Stage 5: Build Docs App (apps/docs) ───────────────────────
 FROM installer AS docs-builder
-RUN pnpm build:docs
+RUN pnpm --use-node-version=24 build:docs
 
 FROM node:24-alpine AS docs
 RUN npm install -g pnpm@9.15.9
