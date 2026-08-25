@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { PATHS } from "@/constants/navigation";
 import {
@@ -16,13 +19,17 @@ import {
 } from "@/constants/navigation";
 
 export function HeaderDesktopNav() {
+  const pathname = usePathname();
+
+  const isPricingActive = pathname === PATHS.pricing;
+
   return (
     <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
       <NavigationMenu className="z-50">
         <NavigationMenuList className="gap-1">
           {/* Product */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-[popup-open]:bg-primary data-[popup-open]:text-primary-foreground data-[open]:bg-primary data-[open]:text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
+            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-popup-open:!bg-primary data-popup-open:!text-primary-foreground data-open:!bg-primary data-open:!text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
               Product
             </NavigationMenuTrigger>
             <NavigationMenuContent className="w-[580px] border border-border bg-popover p-6 shadow-md text-foreground rounded-none">
@@ -68,7 +75,7 @@ export function HeaderDesktopNav() {
 
           {/* Developers */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-[popup-open]:bg-primary data-[popup-open]:text-primary-foreground data-[open]:bg-primary data-[open]:text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
+            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-popup-open:!bg-primary data-popup-open:!text-primary-foreground data-open:!bg-primary data-open:!text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
               Developers
             </NavigationMenuTrigger>
             <NavigationMenuContent className="w-[580px] border border-border bg-popover p-6 shadow-md text-foreground rounded-none">
@@ -127,7 +134,7 @@ export function HeaderDesktopNav() {
 
           {/* Solutions */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-[popup-open]:bg-primary data-[popup-open]:text-primary-foreground data-[open]:bg-primary data-[open]:text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
+            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-popup-open:!bg-primary data-popup-open:!text-primary-foreground data-open:!bg-primary data-open:!text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
               Solutions
             </NavigationMenuTrigger>
             <NavigationMenuContent className="w-[580px] border border-border bg-popover p-6 shadow-md text-foreground rounded-none">
@@ -188,7 +195,11 @@ export function HeaderDesktopNav() {
           <NavigationMenuItem>
             <Link
               href={PATHS.pricing}
-              className="px-3.5 py-2 inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors rounded-none"
+              className={`px-3.5 py-2 inline-flex items-center text-sm transition-colors rounded-none ${
+                isPricingActive
+                  ? "bg-primary text-primary-foreground font-bold shadow-xs"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/10 font-medium"
+              }`}
             >
               Pricing
             </Link>
@@ -196,7 +207,7 @@ export function HeaderDesktopNav() {
 
           {/* Company */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-[popup-open]:bg-primary data-[popup-open]:text-primary-foreground data-[open]:bg-primary data-[open]:text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
+            <NavigationMenuTrigger className="px-3.5 py-2 h-auto text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 data-popup-open:!bg-primary data-popup-open:!text-primary-foreground data-open:!bg-primary data-open:!text-primary-foreground bg-transparent transition-colors font-medium rounded-none shadow-xs">
               Company
             </NavigationMenuTrigger>
             <NavigationMenuContent className="w-[180px] border border-border bg-popover p-4 shadow-md text-foreground rounded-none">
