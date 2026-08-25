@@ -33,7 +33,7 @@ export function ResourcesSidebar({ orgSlug }: ResourcesSidebarProps) {
               href={link.href}
               className={`w-full px-3 py-1.5 text-left transition-all duration-300 rounded-none font-semibold select-none border ${
                 isActive
-                  ? "bg-background text-primary font-bold border-zinc-200 dark:border-zinc-700 shadow-xs"
+                  ? "bg-primary text-primary-foreground font-bold border-primary shadow-xs"
                   : "text-muted-foreground hover:text-primary hover:bg-primary/5 border-transparent"
               }`}
             >

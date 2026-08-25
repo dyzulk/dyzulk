@@ -22,8 +22,8 @@ export function ProfileGeneralForm({
   handleUpdateProfile,
 }: ProfileGeneralFormProps) {
   return (
-    <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
-      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
+    <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-card shadow-md hover:border-primary/30 transition-all duration-300">
+      <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/40 group-hover:bg-primary/[0.01] transition-colors duration-300">
         <h3 className="font-bold text-sm text-foreground">General</h3>
         <p className="text-[11px] text-muted-foreground mt-0.5">
           General settings related to your profile.
@@ -82,7 +82,7 @@ export function ProfileGeneralForm({
             Used for attribution on deployments and other events.
           </p>
           <div className="flex items-center gap-4 mt-2">
-            <div className="size-12 bg-green-100 dark:bg-green-950/20 text-green-600 dark:text-green-400 font-bold text-lg flex items-center justify-center border border-green-200 dark:border-green-900/50 rounded-none select-none group-hover:scale-105 transition-transform duration-300">
+            <div className="size-12 bg-primary/10 text-primary font-bold text-lg flex items-center justify-center border border-primary/30 rounded-none select-none group-hover:scale-105 transition-transform duration-300">
               {name ? name.charAt(0).toUpperCase() : "U"}
             </div>
             <Button

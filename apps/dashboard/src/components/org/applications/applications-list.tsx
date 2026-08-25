@@ -51,12 +51,12 @@ export function ApplicationsList({ applications, orgSlug }: ApplicationsListProp
       {applications.map((app) => (
         <Card
           key={app.id}
-          className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/50 dark:hover:border-primary/40 hover:shadow-md transition-all duration-300"
+          className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-card shadow-md hover:border-primary/50 dark:hover:border-primary/40 transition-all duration-300"
         >
           {/* Header row: Icon, App Name, Git Repo & action trigger */}
-          <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none bg-zinc-50/50 dark:bg-zinc-900/10 border-b border-transparent group-hover:border-zinc-200/50 dark:group-hover:border-zinc-800/50 transition-colors duration-300">
+          <div className="py-2.5 px-4 flex items-center justify-between gap-4 rounded-none bg-zinc-100/50 dark:bg-zinc-900/40 border-b border-zinc-200/50 dark:border-zinc-800/50 transition-colors duration-300">
             <div className="flex items-center gap-2.5 rounded-none">
-              <div className="size-6 bg-zinc-100 dark:bg-zinc-900 text-foreground border border-zinc-200/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none font-bold group-hover:border-primary/20 group-hover:bg-primary/5 transition-all duration-300">
+              <div className="size-6 bg-zinc-200/60 dark:bg-zinc-900 text-foreground border border-zinc-300/60 dark:border-zinc-800/80 flex items-center justify-center rounded-none font-bold group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-300">
                 {renderTechIcon(app.tech)}
               </div>
               <h3 className="font-mono font-bold text-sm text-foreground group-hover:text-primary transition-colors duration-300">
@@ -91,7 +91,7 @@ export function ApplicationsList({ applications, orgSlug }: ApplicationsListProp
           {/* Inner row: status, commit message & time ago */}
           <div className="py-2 px-4 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
             <div className="flex items-center gap-2">
-              <span className="size-2 bg-blue-500 rounded-full shrink-0 animate-pulse" />
+              <span className="size-2 bg-emerald-500 rounded-full shrink-0 animate-pulse" />
               <span className="font-semibold text-zinc-950 dark:text-zinc-100 uppercase text-[10px] tracking-wider">
                 {app.env}
               </span>

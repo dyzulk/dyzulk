@@ -43,20 +43,20 @@ export function ApplicationGrid({ applications }: ApplicationGridProps) {
       {applications.map((app) => (
         <Card
           key={app.id}
-          className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/50 dark:hover:border-primary/40 hover:shadow-md transition-all duration-300"
+          className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-card shadow-md hover:border-primary/50 dark:hover:border-primary/40 transition-all duration-300"
         >
           <CardContent className="p-6 flex flex-col gap-4 rounded-none">
             {/* App icon, name and environment pill */}
             <div className="flex items-start justify-between gap-4 rounded-none">
               <div className="flex items-center gap-3 rounded-none">
-                <div className="size-10 bg-zinc-50 dark:bg-zinc-900 text-foreground border border-zinc-200 dark:border-zinc-800 flex items-center justify-center rounded-none font-bold group-hover:border-primary/20 group-hover:bg-primary/5 transition-colors duration-300">
+                <div className="size-10 bg-zinc-100 dark:bg-zinc-900/80 text-foreground border border-zinc-200 dark:border-zinc-800 flex items-center justify-center rounded-none font-bold group-hover:border-primary/30 group-hover:bg-primary/5 transition-colors duration-300">
                   {renderTechIcon(app.tech)}
                 </div>
                 <div className="rounded-none">
                   <h4 className="font-mono font-bold text-sm text-foreground flex items-center gap-2 group-hover:text-primary transition-colors duration-300">
                     {app.name}
-                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[9px] font-mono tracking-wider uppercase bg-blue-50 dark:bg-blue-950/20 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/50 rounded-none">
-                      <span className="size-1 bg-blue-500 rounded-full" />
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 text-[9px] font-mono tracking-wider uppercase bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 rounded-none">
+                      <span className="size-1 bg-emerald-500 rounded-full animate-pulse" />
                       {app.env}
                     </span>
                   </h4>

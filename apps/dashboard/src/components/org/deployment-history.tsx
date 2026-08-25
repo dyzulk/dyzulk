@@ -19,7 +19,7 @@ interface DeploymentHistoryProps {
 
 export function DeploymentHistory({ deployments }: DeploymentHistoryProps) {
   return (
-    <div className="border border-zinc-200 dark:border-zinc-800 bg-background divide-y divide-zinc-200 dark:divide-zinc-800 rounded-none shadow-sm">
+    <div className="border border-zinc-200 dark:border-zinc-800 bg-card divide-y divide-zinc-200 dark:divide-zinc-800 rounded-none shadow-md">
       {deployments.map((dep) => (
         <div
           key={dep.id}

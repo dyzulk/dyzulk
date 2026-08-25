@@ -65,7 +65,7 @@ export function OrganizationTabs({ orgSlug }: OrganizationTabsProps) {
                     href={tab.href}
                     className={`px-3 py-1.5 tracking-wider uppercase transition-all duration-300 whitespace-nowrap rounded-none select-none border ${
                       isActive
-                        ? "bg-background text-primary font-bold border-zinc-200 dark:border-zinc-800 shadow-xs"
+                        ? "bg-primary text-primary-foreground font-bold border-primary shadow-xs"
                         : "text-zinc-500 dark:text-zinc-400 hover:text-primary hover:bg-primary/5 border-transparent"
                     }`}
                   >

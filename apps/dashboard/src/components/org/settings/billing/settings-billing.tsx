@@ -51,8 +51,8 @@ export function SettingsBilling() {
   return (
     <div className="space-y-6 w-full font-mono text-xs rounded-none">
       {/* 1. Base Plan */}
-      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-card shadow-md hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/40 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Plan</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Manage your plan for this organization.
@@ -145,8 +145,8 @@ export function SettingsBilling() {
       </Card>
 
       {/* 2. Spending Limit */}
-      <Card id="spending-limit-card" className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300 scroll-mt-6">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
+      <Card id="spending-limit-card" className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-card shadow-md hover:border-primary/30 transition-all duration-300 scroll-mt-6">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/40 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Spending limit</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Manage your spending limit for this organization. <a href="#" className="text-zinc-900 dark:text-zinc-100 hover:underline">Learn more</a>
@@ -170,7 +170,7 @@ export function SettingsBilling() {
               </p>
               <Button
                 onClick={() => setIsSpendingLimitModalOpen(true)}
-                className="rounded-none font-mono text-xs bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 px-5"
+                className="rounded-none font-mono text-xs bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-5 font-semibold cursor-pointer"
               >
                 Set spending limit
               </Button>
@@ -180,8 +180,8 @@ export function SettingsBilling() {
       </Card>
 
       {/* 3. Billing details */}
-      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-card shadow-md hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/40 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Billing details</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Manage your billing details for this organization.
@@ -268,8 +268,8 @@ export function SettingsBilling() {
       </Card>
 
       {/* 4. Discount Codes */}
-      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-background shadow-sm hover:border-primary/30 transition-all duration-300">
-        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 group-hover:bg-primary/[0.01] transition-colors duration-300">
+      <Card className="group rounded-none border border-zinc-200 dark:border-zinc-800 bg-card shadow-md hover:border-primary/30 transition-all duration-300">
+        <div className="p-4 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-100/50 dark:bg-zinc-900/40 group-hover:bg-primary/[0.01] transition-colors duration-300">
           <h3 className="font-bold text-sm text-foreground">Discount codes</h3>
           <p className="text-[11px] text-muted-foreground mt-0.5">
             Apply and manage discount codes for your subscription.

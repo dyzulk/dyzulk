@@ -44,7 +44,7 @@ export function OrganizationApplications({ orgSlug }: OrganizationApplicationsPr
             Show Empty State
           </Button>
           <Link href={`/${orgSlug}/applications/create`} passHref legacyBehavior>
-            <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-9 px-4">
+            <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-9 px-4 cursor-pointer">
               <Plus className="size-3.5 mr-1.5" /> New application
             </Button>
           </Link>

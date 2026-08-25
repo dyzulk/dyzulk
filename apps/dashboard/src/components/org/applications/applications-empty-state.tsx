@@ -26,8 +26,8 @@ export function ApplicationsEmptyState({ orgSlug, onShowMockData }: Applications
       </div>
 
       {/* Empty State Layout */}
-      <div className="border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/10 p-20 flex flex-col items-center justify-center text-center rounded-none min-h-[400px]">
-        <div className="mb-6 text-zinc-300 dark:text-zinc-700">
+      <div className="border border-zinc-200 dark:border-zinc-800 bg-card p-20 flex flex-col items-center justify-center text-center rounded-none shadow-md min-h-[400px]">
+        <div className="mb-6 text-primary/70">
           <svg
             className="size-20 mx-auto"
             viewBox="0 0 120 120"
@@ -50,7 +50,7 @@ export function ApplicationsEmptyState({ orgSlug, onShowMockData }: Applications
         </p>
 
         <Link href={`/${orgSlug}/applications/create`} passHref legacyBehavior>
-          <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-zinc-950 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 h-10 px-6">
+          <Button className="rounded-none font-mono text-xs tracking-wider uppercase bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-10 px-6 cursor-pointer">
             <Plus className="size-4 mr-2" /> New application
           </Button>
         </Link>
